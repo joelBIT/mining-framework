@@ -3,10 +3,10 @@ package joelbits.model;
 /**
  * A unique person's information.
  */
-public class Person {
-    private String username;            // The person's username
-    private String realName;            // The real name, if known, otherwise same as username
-    private String email;               // The person's email address, if known
+public final class Person {
+    private final String username;            // The person's username
+    private final String realName;            // The real name, if known, otherwise same as username
+    private final String email;               // The person's email address, if known
 
     public Person(String username, String email) {
         this(username, username, email);

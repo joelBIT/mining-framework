@@ -8,10 +8,10 @@ import java.util.List;
 /**
  * A source code repository (Git, SVN, CVS, etc).
  */
-public class CodeRepository {
-    private String url;                         // The URL to access the code repository
-    private RepositoryType type;                // The type of code repository (SVN, GIT, etc)
-    private List<Revision> revisions;           // All of the revisions contained in the code repository
+public final class CodeRepository {
+    private final String url;                         // The URL to access the code repository
+    private final RepositoryType type;                // The type of code repository (SVN, GIT, etc)
+    private final List<Revision> revisions;           // All of the revisions contained in the code repository
 
     public CodeRepository(String url, RepositoryType type, List<Revision> revisions) {
         this.url = url;

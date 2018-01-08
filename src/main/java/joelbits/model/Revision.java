@@ -8,12 +8,12 @@ import java.util.List;
 /**
  * A  single revision in a CodeRepository.
  */
-public class Revision {
-    private String id;                      // A unique identifier for the revision
-    private DateTime time;                  // The time the revision was committed
-    private Person committer;               // The person who committed the revision
-    private List<ChangedFile> files;        // A list of all files committed in the revision
-    private String log;                     // The log message attached to the revision
+public final class Revision {
+    private final String id;                      // A unique identifier for the revision
+    private final DateTime time;                  // The time the revision was committed
+    private final Person committer;               // The person who committed the revision
+    private final List<ChangedFile> files;        // A list of all files committed in the revision
+    private final String log;                     // The log message attached to the revision
 
     public Revision(String id, DateTime time, Person committer, List<ChangedFile> files, String log) {
         this.id = id;
