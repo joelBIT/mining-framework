@@ -1,7 +1,6 @@
-package joelbits.model;
+package joelbits.model.project;
 
 import org.joda.time.DateTime;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +9,14 @@ import java.util.List;
  */
 public final class Revision {
     private final String id;                      // A unique identifier for the revision
-    private final DateTime time;                  // The time the revision was committed
+    private final DateTime CommitDate;            // The CommitDate the revision was committed
     private final Person committer;               // The person who committed the revision
     private final List<ChangedFile> files;        // A list of all files committed in the revision
     private final String log;                     // The log message attached to the revision
 
-    public Revision(String id, DateTime time, Person committer, List<ChangedFile> files, String log) {
+    public Revision(String id, DateTime commitDate, Person committer, List<ChangedFile> files, String log) {
         this.id = id;
-        this.time = time;
+        this.CommitDate = commitDate;
         this.committer = committer;
         this.files = new ArrayList<>(files);
         this.log = log;
@@ -27,8 +26,8 @@ public final class Revision {
         return id;
     }
 
-    public DateTime getTime() {
-        return time;
+    public DateTime getCommitDate() {
+        return CommitDate;
     }
 
     public Person getCommitter() {

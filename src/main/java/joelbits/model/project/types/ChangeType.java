@@ -1,4 +1,4 @@
-package joelbits.model.types;
+package joelbits.model.project.types;
 
 public enum ChangeType {
     ADDED, DELETED, MODIFIED

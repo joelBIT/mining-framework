@@ -1,0 +1,158 @@
+syntax = "proto3";
+package joelbits;
+
+option java_package = "joelbits.model.ast.protobuf";
+option java_outer_classname = "ASTProtos";
+
+message ASTRoot {
+    repeated string imports = 1;
+    repeated Namespace namespaces = 2;
+}
+
+message Declaration {
+    string name = 1;
+    DeclarationType type = 2;
+    repeated Declaration nested_declarations = 3;
+    repeated Modifier modifiers = 4;
+    repeated Variable fields = 5;
+    repeated Method methods = 6;
+    repeated Type parents = 7;
+}
+
+message Expression {
+    ExpressionType type = 1;
+    repeated Expression expressions = 2;
+    string literal = 3;
+    string method = 4;
+    string variable = 5;
+    repeated Expression method_arguments = 6;
+    repeated Variable variable_declarations = 7;
+    enum ExpressionType {
+        ARRAYINDEX = 0;
+        ARRAYINIT = 1;
+        ASSIGN = 2;
+        ASSIGN_ADD = 3;
+        ASSIGN_DIV = 4;
+        ASSIGN_SUB = 5;
+        ASSIGN_MOD = 6;
+        CAST = 7;
+        CONDITIONAL = 8;
+        EQ = 9;
+        GT = 10;
+        GTEQ = 11;
+        LITERAL = 12;
+        LOGICAL_AND = 13;
+        LOGICAL_OR = 14;
+        LOGICAL_NOT = 15;
+        LT = 16;
+        LTEQ = 17;
+        NEQ = 18;
+        NEW = 19;
+        METHODCALL = 20;
+        NEWARRAY = 21;
+        OP_ADD = 22;
+        OP_SUB = 23;
+        OP_DEC = 24;
+        OP_DIV = 25;
+        OP_INC = 26;
+        OP_MOD = 27;
+        OP_MULT = 28;
+        OTHER = 29;
+        PARENTHESIS = 30;
+        TYPECOMPARE = 31;
+        VARIABLE_DECLARATION = 32;
+        VARIABLE_ACCESS = 33;
+    }
+}
+
+message Method {
+    string name = 1;
+    repeated Variable arguments = 2;
+    Type return_type = 3;
+    repeated Modifier modifiers = 4;
+}
+
+message Modifier {
+    string name = 1;
+    ModifierType type = 2;
+    repeated string members = 3;
+    repeated Expression values = 4;
+    VisibilityType visibility = 5;
+    string other = 6;
+    enum ModifierType {
+        ABSTRACT = 0;
+        ANNOTATION = 1;
+        FINAL = 2;
+        STATIC = 3;
+        SYNCHRONIZED = 4;
+        VISIBILITY = 5;
+        OTHER = 6;
+    }
+    enum VisibilityType {
+        NAMESPACE = 0;
+        PUBLIC = 1;
+        PROTECTED = 2;
+        PRIVATE = 3;
+    }
+}
+
+message Namespace {
+    string name = 1;
+    repeated Declaration declarations = 2;
+    repeated Modifier modifiers = 3;
+}
+
+message Statement {
+    StatementType type = 1;
+    repeated Statement statements = 2;
+    Expression expression = 3;
+    repeated Expression expressions = 4;
+    Expression condition = 5;
+    repeated Expression initializations = 6;
+    Variable variable_declaration = 7;
+    repeated Expression updates = 8;
+    enum StatementType {
+        ASSERT = 0;
+        BLOCK = 1;
+        BREAK = 2;
+        CASE = 3;
+        CATCH = 4;
+        CONTINUE = 5;
+        DO = 6;
+        EMPTY = 7;
+        EXPRESSION = 8;
+        FOR = 9;
+        IF = 10;
+        LABEL = 11;
+        OTHER = 12;
+        RETURN = 13;
+        SWITCH = 14;
+        SYNCHRONIZED = 15;
+        THROW = 16;
+        TRY = 17;
+        TYPEDECLARATION = 18;
+        WHILE = 19;
+    }
+}
+
+message Variable {
+    string name = 1;
+    Type type = 2;
+    Expression initializer = 3;
+    repeated Modifier modifiers = 4;
+}
+
+message Type {
+    string name = 1;
+    DeclarationType type = 2;
+}
+
+enum DeclarationType {
+    CLASS = 0;
+    ANONYMOUS = 1;
+    ANNOTATION = 2;
+    INTERFACE = 3;
+    GENERIC = 4;
+    ENUM = 5;
+    OTHER = 6;
+}

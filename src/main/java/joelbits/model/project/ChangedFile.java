@@ -1,6 +1,6 @@
-package joelbits.model;
+package joelbits.model.project;
 
-import joelbits.model.types.ChangeType;
+import joelbits.model.project.types.ChangeType;
 import joelbits.model.types.FileType;
 
 /**

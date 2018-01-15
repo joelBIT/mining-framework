@@ -1,6 +1,7 @@
-package joelbits.model;
+package joelbits.model.project;
 
-import joelbits.model.types.RepositoryType;
+import joelbits.model.Revision;
+import joelbits.model.project.types.RepositoryType;
 
 import java.util.ArrayList;
 import java.util.List;

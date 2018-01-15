@@ -3,7 +3,7 @@ package joelbits;
 
 import "google/protobuf/timestamp.proto";
 
-option java_package = "joelbits.model.protobuf";
+option java_package = "joelbits.model.project.protobuf";
 option java_outer_classname = "ProjectProtos";
 
 message Project {

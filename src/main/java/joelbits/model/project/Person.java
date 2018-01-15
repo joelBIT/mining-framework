@@ -1,4 +1,4 @@
-package joelbits.model;
+package joelbits.model.project;
 
 /**
  * A unique person's information.
