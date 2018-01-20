@@ -1,4 +1,4 @@
-package joelbits.parsers.visitors;
+package joelbits.preprocessor.parsers.visitors;
 
 import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
@@ -7,8 +7,8 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
 import joelbits.model.ast.protobuf.ASTProtos.Expression;
-import joelbits.parsers.utils.ASTNodeCreater;
-import joelbits.parsers.utils.TypeConverter;
+import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
+import joelbits.preprocessor.parsers.utils.TypeConverter;
 
 import java.util.List;
 import java.util.Map;

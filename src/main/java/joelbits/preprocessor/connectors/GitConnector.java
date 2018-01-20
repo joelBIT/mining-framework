@@ -1,7 +1,7 @@
-package joelbits.connectors;
+package joelbits.preprocessor.connectors;
 
-import joelbits.connectors.utils.TreeIterator;
-import joelbits.model.project.types.FileType;
+import joelbits.preprocessor.connectors.utils.TreeIterator;
+import joelbits.model.project.types.SourceCodeFileType;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.jgit.api.Git;
@@ -235,7 +235,7 @@ public class GitConnector {
     }
 
     private boolean hasRelevantFileType(String file) {
-        return FileType.exist(file);
+        return SourceCodeFileType.exist(file);
     }
 
     /**

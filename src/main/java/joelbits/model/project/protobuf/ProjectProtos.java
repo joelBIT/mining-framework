@@ -5108,11 +5108,11 @@ public final class ProjectProtos {
     joelbits.model.project.protobuf.ProjectProtos.ChangedFile.ChangeType getChange();
 
     /**
-     * <code>.joelbits.ChangedFile.FileType type = 3;</code>
+     * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
      */
     int getTypeValue();
     /**
-     * <code>.joelbits.ChangedFile.FileType type = 3;</code>
+     * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
      */
     joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType getType();
   }
@@ -5315,7 +5315,7 @@ public final class ProjectProtos {
     }
 
     /**
-     * Protobuf enum {@code joelbits.ChangedFile.FileType}
+     * Protobuf enum {@code joelbits.ChangedFile.SourceCodeFileType}
      */
     public enum FileType
         implements com.google.protobuf.ProtocolMessageEnum {
@@ -5454,7 +5454,7 @@ public final class ProjectProtos {
         this.value = value;
       }
 
-      // @@protoc_insertion_point(enum_scope:joelbits.ChangedFile.FileType)
+      // @@protoc_insertion_point(enum_scope:joelbits.ChangedFile.SourceCodeFileType)
     }
 
     public static final int NAME_FIELD_NUMBER = 1;
@@ -5510,13 +5510,13 @@ public final class ProjectProtos {
     public static final int TYPE_FIELD_NUMBER = 3;
     private int type_;
     /**
-     * <code>.joelbits.ChangedFile.FileType type = 3;</code>
+     * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
      */
     public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>.joelbits.ChangedFile.FileType type = 3;</code>
+     * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
      */
     public joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType getType() {
       joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType result = joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType.valueOf(type_);
@@ -5953,13 +5953,13 @@ public final class ProjectProtos {
 
       private int type_ = 0;
       /**
-       * <code>.joelbits.ChangedFile.FileType type = 3;</code>
+       * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
        */
       public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>.joelbits.ChangedFile.FileType type = 3;</code>
+       * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
        */
       public Builder setTypeValue(int value) {
         type_ = value;
@@ -5967,14 +5967,14 @@ public final class ProjectProtos {
         return this;
       }
       /**
-       * <code>.joelbits.ChangedFile.FileType type = 3;</code>
+       * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
        */
       public joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType getType() {
         joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType result = joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType.valueOf(type_);
         return result == null ? joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType.UNRECOGNIZED : result;
       }
       /**
-       * <code>.joelbits.ChangedFile.FileType type = 3;</code>
+       * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
        */
       public Builder setType(joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType value) {
         if (value == null) {
@@ -5986,7 +5986,7 @@ public final class ProjectProtos {
         return this;
       }
       /**
-       * <code>.joelbits.ChangedFile.FileType type = 3;</code>
+       * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
        */
       public Builder clearType() {
 
@@ -6098,7 +6098,7 @@ public final class ProjectProtos {
       "\030\003 \001(\t\"\201\002\n\013ChangedFile\022\014\n\004name\030\001 \001(\t\0220\n\006" +
       "change\030\002 \001(\0162 .joelbits.ChangedFile.Chan" +
       "geType\022,\n\004type\030\003 \001(\0162\036.joelbits.ChangedF" +
-      "ile.FileType\"2\n\nChangeType\022\t\n\005ADDED\020\000\022\013\n" +
+      "ile.SourceCodeFileType\"2\n\nChangeType\022\t\n\005ADDED\020\000\022\013\n" +
       "\007DELETED\020\001\022\014\n\010MODIFIED\020\002\"P\n\010FileType\022\n\n\006" +
       "BINARY\020\000\022\010\n\004JAVA\020\001\022\006\n\002GO\020\002\022\010\n\004TEXT\020\003\022\007\n\003" +
       "XML\020\004\022\010\n\004JSON\020\005\022\t\n\005OTHER\020\006B(\n\027joelbits.m" +

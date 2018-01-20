@@ -1,7 +1,7 @@
 package joelbits.model.project;
 
 import joelbits.model.project.types.ChangeType;
-import joelbits.model.project.types.FileType;
+import joelbits.model.project.types.SourceCodeFileType;
 
 /**
  * A file committed in a Revision.
@@ -9,9 +9,9 @@ import joelbits.model.project.types.FileType;
 public final class ChangedFile {
     private final String name;                // The full name and path of the file
     private final ChangeType change;          // The type of change for this file
-    private final FileType type;              // The type of file
+    private final SourceCodeFileType type;              // The type of file
 
-    public ChangedFile(String name, ChangeType change, FileType type) {
+    public ChangedFile(String name, ChangeType change, SourceCodeFileType type) {
         this.name = name;
         this.change = change;
         this.type = type;
@@ -25,7 +25,7 @@ public final class ChangedFile {
         return change;
     }
 
-    public FileType getType() {
+    public SourceCodeFileType getType() {
         return type;
     }
 }

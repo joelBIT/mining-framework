@@ -1,4 +1,4 @@
-package joelbits.connectors.utils;
+package joelbits.preprocessor.connectors.utils;
 
 import org.eclipse.jgit.lib.ObjectReader;
 import org.eclipse.jgit.lib.Repository;

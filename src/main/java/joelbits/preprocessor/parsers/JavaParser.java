@@ -1,13 +1,13 @@
-package joelbits.parsers;
+package joelbits.preprocessor.parsers;
 
 import com.github.javaparser.ast.*;
 import com.github.javaparser.utils.Log;
 import static joelbits.model.ast.protobuf.ASTProtos.Namespace;
 import static joelbits.model.ast.protobuf.ASTProtos.Declaration;
 
-import joelbits.parsers.types.ParserType;
-import joelbits.parsers.utils.ASTNodeCreater;
-import joelbits.parsers.visitors.*;
+import joelbits.preprocessor.parsers.types.ParserType;
+import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
+import joelbits.preprocessor.parsers.visitors.*;
 
 import java.io.File;
 import java.io.FileInputStream;
