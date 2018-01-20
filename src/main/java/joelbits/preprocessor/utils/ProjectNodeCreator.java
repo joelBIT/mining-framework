@@ -11,6 +11,9 @@ import joelbits.model.project.protobuf.ProjectProtos.CodeRepository.RepositoryTy
 
 import java.util.List;
 
+/**
+ * Creates the Project nodes used by the framework (persisting and mining).
+ */
 public final class ProjectNodeCreator {
     public static Revision createRevision(String revisionId, List<ChangedFile> revisionFiles, Person committer, int commitTime, String log) {
         return Revision.newBuilder()

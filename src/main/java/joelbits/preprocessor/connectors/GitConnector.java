@@ -2,7 +2,6 @@ package joelbits.preprocessor.connectors;
 
 import joelbits.preprocessor.connectors.utils.TreeIterator;
 import joelbits.model.project.types.SourceCodeFileType;
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.*;
@@ -25,13 +24,14 @@ import static java.util.stream.Collectors.toMap;
 /**
  * Connects to a git repository and allows a client to access its data.
  */
-public class GitConnector {
+public final class GitConnector implements Connector {
     private static final Logger log = LoggerFactory.getLogger(GitConnector.class);
     private Repository repository;
     private final Map<String, RevCommit> commits = new HashMap<>();
     private final Map<String, List<DiffEntry>> differenceConsecutiveCommits = new HashMap<>();
     private final Map<String, DiffEntry> fileChanges = new HashMap<>();
 
+    @Override
     public void connect(String repositoryName) throws Exception {
         String path = System.getProperty("user.dir") + File.separator + repositoryName + File.separator;
         File repository = new File(path + Constants.DOT_GIT);
@@ -108,6 +108,7 @@ public class GitConnector {
      * @param fileChangeId      the sha1 value of a specific file change within a specific commit
      * @return                  the type of the file change, e.g., ADD, DELETE, MODIFY
      */
+    @Override
     public String fileChangeType(String fileChangeId) {
         return Optional.ofNullable(fileChanges.get(fileChangeId))
                 .map(DiffEntry::getChangeType)
@@ -121,6 +122,7 @@ public class GitConnector {
      *
      * @throws GitAPIException
      */
+    @Override
     public void checkOutMostRecentRevision() throws GitAPIException {
         try (Git git = new Git(repository)) {
             git.checkout().setName(Constants.R_HEADS + Constants.MASTER).call();
@@ -134,24 +136,24 @@ public class GitConnector {
      * @param filePath              the file path of the file to check out
      * @throws GitAPIException
      */
+    @Override
     public void checkOutFile(String commitId, String filePath) throws GitAPIException {
         try (Git git = new Git(repository)) {
             git.checkout().setStartPoint(commits.get(commitId)).addPath(filePath).call();
         }
     }
 
-    public String fileType(String fileName) {
-        return FilenameUtils.getExtension(fileName);
-    }
-
+    @Override
     public String logMessage(String commitId) {
         return commits.get(commitId).getFullMessage();
     }
 
+    @Override
     public boolean hasParentRevisions(String commitId) {
         return commits.get(commitId).getParentCount() > 0;
     }
 
+    @Override
     public String getParentRevision(String commitId) {
         return Optional.ofNullable(commits.get(commitId))
                 .filter(d -> d.getParentCount() > 0)
@@ -160,28 +162,19 @@ public class GitConnector {
                 .orElse(StringUtils.EMPTY);
     }
 
+    @Override
     public String committerName(String commitId) {
         return commits.get(commitId).getCommitterIdent().getName();
     }
 
+    @Override
     public String committerEmail(String commitId) {
         return commits.get(commitId).getCommitterIdent().getEmailAddress();
     }
 
+    @Override
     public int commitTime(String commitId) {
         return commits.get(commitId).getCommitTime();
-    }
-
-    /**
-     * After a file has been changed this method could be invoked to retrieve the current path to the file.
-     *
-     * @param fileChangeId      the sha1 value of a specific file change within a specific commit
-     * @return                  the path to the file after the change
-     */
-    public String fileChangePath(String fileChangeId) {
-        return Optional.ofNullable(fileChanges.get(fileChangeId))
-                .map(DiffEntry::getNewPath)
-                .orElse(StringUtils.EMPTY);
     }
 
     /**
@@ -190,6 +183,7 @@ public class GitConnector {
      *
      * @return      the ID of the most recent commit
      */
+    @Override
     public String mostRecentCommitId() {
         Comparator<RevCommit> comparator = Comparator.comparing(RevCommit::getCommitTime);
         return commits.isEmpty() ? StringUtils.EMPTY : Collections.max(commits.values(), comparator).getId().name();
@@ -201,6 +195,7 @@ public class GitConnector {
      *
      * @return      the ID of the repository's root commit
      */
+    @Override
     public String leastRecentCommitId() {
         Comparator<RevCommit> comparator = Comparator.comparing(RevCommit::getCommitTime);
         return commits.isEmpty() ? StringUtils.EMPTY : Collections.min(commits.values(), comparator).getId().name();
@@ -214,6 +209,7 @@ public class GitConnector {
      * @param oldCommitId       the ID of the commits that are oldest in time
      * @return                  a map containing pairs of the sha1 value of a file change and the file path
      */
+    @Override
     public Map<String, String> changedFilesBetweenCommits(String newCommitId, String oldCommitId) {
         if (StringUtils.isEmpty(newCommitId) || StringUtils.isEmpty(oldCommitId)) {
             log.warn("Must provide existing commit IDs");
@@ -280,16 +276,6 @@ public class GitConnector {
         }
 
         return Collections.emptyMap();
-    }
-
-    /**
-     * The set of commit IDs can be used to checkout each revision (using the ID) for scanning and parsing of
-     * relevant files.
-     *
-     * @return      a set of the repository's all commit IDs
-     */
-    public Set<String> allCommitIds() {
-        return Collections.unmodifiableSet(commits.keySet());
     }
 
     @Override
