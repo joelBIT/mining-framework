@@ -12,7 +12,7 @@ import joelbits.model.ast.protobuf.ASTProtos.Variable;
 import joelbits.model.ast.protobuf.ASTProtos.Statement;
 import joelbits.model.ast.protobuf.ASTProtos.Expression;
 import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
-import joelbits.preprocessor.parsers.utils.TypeConverter;
+import joelbits.preprocessor.utils.TypeConverter;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -17,8 +17,8 @@ import java.util.Map;
 /**
  * Extracts repository names from .csv and .json files
  */
-public class FileRepositoryExtracter {
-    private static final Logger log = LoggerFactory.getLogger(FileRepositoryExtracter.class);
+public final class FileRepositoryExtractor {
+    private static final Logger log = LoggerFactory.getLogger(FileRepositoryExtractor.class);
 
     public static List<String> parse(File file) {
         List<String> fileContent = new ArrayList<>();

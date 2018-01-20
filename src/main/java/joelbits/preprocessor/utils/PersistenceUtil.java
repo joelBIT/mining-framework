@@ -1,4 +1,4 @@
-package joelbits.utils;
+package joelbits.preprocessor.utils;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.*;
@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.*;
 
-public class PersistenceUtil {
+public final class PersistenceUtil {
     private static final Logger log = LoggerFactory.getLogger(PersistenceUtil.class);
     private static Connection connection;
     private static Configuration configuration;

@@ -8,7 +8,7 @@ import joelbits.model.ast.protobuf.ASTProtos.Modifier;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
 import joelbits.model.ast.protobuf.ASTProtos.Expression;
 import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
-import joelbits.preprocessor.parsers.utils.TypeConverter;
+import joelbits.preprocessor.utils.TypeConverter;
 
 import java.util.List;
 import java.util.Map;

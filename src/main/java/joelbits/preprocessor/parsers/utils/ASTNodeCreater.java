@@ -4,6 +4,7 @@ import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.body.MethodDeclaration;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.MethodCallExpr;
+import joelbits.preprocessor.utils.TypeConverter;
 
 import static joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType;
 import static joelbits.model.ast.protobuf.ASTProtos.Method;

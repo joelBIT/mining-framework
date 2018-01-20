@@ -1,4 +1,4 @@
-package joelbits.preprocessor.parsers.utils;
+package joelbits.preprocessor.utils;
 
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
@@ -12,6 +12,7 @@ import joelbits.model.ast.protobuf.ASTProtos.DeclarationType;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier.ModifierType;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType;
 import joelbits.model.ast.protobuf.ASTProtos.Expression.ExpressionType;
+import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.*;
@@ -112,5 +113,25 @@ public class TypeConverter {
             memberName = StringUtils.EMPTY;
         }
         return memberName;
+    }
+
+    /**
+     * Since some sources may have different ChangeTypes than used in the Protocol Buffer, they have to
+     * be mapped to corresponding ChangeType.
+     *
+     * @param type          the ChangeType of the parsed source
+     * @return              the ChangeType used in the Project Protocol Buffer message
+     */
+    public static String convertChangeType(String type) {
+        switch(type.toUpperCase()) {
+            case "MODIFY":
+                return "MODIFIED";
+            case "ADD":
+                return "ADDED";
+            case "DELETE":
+                return "DELETED";
+            default:
+                return type.toUpperCase();
+        }
     }
 }

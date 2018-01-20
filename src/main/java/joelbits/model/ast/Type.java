@@ -1,7 +1,7 @@
 package joelbits.model.ast;
 
 import joelbits.model.ast.types.DeclarationType;
-import joelbits.visitors.Visitor;
+import joelbits.analysisExecuter.visitors.Visitor;
 
 /**
  * A type in an AST.

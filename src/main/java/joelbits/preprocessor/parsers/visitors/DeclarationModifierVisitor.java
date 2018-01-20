@@ -6,7 +6,7 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import joelbits.model.ast.protobuf.ASTProtos.Expression;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier;
 import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
-import joelbits.preprocessor.parsers.utils.TypeConverter;
+import joelbits.preprocessor.utils.TypeConverter;
 
 import java.util.List;
 import java.util.Map;
