@@ -115,12 +115,41 @@ public class GitConnector {
                 .orElse(StringUtils.EMPTY);
     }
 
+    /**
+     * Checks out the most recent snapshot of the project. Can be used to restore a cloned project to its
+     * initial state after parsing revisions.
+     *
+     * @throws GitAPIException
+     */
+    public void checkOutMostRecentRevision() throws GitAPIException {
+        try (Git git = new Git(repository)) {
+            git.checkout().setName(Constants.R_HEADS + Constants.MASTER).call();
+        }
+    }
+
+    /**
+     * Checks out a specific file in a specific revision.
+     *
+     * @param commitId              the sha1 value of the revision the file is in
+     * @param filePath              the file path of the file to check out
+     * @throws GitAPIException
+     */
+    public void checkOutFile(String commitId, String filePath) throws GitAPIException {
+        try (Git git = new Git(repository)) {
+            git.checkout().setStartPoint(commits.get(commitId)).addPath(filePath).call();
+        }
+    }
+
     public String fileType(String fileName) {
         return FilenameUtils.getExtension(fileName);
     }
 
     public String logMessage(String commitId) {
         return commits.get(commitId).getFullMessage();
+    }
+
+    public boolean hasParentRevisions(String commitId) {
+        return commits.get(commitId).getParentCount() > 0;
     }
 
     public String getParentRevision(String commitId) {
@@ -257,7 +286,7 @@ public class GitConnector {
      * The set of commit IDs can be used to checkout each revision (using the ID) for scanning and parsing of
      * relevant files.
      *
-     * @return      a set of the repository's all commit IDs in descending order (most recent commit first)
+     * @return      a set of the repository's all commit IDs
      */
     public Set<String> allCommitIds() {
         return Collections.unmodifiableSet(commits.keySet());

@@ -1,7 +1,7 @@
 package joelbits.model.project;
 
 import joelbits.model.project.types.ChangeType;
-import joelbits.model.types.FileType;
+import joelbits.model.project.types.FileType;
 
 /**
  * A file committed in a Revision.

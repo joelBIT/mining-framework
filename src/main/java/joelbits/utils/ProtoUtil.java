@@ -144,12 +144,14 @@ public final class ProtoUtil {
                 .build();
     }
 
-    public static Method method(String name, List<Variable> arguments, Type returnType, List<Modifier> modifiers) {
+    public static Method method(String name, List<Variable> arguments, Type returnType, List<Modifier> modifiers, List<Statement> statements, List<Type> exceptionTypes) {
         return Method.newBuilder()
                 .setName(name)
                 .addAllArguments(arguments)
                 .setReturnType(returnType)
                 .addAllModifiers(modifiers)
+                .addAllStatements(statements)
+                .addAllExceptionTypes(exceptionTypes)
                 .build();
     }
 
@@ -169,7 +171,7 @@ public final class ProtoUtil {
                 .build();
     }
 
-    public static Expression expression(String type, List<Expression> expressions, String literal, String method, String variable, List<Expression> methodArguments, List<Variable> variableDeclarations) {
+    public static Expression expression(String type, List<Expression> expressions, String literal, String method, String variable, List<Expression> methodArguments, List<Variable> variableDeclarations, Modifier annotation) {
         return Expression.newBuilder()
                 .setType(ExpressionType.valueOf(type.toUpperCase()))
                 .addAllExpressions(expressions)
@@ -178,6 +180,7 @@ public final class ProtoUtil {
                 .setVariable(variable)
                 .addAllMethodArguments(methodArguments)
                 .addAllVariableDeclarations(variableDeclarations)
+                .setAnnotation(annotation)
                 .build();
     }
 

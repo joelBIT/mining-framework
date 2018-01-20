@@ -27,6 +27,7 @@ message Expression {
     string variable = 5;
     repeated Expression method_arguments = 6;
     repeated Variable variable_declarations = 7;
+    Modifier annotation = 8;
     enum ExpressionType {
         ARRAYINDEX = 0;
         ARRAYINIT = 1;
@@ -70,6 +71,8 @@ message Method {
     repeated Variable arguments = 2;
     Type return_type = 3;
     repeated Modifier modifiers = 4;
+    repeated Statement statements = 5;
+    repeated Type exception_types = 6;
 }
 
 message Modifier {

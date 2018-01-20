@@ -3674,6 +3674,19 @@ public final class ASTProtos {
      */
     joelbits.model.ast.protobuf.ASTProtos.VariableOrBuilder getVariableDeclarationsOrBuilder(
         int index);
+
+    /**
+     * <code>.joelbits.Modifier annotation = 8;</code>
+     */
+    boolean hasAnnotation();
+    /**
+     * <code>.joelbits.Modifier annotation = 8;</code>
+     */
+    joelbits.model.ast.protobuf.ASTProtos.Modifier getAnnotation();
+    /**
+     * <code>.joelbits.Modifier annotation = 8;</code>
+     */
+    joelbits.model.ast.protobuf.ASTProtos.ModifierOrBuilder getAnnotationOrBuilder();
   }
   /**
    * Protobuf type {@code joelbits.Expression}
@@ -3777,6 +3790,19 @@ public final class ASTProtos {
               }
               variableDeclarations_.add(
                   input.readMessage(joelbits.model.ast.protobuf.ASTProtos.Variable.parser(), extensionRegistry));
+              break;
+            }
+            case 66: {
+              joelbits.model.ast.protobuf.ASTProtos.Modifier.Builder subBuilder = null;
+              if (annotation_ != null) {
+                subBuilder = annotation_.toBuilder();
+              }
+              annotation_ = input.readMessage(joelbits.model.ast.protobuf.ASTProtos.Modifier.parser(), extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(annotation_);
+                annotation_ = subBuilder.buildPartial();
+              }
+
               break;
             }
           }
@@ -4422,6 +4448,27 @@ public final class ASTProtos {
       return variableDeclarations_.get(index);
     }
 
+    public static final int ANNOTATION_FIELD_NUMBER = 8;
+    private joelbits.model.ast.protobuf.ASTProtos.Modifier annotation_;
+    /**
+     * <code>.joelbits.Modifier annotation = 8;</code>
+     */
+    public boolean hasAnnotation() {
+      return annotation_ != null;
+    }
+    /**
+     * <code>.joelbits.Modifier annotation = 8;</code>
+     */
+    public joelbits.model.ast.protobuf.ASTProtos.Modifier getAnnotation() {
+      return annotation_ == null ? joelbits.model.ast.protobuf.ASTProtos.Modifier.getDefaultInstance() : annotation_;
+    }
+    /**
+     * <code>.joelbits.Modifier annotation = 8;</code>
+     */
+    public joelbits.model.ast.protobuf.ASTProtos.ModifierOrBuilder getAnnotationOrBuilder() {
+      return getAnnotation();
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -4454,6 +4501,9 @@ public final class ASTProtos {
       }
       for (int i = 0; i < variableDeclarations_.size(); i++) {
         output.writeMessage(7, variableDeclarations_.get(i));
+      }
+      if (annotation_ != null) {
+        output.writeMessage(8, getAnnotation());
       }
       unknownFields.writeTo(output);
     }
@@ -4488,6 +4538,10 @@ public final class ASTProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, variableDeclarations_.get(i));
       }
+      if (annotation_ != null) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, getAnnotation());
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
@@ -4517,6 +4571,11 @@ public final class ASTProtos {
           .equals(other.getMethodArgumentsList());
       result = result && getVariableDeclarationsList()
           .equals(other.getVariableDeclarationsList());
+      result = result && (hasAnnotation() == other.hasAnnotation());
+      if (hasAnnotation()) {
+        result = result && getAnnotation()
+            .equals(other.getAnnotation());
+      }
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -4547,6 +4606,10 @@ public final class ASTProtos {
       if (getVariableDeclarationsCount() > 0) {
         hash = (37 * hash) + VARIABLE_DECLARATIONS_FIELD_NUMBER;
         hash = (53 * hash) + getVariableDeclarationsList().hashCode();
+      }
+      if (hasAnnotation()) {
+        hash = (37 * hash) + ANNOTATION_FIELD_NUMBER;
+        hash = (53 * hash) + getAnnotation().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -4706,6 +4769,12 @@ public final class ASTProtos {
         } else {
           variableDeclarationsBuilder_.clear();
         }
+        if (annotationBuilder_ == null) {
+          annotation_ = null;
+        } else {
+          annotation_ = null;
+          annotationBuilder_ = null;
+        }
         return this;
       }
 
@@ -4760,6 +4829,11 @@ public final class ASTProtos {
           result.variableDeclarations_ = variableDeclarations_;
         } else {
           result.variableDeclarations_ = variableDeclarationsBuilder_.build();
+        }
+        if (annotationBuilder_ == null) {
+          result.annotation_ = annotation_;
+        } else {
+          result.annotation_ = annotationBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -4895,6 +4969,9 @@ public final class ASTProtos {
               variableDeclarationsBuilder_.addAllMessages(other.variableDeclarations_);
             }
           }
+        }
+        if (other.hasAnnotation()) {
+          mergeAnnotation(other.getAnnotation());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -5894,6 +5971,123 @@ public final class ASTProtos {
         }
         return variableDeclarationsBuilder_;
       }
+
+      private joelbits.model.ast.protobuf.ASTProtos.Modifier annotation_ = null;
+      private com.google.protobuf.SingleFieldBuilderV3<
+          joelbits.model.ast.protobuf.ASTProtos.Modifier, joelbits.model.ast.protobuf.ASTProtos.Modifier.Builder, joelbits.model.ast.protobuf.ASTProtos.ModifierOrBuilder> annotationBuilder_;
+      /**
+       * <code>.joelbits.Modifier annotation = 8;</code>
+       */
+      public boolean hasAnnotation() {
+        return annotationBuilder_ != null || annotation_ != null;
+      }
+      /**
+       * <code>.joelbits.Modifier annotation = 8;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.Modifier getAnnotation() {
+        if (annotationBuilder_ == null) {
+          return annotation_ == null ? joelbits.model.ast.protobuf.ASTProtos.Modifier.getDefaultInstance() : annotation_;
+        } else {
+          return annotationBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>.joelbits.Modifier annotation = 8;</code>
+       */
+      public Builder setAnnotation(joelbits.model.ast.protobuf.ASTProtos.Modifier value) {
+        if (annotationBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          annotation_ = value;
+          onChanged();
+        } else {
+          annotationBuilder_.setMessage(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.joelbits.Modifier annotation = 8;</code>
+       */
+      public Builder setAnnotation(
+          joelbits.model.ast.protobuf.ASTProtos.Modifier.Builder builderForValue) {
+        if (annotationBuilder_ == null) {
+          annotation_ = builderForValue.build();
+          onChanged();
+        } else {
+          annotationBuilder_.setMessage(builderForValue.build());
+        }
+
+        return this;
+      }
+      /**
+       * <code>.joelbits.Modifier annotation = 8;</code>
+       */
+      public Builder mergeAnnotation(joelbits.model.ast.protobuf.ASTProtos.Modifier value) {
+        if (annotationBuilder_ == null) {
+          if (annotation_ != null) {
+            annotation_ =
+              joelbits.model.ast.protobuf.ASTProtos.Modifier.newBuilder(annotation_).mergeFrom(value).buildPartial();
+          } else {
+            annotation_ = value;
+          }
+          onChanged();
+        } else {
+          annotationBuilder_.mergeFrom(value);
+        }
+
+        return this;
+      }
+      /**
+       * <code>.joelbits.Modifier annotation = 8;</code>
+       */
+      public Builder clearAnnotation() {
+        if (annotationBuilder_ == null) {
+          annotation_ = null;
+          onChanged();
+        } else {
+          annotation_ = null;
+          annotationBuilder_ = null;
+        }
+
+        return this;
+      }
+      /**
+       * <code>.joelbits.Modifier annotation = 8;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.Modifier.Builder getAnnotationBuilder() {
+        
+        onChanged();
+        return getAnnotationFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>.joelbits.Modifier annotation = 8;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.ModifierOrBuilder getAnnotationOrBuilder() {
+        if (annotationBuilder_ != null) {
+          return annotationBuilder_.getMessageOrBuilder();
+        } else {
+          return annotation_ == null ?
+              joelbits.model.ast.protobuf.ASTProtos.Modifier.getDefaultInstance() : annotation_;
+        }
+      }
+      /**
+       * <code>.joelbits.Modifier annotation = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilderV3<
+          joelbits.model.ast.protobuf.ASTProtos.Modifier, joelbits.model.ast.protobuf.ASTProtos.Modifier.Builder, joelbits.model.ast.protobuf.ASTProtos.ModifierOrBuilder> 
+          getAnnotationFieldBuilder() {
+        if (annotationBuilder_ == null) {
+          annotationBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+              joelbits.model.ast.protobuf.ASTProtos.Modifier, joelbits.model.ast.protobuf.ASTProtos.Modifier.Builder, joelbits.model.ast.protobuf.ASTProtos.ModifierOrBuilder>(
+                  getAnnotation(),
+                  getParentForChildren(),
+                  isClean());
+          annotation_ = null;
+        }
+        return annotationBuilder_;
+      }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
         return super.setUnknownFieldsProto3(unknownFields);
@@ -6017,6 +6211,54 @@ public final class ASTProtos {
      */
     joelbits.model.ast.protobuf.ASTProtos.ModifierOrBuilder getModifiersOrBuilder(
         int index);
+
+    /**
+     * <code>repeated .joelbits.Statement statements = 5;</code>
+     */
+    java.util.List<joelbits.model.ast.protobuf.ASTProtos.Statement> 
+        getStatementsList();
+    /**
+     * <code>repeated .joelbits.Statement statements = 5;</code>
+     */
+    joelbits.model.ast.protobuf.ASTProtos.Statement getStatements(int index);
+    /**
+     * <code>repeated .joelbits.Statement statements = 5;</code>
+     */
+    int getStatementsCount();
+    /**
+     * <code>repeated .joelbits.Statement statements = 5;</code>
+     */
+    java.util.List<? extends joelbits.model.ast.protobuf.ASTProtos.StatementOrBuilder> 
+        getStatementsOrBuilderList();
+    /**
+     * <code>repeated .joelbits.Statement statements = 5;</code>
+     */
+    joelbits.model.ast.protobuf.ASTProtos.StatementOrBuilder getStatementsOrBuilder(
+        int index);
+
+    /**
+     * <code>repeated .joelbits.Type exception_types = 6;</code>
+     */
+    java.util.List<joelbits.model.ast.protobuf.ASTProtos.Type> 
+        getExceptionTypesList();
+    /**
+     * <code>repeated .joelbits.Type exception_types = 6;</code>
+     */
+    joelbits.model.ast.protobuf.ASTProtos.Type getExceptionTypes(int index);
+    /**
+     * <code>repeated .joelbits.Type exception_types = 6;</code>
+     */
+    int getExceptionTypesCount();
+    /**
+     * <code>repeated .joelbits.Type exception_types = 6;</code>
+     */
+    java.util.List<? extends joelbits.model.ast.protobuf.ASTProtos.TypeOrBuilder> 
+        getExceptionTypesOrBuilderList();
+    /**
+     * <code>repeated .joelbits.Type exception_types = 6;</code>
+     */
+    joelbits.model.ast.protobuf.ASTProtos.TypeOrBuilder getExceptionTypesOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code joelbits.Method}
@@ -6034,6 +6276,8 @@ public final class ASTProtos {
       name_ = "";
       arguments_ = java.util.Collections.emptyList();
       modifiers_ = java.util.Collections.emptyList();
+      statements_ = java.util.Collections.emptyList();
+      exceptionTypes_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -6104,6 +6348,24 @@ public final class ASTProtos {
                   input.readMessage(joelbits.model.ast.protobuf.ASTProtos.Modifier.parser(), extensionRegistry));
               break;
             }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                statements_ = new java.util.ArrayList<joelbits.model.ast.protobuf.ASTProtos.Statement>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              statements_.add(
+                  input.readMessage(joelbits.model.ast.protobuf.ASTProtos.Statement.parser(), extensionRegistry));
+              break;
+            }
+            case 50: {
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+                exceptionTypes_ = new java.util.ArrayList<joelbits.model.ast.protobuf.ASTProtos.Type>();
+                mutable_bitField0_ |= 0x00000020;
+              }
+              exceptionTypes_.add(
+                  input.readMessage(joelbits.model.ast.protobuf.ASTProtos.Type.parser(), extensionRegistry));
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -6117,6 +6379,12 @@ public final class ASTProtos {
         }
         if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
           modifiers_ = java.util.Collections.unmodifiableList(modifiers_);
+        }
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          statements_ = java.util.Collections.unmodifiableList(statements_);
+        }
+        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+          exceptionTypes_ = java.util.Collections.unmodifiableList(exceptionTypes_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -6260,6 +6528,76 @@ public final class ASTProtos {
       return modifiers_.get(index);
     }
 
+    public static final int STATEMENTS_FIELD_NUMBER = 5;
+    private java.util.List<joelbits.model.ast.protobuf.ASTProtos.Statement> statements_;
+    /**
+     * <code>repeated .joelbits.Statement statements = 5;</code>
+     */
+    public java.util.List<joelbits.model.ast.protobuf.ASTProtos.Statement> getStatementsList() {
+      return statements_;
+    }
+    /**
+     * <code>repeated .joelbits.Statement statements = 5;</code>
+     */
+    public java.util.List<? extends joelbits.model.ast.protobuf.ASTProtos.StatementOrBuilder> 
+        getStatementsOrBuilderList() {
+      return statements_;
+    }
+    /**
+     * <code>repeated .joelbits.Statement statements = 5;</code>
+     */
+    public int getStatementsCount() {
+      return statements_.size();
+    }
+    /**
+     * <code>repeated .joelbits.Statement statements = 5;</code>
+     */
+    public joelbits.model.ast.protobuf.ASTProtos.Statement getStatements(int index) {
+      return statements_.get(index);
+    }
+    /**
+     * <code>repeated .joelbits.Statement statements = 5;</code>
+     */
+    public joelbits.model.ast.protobuf.ASTProtos.StatementOrBuilder getStatementsOrBuilder(
+        int index) {
+      return statements_.get(index);
+    }
+
+    public static final int EXCEPTION_TYPES_FIELD_NUMBER = 6;
+    private java.util.List<joelbits.model.ast.protobuf.ASTProtos.Type> exceptionTypes_;
+    /**
+     * <code>repeated .joelbits.Type exception_types = 6;</code>
+     */
+    public java.util.List<joelbits.model.ast.protobuf.ASTProtos.Type> getExceptionTypesList() {
+      return exceptionTypes_;
+    }
+    /**
+     * <code>repeated .joelbits.Type exception_types = 6;</code>
+     */
+    public java.util.List<? extends joelbits.model.ast.protobuf.ASTProtos.TypeOrBuilder> 
+        getExceptionTypesOrBuilderList() {
+      return exceptionTypes_;
+    }
+    /**
+     * <code>repeated .joelbits.Type exception_types = 6;</code>
+     */
+    public int getExceptionTypesCount() {
+      return exceptionTypes_.size();
+    }
+    /**
+     * <code>repeated .joelbits.Type exception_types = 6;</code>
+     */
+    public joelbits.model.ast.protobuf.ASTProtos.Type getExceptionTypes(int index) {
+      return exceptionTypes_.get(index);
+    }
+    /**
+     * <code>repeated .joelbits.Type exception_types = 6;</code>
+     */
+    public joelbits.model.ast.protobuf.ASTProtos.TypeOrBuilder getExceptionTypesOrBuilder(
+        int index) {
+      return exceptionTypes_.get(index);
+    }
+
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
@@ -6284,6 +6622,12 @@ public final class ASTProtos {
       for (int i = 0; i < modifiers_.size(); i++) {
         output.writeMessage(4, modifiers_.get(i));
       }
+      for (int i = 0; i < statements_.size(); i++) {
+        output.writeMessage(5, statements_.get(i));
+      }
+      for (int i = 0; i < exceptionTypes_.size(); i++) {
+        output.writeMessage(6, exceptionTypes_.get(i));
+      }
       unknownFields.writeTo(output);
     }
 
@@ -6306,6 +6650,14 @@ public final class ASTProtos {
       for (int i = 0; i < modifiers_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, modifiers_.get(i));
+      }
+      for (int i = 0; i < statements_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, statements_.get(i));
+      }
+      for (int i = 0; i < exceptionTypes_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, exceptionTypes_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -6334,6 +6686,10 @@ public final class ASTProtos {
       }
       result = result && getModifiersList()
           .equals(other.getModifiersList());
+      result = result && getStatementsList()
+          .equals(other.getStatementsList());
+      result = result && getExceptionTypesList()
+          .equals(other.getExceptionTypesList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -6358,6 +6714,14 @@ public final class ASTProtos {
       if (getModifiersCount() > 0) {
         hash = (37 * hash) + MODIFIERS_FIELD_NUMBER;
         hash = (53 * hash) + getModifiersList().hashCode();
+      }
+      if (getStatementsCount() > 0) {
+        hash = (37 * hash) + STATEMENTS_FIELD_NUMBER;
+        hash = (53 * hash) + getStatementsList().hashCode();
+      }
+      if (getExceptionTypesCount() > 0) {
+        hash = (37 * hash) + EXCEPTION_TYPES_FIELD_NUMBER;
+        hash = (53 * hash) + getExceptionTypesList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -6486,6 +6850,8 @@ public final class ASTProtos {
                 .alwaysUseFieldBuilders) {
           getArgumentsFieldBuilder();
           getModifiersFieldBuilder();
+          getStatementsFieldBuilder();
+          getExceptionTypesFieldBuilder();
         }
       }
       public Builder clear() {
@@ -6509,6 +6875,18 @@ public final class ASTProtos {
           bitField0_ = (bitField0_ & ~0x00000008);
         } else {
           modifiersBuilder_.clear();
+        }
+        if (statementsBuilder_ == null) {
+          statements_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+        } else {
+          statementsBuilder_.clear();
+        }
+        if (exceptionTypesBuilder_ == null) {
+          exceptionTypes_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+        } else {
+          exceptionTypesBuilder_.clear();
         }
         return this;
       }
@@ -6557,6 +6935,24 @@ public final class ASTProtos {
           result.modifiers_ = modifiers_;
         } else {
           result.modifiers_ = modifiersBuilder_.build();
+        }
+        if (statementsBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010)) {
+            statements_ = java.util.Collections.unmodifiableList(statements_);
+            bitField0_ = (bitField0_ & ~0x00000010);
+          }
+          result.statements_ = statements_;
+        } else {
+          result.statements_ = statementsBuilder_.build();
+        }
+        if (exceptionTypesBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) == 0x00000020)) {
+            exceptionTypes_ = java.util.Collections.unmodifiableList(exceptionTypes_);
+            bitField0_ = (bitField0_ & ~0x00000020);
+          }
+          result.exceptionTypes_ = exceptionTypes_;
+        } else {
+          result.exceptionTypes_ = exceptionTypesBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -6656,6 +7052,58 @@ public final class ASTProtos {
                    getModifiersFieldBuilder() : null;
             } else {
               modifiersBuilder_.addAllMessages(other.modifiers_);
+            }
+          }
+        }
+        if (statementsBuilder_ == null) {
+          if (!other.statements_.isEmpty()) {
+            if (statements_.isEmpty()) {
+              statements_ = other.statements_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+            } else {
+              ensureStatementsIsMutable();
+              statements_.addAll(other.statements_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.statements_.isEmpty()) {
+            if (statementsBuilder_.isEmpty()) {
+              statementsBuilder_.dispose();
+              statementsBuilder_ = null;
+              statements_ = other.statements_;
+              bitField0_ = (bitField0_ & ~0x00000010);
+              statementsBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getStatementsFieldBuilder() : null;
+            } else {
+              statementsBuilder_.addAllMessages(other.statements_);
+            }
+          }
+        }
+        if (exceptionTypesBuilder_ == null) {
+          if (!other.exceptionTypes_.isEmpty()) {
+            if (exceptionTypes_.isEmpty()) {
+              exceptionTypes_ = other.exceptionTypes_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+            } else {
+              ensureExceptionTypesIsMutable();
+              exceptionTypes_.addAll(other.exceptionTypes_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.exceptionTypes_.isEmpty()) {
+            if (exceptionTypesBuilder_.isEmpty()) {
+              exceptionTypesBuilder_.dispose();
+              exceptionTypesBuilder_ = null;
+              exceptionTypes_ = other.exceptionTypes_;
+              bitField0_ = (bitField0_ & ~0x00000020);
+              exceptionTypesBuilder_ = 
+                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                   getExceptionTypesFieldBuilder() : null;
+            } else {
+              exceptionTypesBuilder_.addAllMessages(other.exceptionTypes_);
             }
           }
         }
@@ -7351,6 +7799,486 @@ public final class ASTProtos {
           modifiers_ = null;
         }
         return modifiersBuilder_;
+      }
+
+      private java.util.List<joelbits.model.ast.protobuf.ASTProtos.Statement> statements_ =
+        java.util.Collections.emptyList();
+      private void ensureStatementsIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          statements_ = new java.util.ArrayList<joelbits.model.ast.protobuf.ASTProtos.Statement>(statements_);
+          bitField0_ |= 0x00000010;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          joelbits.model.ast.protobuf.ASTProtos.Statement, joelbits.model.ast.protobuf.ASTProtos.Statement.Builder, joelbits.model.ast.protobuf.ASTProtos.StatementOrBuilder> statementsBuilder_;
+
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public java.util.List<joelbits.model.ast.protobuf.ASTProtos.Statement> getStatementsList() {
+        if (statementsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(statements_);
+        } else {
+          return statementsBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public int getStatementsCount() {
+        if (statementsBuilder_ == null) {
+          return statements_.size();
+        } else {
+          return statementsBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.Statement getStatements(int index) {
+        if (statementsBuilder_ == null) {
+          return statements_.get(index);
+        } else {
+          return statementsBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public Builder setStatements(
+          int index, joelbits.model.ast.protobuf.ASTProtos.Statement value) {
+        if (statementsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureStatementsIsMutable();
+          statements_.set(index, value);
+          onChanged();
+        } else {
+          statementsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public Builder setStatements(
+          int index, joelbits.model.ast.protobuf.ASTProtos.Statement.Builder builderForValue) {
+        if (statementsBuilder_ == null) {
+          ensureStatementsIsMutable();
+          statements_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          statementsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public Builder addStatements(joelbits.model.ast.protobuf.ASTProtos.Statement value) {
+        if (statementsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureStatementsIsMutable();
+          statements_.add(value);
+          onChanged();
+        } else {
+          statementsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public Builder addStatements(
+          int index, joelbits.model.ast.protobuf.ASTProtos.Statement value) {
+        if (statementsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureStatementsIsMutable();
+          statements_.add(index, value);
+          onChanged();
+        } else {
+          statementsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public Builder addStatements(
+          joelbits.model.ast.protobuf.ASTProtos.Statement.Builder builderForValue) {
+        if (statementsBuilder_ == null) {
+          ensureStatementsIsMutable();
+          statements_.add(builderForValue.build());
+          onChanged();
+        } else {
+          statementsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public Builder addStatements(
+          int index, joelbits.model.ast.protobuf.ASTProtos.Statement.Builder builderForValue) {
+        if (statementsBuilder_ == null) {
+          ensureStatementsIsMutable();
+          statements_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          statementsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public Builder addAllStatements(
+          java.lang.Iterable<? extends joelbits.model.ast.protobuf.ASTProtos.Statement> values) {
+        if (statementsBuilder_ == null) {
+          ensureStatementsIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, statements_);
+          onChanged();
+        } else {
+          statementsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public Builder clearStatements() {
+        if (statementsBuilder_ == null) {
+          statements_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000010);
+          onChanged();
+        } else {
+          statementsBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public Builder removeStatements(int index) {
+        if (statementsBuilder_ == null) {
+          ensureStatementsIsMutable();
+          statements_.remove(index);
+          onChanged();
+        } else {
+          statementsBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.Statement.Builder getStatementsBuilder(
+          int index) {
+        return getStatementsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.StatementOrBuilder getStatementsOrBuilder(
+          int index) {
+        if (statementsBuilder_ == null) {
+          return statements_.get(index);  } else {
+          return statementsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public java.util.List<? extends joelbits.model.ast.protobuf.ASTProtos.StatementOrBuilder> 
+           getStatementsOrBuilderList() {
+        if (statementsBuilder_ != null) {
+          return statementsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(statements_);
+        }
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.Statement.Builder addStatementsBuilder() {
+        return getStatementsFieldBuilder().addBuilder(
+            joelbits.model.ast.protobuf.ASTProtos.Statement.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.Statement.Builder addStatementsBuilder(
+          int index) {
+        return getStatementsFieldBuilder().addBuilder(
+            index, joelbits.model.ast.protobuf.ASTProtos.Statement.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .joelbits.Statement statements = 5;</code>
+       */
+      public java.util.List<joelbits.model.ast.protobuf.ASTProtos.Statement.Builder> 
+           getStatementsBuilderList() {
+        return getStatementsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          joelbits.model.ast.protobuf.ASTProtos.Statement, joelbits.model.ast.protobuf.ASTProtos.Statement.Builder, joelbits.model.ast.protobuf.ASTProtos.StatementOrBuilder> 
+          getStatementsFieldBuilder() {
+        if (statementsBuilder_ == null) {
+          statementsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              joelbits.model.ast.protobuf.ASTProtos.Statement, joelbits.model.ast.protobuf.ASTProtos.Statement.Builder, joelbits.model.ast.protobuf.ASTProtos.StatementOrBuilder>(
+                  statements_,
+                  ((bitField0_ & 0x00000010) == 0x00000010),
+                  getParentForChildren(),
+                  isClean());
+          statements_ = null;
+        }
+        return statementsBuilder_;
+      }
+
+      private java.util.List<joelbits.model.ast.protobuf.ASTProtos.Type> exceptionTypes_ =
+        java.util.Collections.emptyList();
+      private void ensureExceptionTypesIsMutable() {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+          exceptionTypes_ = new java.util.ArrayList<joelbits.model.ast.protobuf.ASTProtos.Type>(exceptionTypes_);
+          bitField0_ |= 0x00000020;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          joelbits.model.ast.protobuf.ASTProtos.Type, joelbits.model.ast.protobuf.ASTProtos.Type.Builder, joelbits.model.ast.protobuf.ASTProtos.TypeOrBuilder> exceptionTypesBuilder_;
+
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public java.util.List<joelbits.model.ast.protobuf.ASTProtos.Type> getExceptionTypesList() {
+        if (exceptionTypesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(exceptionTypes_);
+        } else {
+          return exceptionTypesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public int getExceptionTypesCount() {
+        if (exceptionTypesBuilder_ == null) {
+          return exceptionTypes_.size();
+        } else {
+          return exceptionTypesBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.Type getExceptionTypes(int index) {
+        if (exceptionTypesBuilder_ == null) {
+          return exceptionTypes_.get(index);
+        } else {
+          return exceptionTypesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public Builder setExceptionTypes(
+          int index, joelbits.model.ast.protobuf.ASTProtos.Type value) {
+        if (exceptionTypesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureExceptionTypesIsMutable();
+          exceptionTypes_.set(index, value);
+          onChanged();
+        } else {
+          exceptionTypesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public Builder setExceptionTypes(
+          int index, joelbits.model.ast.protobuf.ASTProtos.Type.Builder builderForValue) {
+        if (exceptionTypesBuilder_ == null) {
+          ensureExceptionTypesIsMutable();
+          exceptionTypes_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          exceptionTypesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public Builder addExceptionTypes(joelbits.model.ast.protobuf.ASTProtos.Type value) {
+        if (exceptionTypesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureExceptionTypesIsMutable();
+          exceptionTypes_.add(value);
+          onChanged();
+        } else {
+          exceptionTypesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public Builder addExceptionTypes(
+          int index, joelbits.model.ast.protobuf.ASTProtos.Type value) {
+        if (exceptionTypesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureExceptionTypesIsMutable();
+          exceptionTypes_.add(index, value);
+          onChanged();
+        } else {
+          exceptionTypesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public Builder addExceptionTypes(
+          joelbits.model.ast.protobuf.ASTProtos.Type.Builder builderForValue) {
+        if (exceptionTypesBuilder_ == null) {
+          ensureExceptionTypesIsMutable();
+          exceptionTypes_.add(builderForValue.build());
+          onChanged();
+        } else {
+          exceptionTypesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public Builder addExceptionTypes(
+          int index, joelbits.model.ast.protobuf.ASTProtos.Type.Builder builderForValue) {
+        if (exceptionTypesBuilder_ == null) {
+          ensureExceptionTypesIsMutable();
+          exceptionTypes_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          exceptionTypesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public Builder addAllExceptionTypes(
+          java.lang.Iterable<? extends joelbits.model.ast.protobuf.ASTProtos.Type> values) {
+        if (exceptionTypesBuilder_ == null) {
+          ensureExceptionTypesIsMutable();
+          com.google.protobuf.AbstractMessageLite.Builder.addAll(
+              values, exceptionTypes_);
+          onChanged();
+        } else {
+          exceptionTypesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public Builder clearExceptionTypes() {
+        if (exceptionTypesBuilder_ == null) {
+          exceptionTypes_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000020);
+          onChanged();
+        } else {
+          exceptionTypesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public Builder removeExceptionTypes(int index) {
+        if (exceptionTypesBuilder_ == null) {
+          ensureExceptionTypesIsMutable();
+          exceptionTypes_.remove(index);
+          onChanged();
+        } else {
+          exceptionTypesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.Type.Builder getExceptionTypesBuilder(
+          int index) {
+        return getExceptionTypesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.TypeOrBuilder getExceptionTypesOrBuilder(
+          int index) {
+        if (exceptionTypesBuilder_ == null) {
+          return exceptionTypes_.get(index);  } else {
+          return exceptionTypesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public java.util.List<? extends joelbits.model.ast.protobuf.ASTProtos.TypeOrBuilder> 
+           getExceptionTypesOrBuilderList() {
+        if (exceptionTypesBuilder_ != null) {
+          return exceptionTypesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(exceptionTypes_);
+        }
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.Type.Builder addExceptionTypesBuilder() {
+        return getExceptionTypesFieldBuilder().addBuilder(
+            joelbits.model.ast.protobuf.ASTProtos.Type.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public joelbits.model.ast.protobuf.ASTProtos.Type.Builder addExceptionTypesBuilder(
+          int index) {
+        return getExceptionTypesFieldBuilder().addBuilder(
+            index, joelbits.model.ast.protobuf.ASTProtos.Type.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .joelbits.Type exception_types = 6;</code>
+       */
+      public java.util.List<joelbits.model.ast.protobuf.ASTProtos.Type.Builder> 
+           getExceptionTypesBuilderList() {
+        return getExceptionTypesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilderV3<
+          joelbits.model.ast.protobuf.ASTProtos.Type, joelbits.model.ast.protobuf.ASTProtos.Type.Builder, joelbits.model.ast.protobuf.ASTProtos.TypeOrBuilder> 
+          getExceptionTypesFieldBuilder() {
+        if (exceptionTypesBuilder_ == null) {
+          exceptionTypesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+              joelbits.model.ast.protobuf.ASTProtos.Type, joelbits.model.ast.protobuf.ASTProtos.Type.Builder, joelbits.model.ast.protobuf.ASTProtos.TypeOrBuilder>(
+                  exceptionTypes_,
+                  ((bitField0_ & 0x00000020) == 0x00000020),
+                  getParentForChildren(),
+                  isClean());
+          exceptionTypes_ = null;
+        }
+        return exceptionTypesBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -15090,14 +16018,15 @@ public final class ASTProtos {
       "s.Declaration\022%\n\tmodifiers\030\004 \003(\0132\022.joelb" +
       "its.Modifier\022\"\n\006fields\030\005 \003(\0132\022.joelbits." +
       "Variable\022!\n\007methods\030\006 \003(\0132\020.joelbits.Met" +
-      "hod\022\037\n\007parents\030\007 \003(\0132\016.joelbits.Type\"\345\005\n" +
+      "hod\022\037\n\007parents\030\007 \003(\0132\016.joelbits.Type\"\215\006\n" +
       "\nExpression\0221\n\004type\030\001 \001(\0162#.joelbits.Exp" +
       "ression.ExpressionType\022)\n\013expressions\030\002 " +
       "\003(\0132\024.joelbits.Expression\022\017\n\007literal\030\003 \001" +
       "(\t\022\016\n\006method\030\004 \001(\t\022\020\n\010variable\030\005 \001(\t\022.\n\020" +
       "method_arguments\030\006 \003(\0132\024.joelbits.Expres" +
       "sion\0221\n\025variable_declarations\030\007 \003(\0132\022.jo" +
-      "elbits.Variable\"\342\003\n\016ExpressionType\022\016\n\nAR" +
+      "elbits.Variable\022&\n\nannotation\030\010 \001(\0132\022.jo" +
+      "elbits.Modifier\"\342\003\n\016ExpressionType\022\016\n\nAR" +
       "RAYINDEX\020\000\022\r\n\tARRAYINIT\020\001\022\n\n\006ASSIGN\020\002\022\016\n" +
       "\nASSIGN_ADD\020\003\022\016\n\nASSIGN_DIV\020\004\022\016\n\nASSIGN_" +
       "SUB\020\005\022\016\n\nASSIGN_MOD\020\006\022\010\n\004CAST\020\007\022\017\n\013CONDI" +
@@ -15109,47 +16038,50 @@ public final class ASTProtos {
       "\n\n\006OP_DIV\020\031\022\n\n\006OP_INC\020\032\022\n\n\006OP_MOD\020\033\022\013\n\007O" +
       "P_MULT\020\034\022\t\n\005OTHER\020\035\022\017\n\013PARENTHESIS\020\036\022\017\n\013" +
       "TYPECOMPARE\020\037\022\030\n\024VARIABLE_DECLARATION\020 \022" +
-      "\023\n\017VARIABLE_ACCESS\020!\"\211\001\n\006Method\022\014\n\004name\030" +
+      "\023\n\017VARIABLE_ACCESS\020!\"\333\001\n\006Method\022\014\n\004name\030" +
       "\001 \001(\t\022%\n\targuments\030\002 \003(\0132\022.joelbits.Vari" +
       "able\022#\n\013return_type\030\003 \001(\0132\016.joelbits.Typ" +
       "e\022%\n\tmodifiers\030\004 \003(\0132\022.joelbits.Modifier" +
-      "\"\377\002\n\010Modifier\022\014\n\004name\030\001 \001(\t\022-\n\004type\030\002 \001(" +
-      "\0162\037.joelbits.Modifier.ModifierType\022\017\n\007me" +
-      "mbers\030\003 \003(\t\022$\n\006values\030\004 \003(\0132\024.joelbits.E" +
-      "xpression\0225\n\nvisibility\030\005 \001(\0162!.joelbits" +
-      ".Modifier.VisibilityType\022\r\n\005other\030\006 \001(\t\"" +
-      "p\n\014ModifierType\022\014\n\010ABSTRACT\020\000\022\016\n\nANNOTAT" +
-      "ION\020\001\022\t\n\005FINAL\020\002\022\n\n\006STATIC\020\003\022\020\n\014SYNCHRON" +
-      "IZED\020\004\022\016\n\nVISIBILITY\020\005\022\t\n\005OTHER\020\006\"G\n\016Vis" +
-      "ibilityType\022\r\n\tNAMESPACE\020\000\022\n\n\006PUBLIC\020\001\022\r" +
-      "\n\tPROTECTED\020\002\022\013\n\007PRIVATE\020\003\"m\n\tNamespace\022" +
-      "\014\n\004name\030\001 \001(\t\022+\n\014declarations\030\002 \003(\0132\025.jo" +
-      "elbits.Declaration\022%\n\tmodifiers\030\003 \003(\0132\022." +
-      "joelbits.Modifier\"\352\004\n\tStatement\022/\n\004type\030" +
-      "\001 \001(\0162!.joelbits.Statement.StatementType" +
-      "\022\'\n\nstatements\030\002 \003(\0132\023.joelbits.Statemen" +
-      "t\022(\n\nexpression\030\003 \001(\0132\024.joelbits.Express" +
-      "ion\022)\n\013expressions\030\004 \003(\0132\024.joelbits.Expr" +
-      "ession\022\'\n\tcondition\030\005 \001(\0132\024.joelbits.Exp" +
-      "ression\022-\n\017initializations\030\006 \003(\0132\024.joelb" +
-      "its.Expression\0220\n\024variable_declaration\030\007" +
-      " \001(\0132\022.joelbits.Variable\022%\n\007updates\030\010 \003(" +
-      "\0132\024.joelbits.Expression\"\374\001\n\rStatementTyp" +
-      "e\022\n\n\006ASSERT\020\000\022\t\n\005BLOCK\020\001\022\t\n\005BREAK\020\002\022\010\n\004C" +
-      "ASE\020\003\022\t\n\005CATCH\020\004\022\014\n\010CONTINUE\020\005\022\006\n\002DO\020\006\022\t" +
-      "\n\005EMPTY\020\007\022\016\n\nEXPRESSION\020\010\022\007\n\003FOR\020\t\022\006\n\002IF" +
-      "\020\n\022\t\n\005LABEL\020\013\022\t\n\005OTHER\020\014\022\n\n\006RETURN\020\r\022\n\n\006" +
-      "SWITCH\020\016\022\020\n\014SYNCHRONIZED\020\017\022\t\n\005THROW\020\020\022\007\n" +
-      "\003TRY\020\021\022\023\n\017TYPEDECLARATION\020\022\022\t\n\005WHILE\020\023\"\210" +
-      "\001\n\010Variable\022\014\n\004name\030\001 \001(\t\022\034\n\004type\030\002 \001(\0132" +
-      "\016.joelbits.Type\022)\n\013initializer\030\003 \001(\0132\024.j" +
-      "oelbits.Expression\022%\n\tmodifiers\030\004 \003(\0132\022." +
-      "joelbits.Modifier\"=\n\004Type\022\014\n\004name\030\001 \001(\t\022" +
-      "\'\n\004type\030\002 \001(\0162\031.joelbits.DeclarationType" +
-      "*l\n\017DeclarationType\022\t\n\005CLASS\020\000\022\r\n\tANONYM" +
-      "OUS\020\001\022\016\n\nANNOTATION\020\002\022\r\n\tINTERFACE\020\003\022\013\n\007" +
-      "GENERIC\020\004\022\010\n\004ENUM\020\005\022\t\n\005OTHER\020\006B(\n\033joelbi" +
-      "ts.model.ast.protobufB\tASTProtosb\006proto3"
+      "\022\'\n\nstatements\030\005 \003(\0132\023.joelbits.Statemen" +
+      "t\022\'\n\017exception_types\030\006 \003(\0132\016.joelbits.Ty" +
+      "pe\"\377\002\n\010Modifier\022\014\n\004name\030\001 \001(\t\022-\n\004type\030\002 " +
+      "\001(\0162\037.joelbits.Modifier.ModifierType\022\017\n\007" +
+      "members\030\003 \003(\t\022$\n\006values\030\004 \003(\0132\024.joelbits" +
+      ".Expression\0225\n\nvisibility\030\005 \001(\0162!.joelbi" +
+      "ts.Modifier.VisibilityType\022\r\n\005other\030\006 \001(" +
+      "\t\"p\n\014ModifierType\022\014\n\010ABSTRACT\020\000\022\016\n\nANNOT" +
+      "ATION\020\001\022\t\n\005FINAL\020\002\022\n\n\006STATIC\020\003\022\020\n\014SYNCHR" +
+      "ONIZED\020\004\022\016\n\nVISIBILITY\020\005\022\t\n\005OTHER\020\006\"G\n\016V" +
+      "isibilityType\022\r\n\tNAMESPACE\020\000\022\n\n\006PUBLIC\020\001" +
+      "\022\r\n\tPROTECTED\020\002\022\013\n\007PRIVATE\020\003\"m\n\tNamespac" +
+      "e\022\014\n\004name\030\001 \001(\t\022+\n\014declarations\030\002 \003(\0132\025." +
+      "joelbits.Declaration\022%\n\tmodifiers\030\003 \003(\0132" +
+      "\022.joelbits.Modifier\"\352\004\n\tStatement\022/\n\004typ" +
+      "e\030\001 \001(\0162!.joelbits.Statement.StatementTy" +
+      "pe\022\'\n\nstatements\030\002 \003(\0132\023.joelbits.Statem" +
+      "ent\022(\n\nexpression\030\003 \001(\0132\024.joelbits.Expre" +
+      "ssion\022)\n\013expressions\030\004 \003(\0132\024.joelbits.Ex" +
+      "pression\022\'\n\tcondition\030\005 \001(\0132\024.joelbits.E" +
+      "xpression\022-\n\017initializations\030\006 \003(\0132\024.joe" +
+      "lbits.Expression\0220\n\024variable_declaration" +
+      "\030\007 \001(\0132\022.joelbits.Variable\022%\n\007updates\030\010 " +
+      "\003(\0132\024.joelbits.Expression\"\374\001\n\rStatementT" +
+      "ype\022\n\n\006ASSERT\020\000\022\t\n\005BLOCK\020\001\022\t\n\005BREAK\020\002\022\010\n" +
+      "\004CASE\020\003\022\t\n\005CATCH\020\004\022\014\n\010CONTINUE\020\005\022\006\n\002DO\020\006" +
+      "\022\t\n\005EMPTY\020\007\022\016\n\nEXPRESSION\020\010\022\007\n\003FOR\020\t\022\006\n\002" +
+      "IF\020\n\022\t\n\005LABEL\020\013\022\t\n\005OTHER\020\014\022\n\n\006RETURN\020\r\022\n" +
+      "\n\006SWITCH\020\016\022\020\n\014SYNCHRONIZED\020\017\022\t\n\005THROW\020\020\022" +
+      "\007\n\003TRY\020\021\022\023\n\017TYPEDECLARATION\020\022\022\t\n\005WHILE\020\023" +
+      "\"\210\001\n\010Variable\022\014\n\004name\030\001 \001(\t\022\034\n\004type\030\002 \001(" +
+      "\0132\016.joelbits.Type\022)\n\013initializer\030\003 \001(\0132\024" +
+      ".joelbits.Expression\022%\n\tmodifiers\030\004 \003(\0132" +
+      "\022.joelbits.Modifier\"=\n\004Type\022\014\n\004name\030\001 \001(" +
+      "\t\022\'\n\004type\030\002 \001(\0162\031.joelbits.DeclarationTy" +
+      "pe*l\n\017DeclarationType\022\t\n\005CLASS\020\000\022\r\n\tANON" +
+      "YMOUS\020\001\022\016\n\nANNOTATION\020\002\022\r\n\tINTERFACE\020\003\022\013" +
+      "\n\007GENERIC\020\004\022\010\n\004ENUM\020\005\022\t\n\005OTHER\020\006B(\n\033joel" +
+      "bits.model.ast.protobufB\tASTProtosb\006prot" +
+      "o3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -15180,13 +16112,13 @@ public final class ASTProtos {
     internal_static_joelbits_Expression_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_joelbits_Expression_descriptor,
-        new java.lang.String[] { "Type", "Expressions", "Literal", "Method", "Variable", "MethodArguments", "VariableDeclarations", });
+        new java.lang.String[] { "Type", "Expressions", "Literal", "Method", "Variable", "MethodArguments", "VariableDeclarations", "Annotation", });
     internal_static_joelbits_Method_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_joelbits_Method_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_joelbits_Method_descriptor,
-        new java.lang.String[] { "Name", "Arguments", "ReturnType", "Modifiers", });
+        new java.lang.String[] { "Name", "Arguments", "ReturnType", "Modifiers", "Statements", "ExceptionTypes", });
     internal_static_joelbits_Modifier_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_joelbits_Modifier_fieldAccessorTable = new
