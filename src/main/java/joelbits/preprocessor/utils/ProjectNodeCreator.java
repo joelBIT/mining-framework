@@ -8,6 +8,7 @@ import joelbits.model.project.protobuf.ProjectProtos.Project;
 import joelbits.model.project.protobuf.ProjectProtos.Project.ProjectType;
 import joelbits.model.project.protobuf.ProjectProtos.CodeRepository;
 import joelbits.model.project.protobuf.ProjectProtos.CodeRepository.RepositoryType;
+import org.apache.commons.io.FilenameUtils;
 
 import java.util.List;
 
@@ -61,9 +62,10 @@ public final class ProjectNodeCreator {
                 .build();
     }
 
-    public static ChangedFile changedFile(String name, String fileType, String changeType) {
+    public static ChangedFile changedFile(String fileName, String changeType) {
+        String fileType = FilenameUtils.getExtension(fileName);
         return ChangedFile.newBuilder()
-                .setName(name)
+                .setName(fileName)
                 .setType(ChangedFile.FileType.valueOf(fileType.toUpperCase()))
                 .setChange(ChangedFile.ChangeType.valueOf(TypeConverter.convertChangeType(changeType)))
                 .build();

@@ -1,6 +1,9 @@
 package joelbits.preprocessor.utils;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.io.Files;
 import joelbits.preprocessor.types.InputFileType;
+import org.apache.commons.codec.Charsets;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -11,6 +14,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -52,5 +56,23 @@ public final class FileRepositoryExtractor {
         } catch (IOException e) {
             log.error(e.toString(), e);
         }
+    }
+
+
+    public static List<String> repositories(File projectsMetadata, String repositoryNameNode, String repositoryListNode) throws IOException {
+        List<String> repositories = new ArrayList<>();
+        Iterator<JsonNode> iterator = getRepositoryIterator(projectsMetadata, repositoryListNode);
+        while (iterator.hasNext()) {
+            repositories.add(iterator.next().get(repositoryNameNode).asText());
+        }
+
+        return repositories;
+    }
+
+    public static Iterator<JsonNode> getRepositoryIterator(File projectsMetadata, String repositoryListNode) throws IOException {
+        String projects = Files.toString(projectsMetadata, Charsets.UTF_8);
+        JsonNode projectList = new com.fasterxml.jackson.databind.ObjectMapper().readTree(projects).get(repositoryListNode);
+
+        return projectList.elements();
     }
 }

@@ -10,6 +10,7 @@ import org.eclipse.jgit.diff.DiffEntry.ChangeType;
 import org.eclipse.jgit.lib.*;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
+import org.eclipse.jgit.treewalk.TreeWalk;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -51,7 +52,6 @@ public final class GitConnector implements Connector {
             for (RevCommit commit : git.log().call()) {
                 String commitId = commit.getId().name();
                 commits.put(commitId, commit);
-                storeConsecutiveCommitChanges(git, commit);
             }
         }
     }
@@ -66,25 +66,26 @@ public final class GitConnector implements Connector {
      * Store the changes made between two consecutive commits (i.e., two commits that have a parent/child relationship).
      * If a commit does not have a parent (the root commit) an empty list is stored.
      *
-     * @param git                   the git repository
      * @param commit                the object representing the current commit
      * @throws GitAPIException
      * @throws IOException
      */
-    private void storeConsecutiveCommitChanges(Git git, RevCommit commit) throws GitAPIException, IOException {
+    private void storeConsecutiveCommitChanges(RevCommit commit) throws GitAPIException, IOException {
         String commitId = commit.getId().name();
         if (commit.getParentCount() == 0) {
             differenceConsecutiveCommits.put(commitId, Collections.emptyList());
             return;
         }
 
-        List<DiffEntry> diffs = git.diff()
-                .setOldTree(TreeIterator.prepareTreeParser(repository, commit.getParent(0).toObjectId().name()))
-                .setNewTree(TreeIterator.prepareTreeParser(repository, commitId))
-                .call();
+        try (Git git = new Git(repository)) {
+            List<DiffEntry> diffs = git.diff()
+                    .setOldTree(TreeIterator.prepareTreeParser(repository, commit.getParent(0).toObjectId().name()))
+                    .setNewTree(TreeIterator.prepareTreeParser(repository, commitId))
+                    .call();
 
-        storeEachFileChange(diffs);
-        differenceConsecutiveCommits.put(commitId, new ArrayList<>(diffs));
+            storeEachFileChange(diffs);
+            differenceConsecutiveCommits.put(commitId, new ArrayList<>(diffs));
+        }
     }
 
     /**
@@ -114,6 +115,29 @@ public final class GitConnector implements Connector {
                 .map(DiffEntry::getChangeType)
                 .map(ChangeType::name)
                 .orElse(StringUtils.EMPTY);
+    }
+
+    /**
+     * Retrieve file paths for all files in a project snapshot.
+     *
+     * @param commitId              revision sha1 for repository snapshot
+     * @return                      a set of file paths for all files in repository snapshot
+     * @throws IOException
+     */
+    @Override
+    public Set<String> snapshotFiles(String commitId) throws IOException {
+        Set<String> filePaths = new HashSet<>();
+
+        try (TreeWalk treeWalk = new TreeWalk(repository)) {
+            treeWalk.reset(commits.get(commitId).getTree());
+            treeWalk.setRecursive(true);
+            while (treeWalk.next()) {
+                filePaths.add(treeWalk.getPathString());
+            }
+            treeWalk.close();
+        }
+
+        return filePaths;
     }
 
     /**
@@ -210,10 +234,14 @@ public final class GitConnector implements Connector {
      * @return                  a map containing pairs of the sha1 value of a file change and the file path
      */
     @Override
-    public Map<String, String> changedFilesBetweenCommits(String newCommitId, String oldCommitId) {
+    public Map<String, String> changedFilesBetweenCommits(String newCommitId, String oldCommitId) throws Exception {
         if (StringUtils.isEmpty(newCommitId) || StringUtils.isEmpty(oldCommitId)) {
             log.warn("Must provide existing commit IDs");
             return Collections.emptyMap();
+        }
+
+        if (!differenceConsecutiveCommits.containsKey(newCommitId)) {
+            storeConsecutiveCommitChanges(commits.get(newCommitId));
         }
 
         if (hasParentRelationship(newCommitId, oldCommitId)) {
