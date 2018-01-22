@@ -18,7 +18,6 @@ import java.util.*;
  */
 public final class JavaParser implements Parser {
     private CompilationUnit compilationUnit;
-    private String loadedFile;
     private final List<String> imports = new ArrayList<>();
     private final List<Namespace> namespaces = new ArrayList<>();
     private final List<Declaration> nestedDeclarations = new ArrayList<>();
@@ -30,9 +29,7 @@ public final class JavaParser implements Parser {
      */
     @Override
     public byte[] parse(File file) throws Exception {
-        if (compilationUnit == null) {
-            loadFile(file);
-        }
+        loadFile(file);
 
         compilationUnit.accept(new ImportVisitor(), imports);
         List<Declaration> declarations = new ArrayList<>();
@@ -45,13 +42,17 @@ public final class JavaParser implements Parser {
     }
 
     private void loadFile(File file) throws Exception {
-        if(!Objects.equals(loadedFile, file.getName())){
-            try (FileInputStream in = new FileInputStream(file)) {
-                compilationUnit = com.github.javaparser.JavaParser.parse(in);
-                Log.info("Loaded " + file.getName());
-            }
-            loadedFile = file.getName();
+        clearData();
+        try (FileInputStream in = new FileInputStream(file)) {
+            compilationUnit = com.github.javaparser.JavaParser.parse(in);
+            Log.info("Loaded " + file.getName());
         }
+    }
+
+    private void clearData() {
+        imports.clear();
+        namespaces.clear();
+        nestedDeclarations.clear();
     }
 
     @Override

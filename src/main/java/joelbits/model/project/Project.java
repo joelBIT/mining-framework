@@ -1,8 +1,8 @@
 package joelbits.model.project;
 
 import joelbits.model.project.types.ProjectType;
-import org.joda.time.DateTime;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +15,10 @@ public final class Project {
     private final ProjectType type;                       // The type (source) of the projects
     private final List<CodeRepository> repositories;      // A list of all code repositories associated with this projects
     private final String url;                             // A URL to the projects's page (e.g., on GitHub)
-    private final DateTime createdDate;                   // The time the projects was created
+    private final LocalDateTime createdDate;              // The time the projects was created
     private final List<String> programmingLanguages;      // A list of all programming languages used by the projects
 
-    public Project(String id, String name, ProjectType type, List<CodeRepository> repositories, String url, DateTime createdDate, List<String> programmingLanguages) {
+    public Project(String id, String name, ProjectType type, List<CodeRepository> repositories, String url, LocalDateTime createdDate, List<String> programmingLanguages) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -46,7 +46,7 @@ public final class Project {
         return url;
     }
 
-    public DateTime getCreatedDate() {
+    public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
