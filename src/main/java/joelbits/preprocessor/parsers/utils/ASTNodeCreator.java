@@ -12,8 +12,6 @@ import static joelbits.model.ast.protobuf.ASTProtos.Variable;
 import static joelbits.model.ast.protobuf.ASTProtos.Declaration;
 import static joelbits.model.ast.protobuf.ASTProtos.DeclarationType;
 import static joelbits.model.ast.protobuf.ASTProtos.Modifier;
-import static joelbits.model.ast.protobuf.ASTProtos.Statement;
-import static joelbits.model.ast.protobuf.ASTProtos.Statement.StatementType;
 import static joelbits.model.ast.protobuf.ASTProtos.Modifier.ModifierType;
 import static joelbits.model.ast.protobuf.ASTProtos.Expression;
 import static joelbits.model.ast.protobuf.ASTProtos.Expression.ExpressionType;
@@ -24,7 +22,7 @@ import static joelbits.model.ast.protobuf.ASTProtos.Namespace;
 import java.util.List;
 import java.util.Map;
 
-public class ASTNodeCreater {
+public class ASTNodeCreator {
     public static Variable createVariable(String name, String type, List<Modifier> argumentModifiers) {
         return Variable.newBuilder()
                 .setType(createType(type))
@@ -49,13 +47,13 @@ public class ASTNodeCreater {
                 .build();
     }
 
-    public static Method createMethod(List<Modifier> methodModifiers, MethodDeclaration method, List<Variable> arguments, List<Statement> methodBodyStatements) {
+    public static Method createMethod(List<Modifier> methodModifiers, MethodDeclaration method, List<Variable> arguments, List<Expression> methodBody) {
         return Method.newBuilder()
                 .setName(method.getNameAsString())
-                .setReturnType(ASTNodeCreater.createType(method.getType().asString()))
+                .setReturnType(ASTNodeCreator.createType(method.getType().asString()))
                 .addAllModifiers(methodModifiers)
                 .addAllArguments(arguments)
-                .addAllStatements(methodBodyStatements)
+                .addAllBodyContent(methodBody)
                 .build();
     }
 
@@ -88,10 +86,10 @@ public class ASTNodeCreater {
                 .build();
     }
 
-    public static Statement createExpressionStatement(Expression expression, StatementType type) {
-        return Statement.newBuilder()
+    public static Expression createExpressionExpressions(List<Expression> expressions, ExpressionType type) {
+        return Expression.newBuilder()
                 .setType(type)
-                .setExpression(expression)
+                .addAllExpressions(expressions)
                 .build();
     }
 

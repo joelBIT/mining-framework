@@ -4,7 +4,7 @@ import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MethodCallExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import joelbits.model.ast.protobuf.ASTProtos;
-import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
+import joelbits.preprocessor.parsers.utils.ASTNodeCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +19,9 @@ public class MethodCallVisitor extends VoidVisitorAdapter<List<ASTProtos.Express
 
         List<ASTProtos.Expression> methodArguments = new ArrayList<>();
         for (Expression parameter : methodCall.getArguments()) {
-            methodArguments.add(ASTNodeCreater.createMethodCallArgumentExpression(parameter.toString()));
+            methodArguments.add(ASTNodeCreator.createMethodCallArgumentExpression(parameter.toString()));
         }
 
-        methodInvocations.add(ASTNodeCreater.createMethodCallExpression(methodCall, methodArguments));
+        methodInvocations.add(ASTNodeCreator.createMethodCallExpression(methodCall, methodArguments));
     }
 }

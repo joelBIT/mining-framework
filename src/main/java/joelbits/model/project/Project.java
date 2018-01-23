@@ -17,8 +17,10 @@ public final class Project {
     private final String url;                             // A URL to the projects's page (e.g., on GitHub)
     private final LocalDateTime createdDate;              // The time the project was created
     private final List<String> programmingLanguages;      // A list of all programming languages used by the projects
+    private final int forks;                              // The number of forks of the project
+    private final int watchers;                           // The number of watchers of the project
 
-    public Project(String id, String name, ProjectType type, List<CodeRepository> repositories, String url, LocalDateTime createdDate, List<String> programmingLanguages) {
+    public Project(String id, String name, ProjectType type, List<CodeRepository> repositories, String url, LocalDateTime createdDate, List<String> programmingLanguages, int forks, int watchers) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -26,6 +28,8 @@ public final class Project {
         this.url = url;
         this.createdDate = createdDate;
         this.programmingLanguages = new ArrayList<>(programmingLanguages);
+        this.forks= forks;
+        this.watchers = watchers;
     }
 
     public String getId() {
@@ -52,5 +56,13 @@ public final class Project {
 
     public List<String> getProgrammingLanguages() {
         return programmingLanguages;
+    }
+
+    public int getForks() {
+        return forks;
+    }
+
+    public int getWatchers() {
+        return watchers;
     }
 }

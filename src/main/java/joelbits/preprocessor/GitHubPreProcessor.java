@@ -22,8 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.time.Duration;
-import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.*;
 
@@ -145,7 +143,7 @@ public final class GitHubPreProcessor implements PreProcessor {
 
         for (String filePath : filesInRepository) {
             try {
-                if (filePath.endsWith(".java") && javaParser.hasBenchmarks(new File(path + filePath))) {
+                if (filePath.toLowerCase().endsWith(".java") && javaParser.hasBenchmarks(new File(path + filePath))) {
                     benchmarkFilesInNewestSnapshot.add(filePath);
                 }
             } catch (Exception e) {
@@ -184,8 +182,10 @@ public final class GitHubPreProcessor implements PreProcessor {
         String name = node.get("name").asText();
         String url = node.get("url").asText();
         String language = node.get("language").asText();
+        int forks = node.get("forks").asInt();
+        int watchers = node.get("watchers").asInt();
 
-        return ProjectNodeCreator.project(name, creationTime, id, url, ProjectType.GITHUB, codeRepositories, Collections.singletonList(language));
+        return ProjectNodeCreator.project(name, creationTime, id, url, ProjectType.GITHUB, codeRepositories, Collections.singletonList(language), forks, watchers);
     }
 
     @Override

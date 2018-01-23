@@ -7,7 +7,7 @@ import joelbits.model.ast.protobuf.ASTProtos.Variable;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier;
 import joelbits.model.ast.protobuf.ASTProtos.Declaration;
 import joelbits.model.ast.protobuf.ASTProtos.Method;
-import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
+import joelbits.preprocessor.parsers.utils.ASTNodeCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +42,10 @@ public class ClassOrInterfaceVisitor extends VoidVisitorAdapter<List<Declaration
         declaration.accept(new DeclarationModifierVisitor(), modifiers);
 
         if (declaration.isTopLevelType()) {
-            namespaceDeclarations.add(ASTNodeCreater.createNamespaceDeclaration(declaration, allFields, allMethods, modifiers, nestedDeclarations));
+            namespaceDeclarations.add(ASTNodeCreator.createNamespaceDeclaration(declaration, allFields, allMethods, modifiers, nestedDeclarations));
             nestedDeclarations.clear();
         } else {
-            nestedDeclarations.add(ASTNodeCreater.createNestedDeclaration(declaration, allFields, allMethods, modifiers));
+            nestedDeclarations.add(ASTNodeCreator.createNestedDeclaration(declaration, allFields, allMethods, modifiers));
         }
     }
 }

@@ -7,11 +7,10 @@ import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import joelbits.model.ast.protobuf.ASTProtos;
 import joelbits.model.ast.protobuf.ASTProtos.Method;
-import joelbits.model.ast.protobuf.ASTProtos.Statement.StatementType;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
-import joelbits.model.ast.protobuf.ASTProtos.Statement;
 import joelbits.model.ast.protobuf.ASTProtos.Expression;
-import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
+import joelbits.model.ast.protobuf.ASTProtos.Expression.ExpressionType;
+import joelbits.preprocessor.parsers.utils.ASTNodeCreator;
 import joelbits.preprocessor.utils.TypeConverter;
 
 import java.util.ArrayList;
@@ -27,29 +26,27 @@ public class MethodVisitor extends VoidVisitorAdapter<List<Method>> {
         List<ASTProtos.Modifier> methodModifiers = new ArrayList<>();
 
         for (Modifier modifier : method.getModifiers()) {
-            ASTProtos.Modifier visibility = ASTNodeCreater.createModifier(modifier.name());
+            ASTProtos.Modifier visibility = ASTNodeCreator.createModifier(modifier.name());
             methodModifiers.add(visibility);
         }
 
         for (AnnotationExpr annotationExpr : method.getAnnotations()) {
             Map<String, Expression> annotationMembers = TypeConverter.convertAnnotationMembers(annotationExpr);
-            methodModifiers.add(ASTNodeCreater.createAnnotationModifier(annotationExpr, annotationMembers));
+            methodModifiers.add(ASTNodeCreator.createAnnotationModifier(annotationExpr, annotationMembers));
         }
 
         List<Variable> arguments = new ArrayList<>();
         for (Parameter parameter : method.getParameters()) {
             List<ASTProtos.Modifier> argumentModifiers = TypeConverter.convertModifiers(parameter.getModifiers());
-            arguments.add(ASTNodeCreater.createVariable(parameter.getNameAsString(), parameter.getType().asString(), argumentModifiers));
+            arguments.add(ASTNodeCreator.createVariable(parameter.getNameAsString(), parameter.getType().asString(), argumentModifiers));
         }
 
         List<Expression> methodCalls = new ArrayList<>();
         method.accept(new MethodCallVisitor(), methodCalls);
 
-        List<Statement> methodBodyStatements = new ArrayList<>();
-        for (Expression call : methodCalls) {
-            methodBodyStatements.add(ASTNodeCreater.createExpressionStatement(call, StatementType.EXPRESSION));
-        }
+        List<Expression> methodBodyStatements = new ArrayList<>();
+        methodBodyStatements.add(ASTNodeCreator.createExpressionExpressions(methodCalls, ExpressionType.METHODCALL));
 
-        methods.add(ASTNodeCreater.createMethod(methodModifiers, method, arguments, methodBodyStatements));
+        methods.add(ASTNodeCreator.createMethod(methodModifiers, method, arguments, methodBodyStatements));
     }
 }

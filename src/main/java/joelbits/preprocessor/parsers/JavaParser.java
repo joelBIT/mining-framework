@@ -6,7 +6,7 @@ import static joelbits.model.ast.protobuf.ASTProtos.Namespace;
 import static joelbits.model.ast.protobuf.ASTProtos.Declaration;
 
 import joelbits.preprocessor.parsers.types.ParserType;
-import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
+import joelbits.preprocessor.parsers.utils.ASTNodeCreator;
 import joelbits.preprocessor.parsers.visitors.*;
 
 import java.io.File;
@@ -38,7 +38,7 @@ public final class JavaParser implements Parser {
 
         Log.info("Parsing of " + file.getName() + " completed");
 
-        return ASTNodeCreater.createAstRoot(imports, namespaces).toByteArray();
+        return ASTNodeCreator.createAstRoot(imports, namespaces).toByteArray();
     }
 
     private void loadFile(File file) throws Exception {

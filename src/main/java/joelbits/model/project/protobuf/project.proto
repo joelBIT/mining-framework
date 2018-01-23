@@ -14,9 +14,13 @@ message Project {
     string url = 5;
     google.protobuf.Timestamp created_date = 6;
     repeated string programming_languages = 7;
+    int32 forks = 8;
+    int32 watchers = 9;
     enum ProjectType {
         GITHUB = 0;
-        OTHER = 1;
+        SOURCEFORGE = 1;
+        BITBUCKET = 2;
+        OTHER = 3;
     }
 }
 

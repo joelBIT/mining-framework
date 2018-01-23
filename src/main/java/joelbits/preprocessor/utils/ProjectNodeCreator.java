@@ -42,7 +42,7 @@ public final class ProjectNodeCreator {
                 .build();
     }
 
-    public static Project project(String name, int createdTime, String id, String url, ProjectType type, List<CodeRepository> repositories, List<String> languages) {
+    public static Project project(String name, int createdTime, String id, String url, ProjectType type, List<CodeRepository> repositories, List<String> languages, int forks, int watchers) {
         return Project.newBuilder()
                 .setId(id)
                 .setName(name)
@@ -51,6 +51,8 @@ public final class ProjectNodeCreator {
                 .setCreatedDate(timestamp(createdTime))
                 .addAllRepositories(repositories)
                 .addAllProgrammingLanguages(languages)
+                .setForks(forks)
+                .setWatchers(watchers)
                 .build();
     }
 

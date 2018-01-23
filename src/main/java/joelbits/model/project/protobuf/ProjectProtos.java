@@ -21,7 +21,7 @@ public final class ProjectProtos {
     /**
      * <code>string id = 1;</code>
      */
-    String getId();
+    java.lang.String getId();
     /**
      * <code>string id = 1;</code>
      */
@@ -31,7 +31,7 @@ public final class ProjectProtos {
     /**
      * <code>string name = 2;</code>
      */
-    String getName();
+    java.lang.String getName();
     /**
      * <code>string name = 2;</code>
      */
@@ -50,7 +50,7 @@ public final class ProjectProtos {
     /**
      * <code>repeated .joelbits.CodeRepository repositories = 4;</code>
      */
-    java.util.List<CodeRepository>
+    java.util.List<joelbits.model.project.protobuf.ProjectProtos.CodeRepository> 
         getRepositoriesList();
     /**
      * <code>repeated .joelbits.CodeRepository repositories = 4;</code>
@@ -63,18 +63,18 @@ public final class ProjectProtos {
     /**
      * <code>repeated .joelbits.CodeRepository repositories = 4;</code>
      */
-    java.util.List<? extends CodeRepositoryOrBuilder>
+    java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.CodeRepositoryOrBuilder> 
         getRepositoriesOrBuilderList();
     /**
      * <code>repeated .joelbits.CodeRepository repositories = 4;</code>
      */
     joelbits.model.project.protobuf.ProjectProtos.CodeRepositoryOrBuilder getRepositoriesOrBuilder(
-            int index);
+        int index);
 
     /**
      * <code>string url = 5;</code>
      */
-    String getUrl();
+    java.lang.String getUrl();
     /**
      * <code>string url = 5;</code>
      */
@@ -97,7 +97,7 @@ public final class ProjectProtos {
     /**
      * <code>repeated string programming_languages = 7;</code>
      */
-    java.util.List<String>
+    java.util.List<java.lang.String>
         getProgrammingLanguagesList();
     /**
      * <code>repeated string programming_languages = 7;</code>
@@ -106,12 +106,22 @@ public final class ProjectProtos {
     /**
      * <code>repeated string programming_languages = 7;</code>
      */
-    String getProgrammingLanguages(int index);
+    java.lang.String getProgrammingLanguages(int index);
     /**
      * <code>repeated string programming_languages = 7;</code>
      */
     com.google.protobuf.ByteString
         getProgrammingLanguagesBytes(int index);
+
+    /**
+     * <code>int32 forks = 8;</code>
+     */
+    int getForks();
+
+    /**
+     * <code>int32 watchers = 9;</code>
+     */
+    int getWatchers();
   }
   /**
    * Protobuf type {@code joelbits.Project}
@@ -132,9 +142,11 @@ public final class ProjectProtos {
       repositories_ = java.util.Collections.emptyList();
       url_ = "";
       programmingLanguages_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      forks_ = 0;
+      watchers_ = 0;
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -145,7 +157,7 @@ public final class ProjectProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -166,13 +178,13 @@ public final class ProjectProtos {
               break;
             }
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               id_ = s;
               break;
             }
             case 18: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               name_ = s;
               break;
@@ -185,7 +197,7 @@ public final class ProjectProtos {
             }
             case 34: {
               if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-                repositories_ = new java.util.ArrayList<CodeRepository>();
+                repositories_ = new java.util.ArrayList<joelbits.model.project.protobuf.ProjectProtos.CodeRepository>();
                 mutable_bitField0_ |= 0x00000008;
               }
               repositories_.add(
@@ -193,7 +205,7 @@ public final class ProjectProtos {
               break;
             }
             case 42: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               url_ = s;
               break;
@@ -212,12 +224,22 @@ public final class ProjectProtos {
               break;
             }
             case 58: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
               if (!((mutable_bitField0_ & 0x00000040) == 0x00000040)) {
                 programmingLanguages_ = new com.google.protobuf.LazyStringArrayList();
                 mutable_bitField0_ |= 0x00000040;
               }
               programmingLanguages_.add(s);
+              break;
+            }
+            case 64: {
+
+              forks_ = input.readInt32();
+              break;
+            }
+            case 72: {
+
+              watchers_ = input.readInt32();
               break;
             }
           }
@@ -243,7 +265,7 @@ public final class ProjectProtos {
       return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Project_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Project_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -278,7 +300,7 @@ public final class ProjectProtos {
 
       public final int getNumber() {
         if (this == UNRECOGNIZED) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
@@ -287,7 +309,7 @@ public final class ProjectProtos {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static ProjectType valueOf(int value) {
         return forNumber(value);
       }
@@ -330,7 +352,7 @@ public final class ProjectProtos {
       public static ProjectType valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         if (desc.getIndex() == -1) {
@@ -350,18 +372,18 @@ public final class ProjectProtos {
 
     private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
-    private volatile Object id_;
+    private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
      */
-    public String getId() {
-      Object ref = id_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         id_ = s;
         return s;
       }
@@ -371,11 +393,11 @@ public final class ProjectProtos {
      */
     public com.google.protobuf.ByteString
         getIdBytes() {
-      Object ref = id_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         id_ = b;
         return b;
       } else {
@@ -384,18 +406,18 @@ public final class ProjectProtos {
     }
 
     public static final int NAME_FIELD_NUMBER = 2;
-    private volatile Object name_;
+    private volatile java.lang.Object name_;
     /**
      * <code>string name = 2;</code>
      */
-    public String getName() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         name_ = s;
         return s;
       }
@@ -405,11 +427,11 @@ public final class ProjectProtos {
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         name_ = b;
         return b;
       } else {
@@ -434,17 +456,17 @@ public final class ProjectProtos {
     }
 
     public static final int REPOSITORIES_FIELD_NUMBER = 4;
-    private java.util.List<CodeRepository> repositories_;
+    private java.util.List<joelbits.model.project.protobuf.ProjectProtos.CodeRepository> repositories_;
     /**
      * <code>repeated .joelbits.CodeRepository repositories = 4;</code>
      */
-    public java.util.List<CodeRepository> getRepositoriesList() {
+    public java.util.List<joelbits.model.project.protobuf.ProjectProtos.CodeRepository> getRepositoriesList() {
       return repositories_;
     }
     /**
      * <code>repeated .joelbits.CodeRepository repositories = 4;</code>
      */
-    public java.util.List<? extends CodeRepositoryOrBuilder>
+    public java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.CodeRepositoryOrBuilder> 
         getRepositoriesOrBuilderList() {
       return repositories_;
     }
@@ -469,18 +491,18 @@ public final class ProjectProtos {
     }
 
     public static final int URL_FIELD_NUMBER = 5;
-    private volatile Object url_;
+    private volatile java.lang.Object url_;
     /**
      * <code>string url = 5;</code>
      */
-    public String getUrl() {
-      Object ref = url_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getUrl() {
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         url_ = s;
         return s;
       }
@@ -490,11 +512,11 @@ public final class ProjectProtos {
      */
     public com.google.protobuf.ByteString
         getUrlBytes() {
-      Object ref = url_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         url_ = b;
         return b;
       } else {
@@ -541,7 +563,7 @@ public final class ProjectProtos {
     /**
      * <code>repeated string programming_languages = 7;</code>
      */
-    public String getProgrammingLanguages(int index) {
+    public java.lang.String getProgrammingLanguages(int index) {
       return programmingLanguages_.get(index);
     }
     /**
@@ -550,6 +572,24 @@ public final class ProjectProtos {
     public com.google.protobuf.ByteString
         getProgrammingLanguagesBytes(int index) {
       return programmingLanguages_.getByteString(index);
+    }
+
+    public static final int FORKS_FIELD_NUMBER = 8;
+    private int forks_;
+    /**
+     * <code>int32 forks = 8;</code>
+     */
+    public int getForks() {
+      return forks_;
+    }
+
+    public static final int WATCHERS_FIELD_NUMBER = 9;
+    private int watchers_;
+    /**
+     * <code>int32 watchers = 9;</code>
+     */
+    public int getWatchers() {
+      return watchers_;
     }
 
     private byte memoizedIsInitialized = -1;
@@ -584,6 +624,12 @@ public final class ProjectProtos {
       }
       for (int i = 0; i < programmingLanguages_.size(); i++) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 7, programmingLanguages_.getRaw(i));
+      }
+      if (forks_ != 0) {
+        output.writeInt32(8, forks_);
+      }
+      if (watchers_ != 0) {
+        output.writeInt32(9, watchers_);
       }
       unknownFields.writeTo(output);
     }
@@ -622,13 +668,21 @@ public final class ProjectProtos {
         size += dataSize;
         size += 1 * getProgrammingLanguagesList().size();
       }
+      if (forks_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(8, forks_);
+      }
+      if (watchers_ != 0) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(9, watchers_);
+      }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -654,11 +708,15 @@ public final class ProjectProtos {
       }
       result = result && getProgrammingLanguagesList()
           .equals(other.getProgrammingLanguagesList());
+      result = result && (getForks()
+          == other.getForks());
+      result = result && (getWatchers()
+          == other.getWatchers());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -685,6 +743,10 @@ public final class ProjectProtos {
         hash = (37 * hash) + PROGRAMMING_LANGUAGES_FIELD_NUMBER;
         hash = (53 * hash) + getProgrammingLanguagesList().hashCode();
       }
+      hash = (37 * hash) + FORKS_FIELD_NUMBER;
+      hash = (53 * hash) + getForks();
+      hash = (37 * hash) + WATCHERS_FIELD_NUMBER;
+      hash = (53 * hash) + getWatchers();
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -772,9 +834,9 @@ public final class ProjectProtos {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -790,7 +852,7 @@ public final class ProjectProtos {
         return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Project_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Project_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -803,7 +865,7 @@ public final class ProjectProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -837,6 +899,10 @@ public final class ProjectProtos {
         }
         programmingLanguages_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000040);
+        forks_ = 0;
+
+        watchers_ = 0;
+
         return this;
       }
 
@@ -884,6 +950,8 @@ public final class ProjectProtos {
           bitField0_ = (bitField0_ & ~0x00000040);
         }
         result.programmingLanguages_ = programmingLanguages_;
+        result.forks_ = forks_;
+        result.watchers_ = watchers_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -894,7 +962,7 @@ public final class ProjectProtos {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -907,12 +975,12 @@ public final class ProjectProtos {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -955,7 +1023,7 @@ public final class ProjectProtos {
               repositoriesBuilder_ = null;
               repositories_ = other.repositories_;
               bitField0_ = (bitField0_ & ~0x00000008);
-              repositoriesBuilder_ =
+              repositoriesBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getRepositoriesFieldBuilder() : null;
             } else {
@@ -979,6 +1047,12 @@ public final class ProjectProtos {
             programmingLanguages_.addAll(other.programmingLanguages_);
           }
           onChanged();
+        }
+        if (other.getForks() != 0) {
+          setForks(other.getForks());
+        }
+        if (other.getWatchers() != 0) {
+          setWatchers(other.getWatchers());
         }
         this.mergeUnknownFields(other.unknownFields);
         onChanged();
@@ -1008,20 +1082,20 @@ public final class ProjectProtos {
       }
       private int bitField0_;
 
-      private Object id_ = "";
+      private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
        */
-      public String getId() {
-        Object ref = id_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           id_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1029,11 +1103,11 @@ public final class ProjectProtos {
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
-        Object ref = id_;
+        java.lang.Object ref = id_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           id_ = b;
           return b;
         } else {
@@ -1044,11 +1118,11 @@ public final class ProjectProtos {
        * <code>string id = 1;</code>
        */
       public Builder setId(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         id_ = value;
         onChanged();
         return this;
@@ -1057,7 +1131,7 @@ public final class ProjectProtos {
        * <code>string id = 1;</code>
        */
       public Builder clearId() {
-
+        
         id_ = getDefaultInstance().getId();
         onChanged();
         return this;
@@ -1071,26 +1145,26 @@ public final class ProjectProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         id_ = value;
         onChanged();
         return this;
       }
 
-      private Object name_ = "";
+      private java.lang.Object name_ = "";
       /**
        * <code>string name = 2;</code>
        */
-      public String getName() {
-        Object ref = name_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1098,11 +1172,11 @@ public final class ProjectProtos {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        Object ref = name_;
+        java.lang.Object ref = name_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           name_ = b;
           return b;
         } else {
@@ -1113,11 +1187,11 @@ public final class ProjectProtos {
        * <code>string name = 2;</code>
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         name_ = value;
         onChanged();
         return this;
@@ -1126,7 +1200,7 @@ public final class ProjectProtos {
        * <code>string name = 2;</code>
        */
       public Builder clearName() {
-
+        
         name_ = getDefaultInstance().getName();
         onChanged();
         return this;
@@ -1140,7 +1214,7 @@ public final class ProjectProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         name_ = value;
         onChanged();
         return this;
@@ -1175,7 +1249,7 @@ public final class ProjectProtos {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         type_ = value.getNumber();
         onChanged();
         return this;
@@ -1184,28 +1258,28 @@ public final class ProjectProtos {
        * <code>.joelbits.Project.ProjectType type = 3;</code>
        */
       public Builder clearType() {
-
+        
         type_ = 0;
         onChanged();
         return this;
       }
 
-      private java.util.List<CodeRepository> repositories_ =
+      private java.util.List<joelbits.model.project.protobuf.ProjectProtos.CodeRepository> repositories_ =
         java.util.Collections.emptyList();
       private void ensureRepositoriesIsMutable() {
         if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-          repositories_ = new java.util.ArrayList<CodeRepository>(repositories_);
+          repositories_ = new java.util.ArrayList<joelbits.model.project.protobuf.ProjectProtos.CodeRepository>(repositories_);
           bitField0_ |= 0x00000008;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          CodeRepository, CodeRepository.Builder, CodeRepositoryOrBuilder> repositoriesBuilder_;
+          joelbits.model.project.protobuf.ProjectProtos.CodeRepository, joelbits.model.project.protobuf.ProjectProtos.CodeRepository.Builder, joelbits.model.project.protobuf.ProjectProtos.CodeRepositoryOrBuilder> repositoriesBuilder_;
 
       /**
        * <code>repeated .joelbits.CodeRepository repositories = 4;</code>
        */
-      public java.util.List<CodeRepository> getRepositoriesList() {
+      public java.util.List<joelbits.model.project.protobuf.ProjectProtos.CodeRepository> getRepositoriesList() {
         if (repositoriesBuilder_ == null) {
           return java.util.Collections.unmodifiableList(repositories_);
         } else {
@@ -1328,7 +1402,7 @@ public final class ProjectProtos {
        * <code>repeated .joelbits.CodeRepository repositories = 4;</code>
        */
       public Builder addAllRepositories(
-          Iterable<? extends CodeRepository> values) {
+          java.lang.Iterable<? extends joelbits.model.project.protobuf.ProjectProtos.CodeRepository> values) {
         if (repositoriesBuilder_ == null) {
           ensureRepositoriesIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -1385,7 +1459,7 @@ public final class ProjectProtos {
       /**
        * <code>repeated .joelbits.CodeRepository repositories = 4;</code>
        */
-      public java.util.List<? extends CodeRepositoryOrBuilder>
+      public java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.CodeRepositoryOrBuilder> 
            getRepositoriesOrBuilderList() {
         if (repositoriesBuilder_ != null) {
           return repositoriesBuilder_.getMessageOrBuilderList();
@@ -1411,16 +1485,16 @@ public final class ProjectProtos {
       /**
        * <code>repeated .joelbits.CodeRepository repositories = 4;</code>
        */
-      public java.util.List<CodeRepository.Builder>
+      public java.util.List<joelbits.model.project.protobuf.ProjectProtos.CodeRepository.Builder> 
            getRepositoriesBuilderList() {
         return getRepositoriesFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          CodeRepository, CodeRepository.Builder, CodeRepositoryOrBuilder>
+          joelbits.model.project.protobuf.ProjectProtos.CodeRepository, joelbits.model.project.protobuf.ProjectProtos.CodeRepository.Builder, joelbits.model.project.protobuf.ProjectProtos.CodeRepositoryOrBuilder> 
           getRepositoriesFieldBuilder() {
         if (repositoriesBuilder_ == null) {
           repositoriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              CodeRepository, CodeRepository.Builder, CodeRepositoryOrBuilder>(
+              joelbits.model.project.protobuf.ProjectProtos.CodeRepository, joelbits.model.project.protobuf.ProjectProtos.CodeRepository.Builder, joelbits.model.project.protobuf.ProjectProtos.CodeRepositoryOrBuilder>(
                   repositories_,
                   ((bitField0_ & 0x00000008) == 0x00000008),
                   getParentForChildren(),
@@ -1430,20 +1504,20 @@ public final class ProjectProtos {
         return repositoriesBuilder_;
       }
 
-      private Object url_ = "";
+      private java.lang.Object url_ = "";
       /**
        * <code>string url = 5;</code>
        */
-      public String getUrl() {
-        Object ref = url_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getUrl() {
+        java.lang.Object ref = url_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           url_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -1451,11 +1525,11 @@ public final class ProjectProtos {
        */
       public com.google.protobuf.ByteString
           getUrlBytes() {
-        Object ref = url_;
+        java.lang.Object ref = url_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           url_ = b;
           return b;
         } else {
@@ -1466,11 +1540,11 @@ public final class ProjectProtos {
        * <code>string url = 5;</code>
        */
       public Builder setUrl(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         url_ = value;
         onChanged();
         return this;
@@ -1479,7 +1553,7 @@ public final class ProjectProtos {
        * <code>string url = 5;</code>
        */
       public Builder clearUrl() {
-
+        
         url_ = getDefaultInstance().getUrl();
         onChanged();
         return this;
@@ -1493,7 +1567,7 @@ public final class ProjectProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         url_ = value;
         onChanged();
         return this;
@@ -1584,7 +1658,7 @@ public final class ProjectProtos {
        * <code>.google.protobuf.Timestamp created_date = 6;</code>
        */
       public com.google.protobuf.Timestamp.Builder getCreatedDateBuilder() {
-
+        
         onChanged();
         return getCreatedDateFieldBuilder().getBuilder();
       }
@@ -1603,7 +1677,7 @@ public final class ProjectProtos {
        * <code>.google.protobuf.Timestamp created_date = 6;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
           getCreatedDateFieldBuilder() {
         if (createdDateBuilder_ == null) {
           createdDateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -1639,7 +1713,7 @@ public final class ProjectProtos {
       /**
        * <code>repeated string programming_languages = 7;</code>
        */
-      public String getProgrammingLanguages(int index) {
+      public java.lang.String getProgrammingLanguages(int index) {
         return programmingLanguages_.get(index);
       }
       /**
@@ -1653,7 +1727,7 @@ public final class ProjectProtos {
        * <code>repeated string programming_languages = 7;</code>
        */
       public Builder setProgrammingLanguages(
-          int index, String value) {
+          int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1666,7 +1740,7 @@ public final class ProjectProtos {
        * <code>repeated string programming_languages = 7;</code>
        */
       public Builder addProgrammingLanguages(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
@@ -1679,7 +1753,7 @@ public final class ProjectProtos {
        * <code>repeated string programming_languages = 7;</code>
        */
       public Builder addAllProgrammingLanguages(
-          Iterable<String> values) {
+          java.lang.Iterable<java.lang.String> values) {
         ensureProgrammingLanguagesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
             values, programmingLanguages_);
@@ -1706,6 +1780,58 @@ public final class ProjectProtos {
   checkByteStringIsUtf8(value);
         ensureProgrammingLanguagesIsMutable();
         programmingLanguages_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private int forks_ ;
+      /**
+       * <code>int32 forks = 8;</code>
+       */
+      public int getForks() {
+        return forks_;
+      }
+      /**
+       * <code>int32 forks = 8;</code>
+       */
+      public Builder setForks(int value) {
+        
+        forks_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 forks = 8;</code>
+       */
+      public Builder clearForks() {
+        
+        forks_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int watchers_ ;
+      /**
+       * <code>int32 watchers = 9;</code>
+       */
+      public int getWatchers() {
+        return watchers_;
+      }
+      /**
+       * <code>int32 watchers = 9;</code>
+       */
+      public Builder setWatchers(int value) {
+        
+        watchers_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>int32 watchers = 9;</code>
+       */
+      public Builder clearWatchers() {
+        
+        watchers_ = 0;
         onChanged();
         return this;
       }
@@ -1747,7 +1873,7 @@ public final class ProjectProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Project> getParserForType() {
       return PARSER;
     }
@@ -1765,7 +1891,7 @@ public final class ProjectProtos {
     /**
      * <code>string url = 1;</code>
      */
-    String getUrl();
+    java.lang.String getUrl();
     /**
      * <code>string url = 1;</code>
      */
@@ -1784,7 +1910,7 @@ public final class ProjectProtos {
     /**
      * <code>repeated .joelbits.Revision revision = 3;</code>
      */
-    java.util.List<Revision>
+    java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> 
         getRevisionList();
     /**
      * <code>repeated .joelbits.Revision revision = 3;</code>
@@ -1797,13 +1923,13 @@ public final class ProjectProtos {
     /**
      * <code>repeated .joelbits.Revision revision = 3;</code>
      */
-    java.util.List<? extends RevisionOrBuilder>
+    java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> 
         getRevisionOrBuilderList();
     /**
      * <code>repeated .joelbits.Revision revision = 3;</code>
      */
     joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder getRevisionOrBuilder(
-            int index);
+        int index);
   }
   /**
    * Protobuf type {@code joelbits.CodeRepository}
@@ -1823,7 +1949,7 @@ public final class ProjectProtos {
       revision_ = java.util.Collections.emptyList();
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -1834,7 +1960,7 @@ public final class ProjectProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -1855,7 +1981,7 @@ public final class ProjectProtos {
               break;
             }
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               url_ = s;
               break;
@@ -1868,7 +1994,7 @@ public final class ProjectProtos {
             }
             case 26: {
               if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                revision_ = new java.util.ArrayList<Revision>();
+                revision_ = new java.util.ArrayList<joelbits.model.project.protobuf.ProjectProtos.Revision>();
                 mutable_bitField0_ |= 0x00000004;
               }
               revision_.add(
@@ -1895,7 +2021,7 @@ public final class ProjectProtos {
       return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_CodeRepository_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_CodeRepository_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -1946,7 +2072,7 @@ public final class ProjectProtos {
 
       public final int getNumber() {
         if (this == UNRECOGNIZED) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
@@ -1955,7 +2081,7 @@ public final class ProjectProtos {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static RepositoryType valueOf(int value) {
         return forNumber(value);
       }
@@ -2000,7 +2126,7 @@ public final class ProjectProtos {
       public static RepositoryType valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         if (desc.getIndex() == -1) {
@@ -2020,18 +2146,18 @@ public final class ProjectProtos {
 
     private int bitField0_;
     public static final int URL_FIELD_NUMBER = 1;
-    private volatile Object url_;
+    private volatile java.lang.Object url_;
     /**
      * <code>string url = 1;</code>
      */
-    public String getUrl() {
-      Object ref = url_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getUrl() {
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         url_ = s;
         return s;
       }
@@ -2041,11 +2167,11 @@ public final class ProjectProtos {
      */
     public com.google.protobuf.ByteString
         getUrlBytes() {
-      Object ref = url_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = url_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         url_ = b;
         return b;
       } else {
@@ -2070,17 +2196,17 @@ public final class ProjectProtos {
     }
 
     public static final int REVISION_FIELD_NUMBER = 3;
-    private java.util.List<Revision> revision_;
+    private java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> revision_;
     /**
      * <code>repeated .joelbits.Revision revision = 3;</code>
      */
-    public java.util.List<Revision> getRevisionList() {
+    public java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> getRevisionList() {
       return revision_;
     }
     /**
      * <code>repeated .joelbits.Revision revision = 3;</code>
      */
-    public java.util.List<? extends RevisionOrBuilder>
+    public java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> 
         getRevisionOrBuilderList() {
       return revision_;
     }
@@ -2149,8 +2275,8 @@ public final class ProjectProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -2169,7 +2295,7 @@ public final class ProjectProtos {
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -2271,9 +2397,9 @@ public final class ProjectProtos {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -2289,7 +2415,7 @@ public final class ProjectProtos {
         return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_CodeRepository_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_CodeRepository_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -2302,7 +2428,7 @@ public final class ProjectProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -2369,7 +2495,7 @@ public final class ProjectProtos {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -2382,12 +2508,12 @@ public final class ProjectProtos {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -2426,7 +2552,7 @@ public final class ProjectProtos {
               revisionBuilder_ = null;
               revision_ = other.revision_;
               bitField0_ = (bitField0_ & ~0x00000004);
-              revisionBuilder_ =
+              revisionBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getRevisionFieldBuilder() : null;
             } else {
@@ -2462,20 +2588,20 @@ public final class ProjectProtos {
       }
       private int bitField0_;
 
-      private Object url_ = "";
+      private java.lang.Object url_ = "";
       /**
        * <code>string url = 1;</code>
        */
-      public String getUrl() {
-        Object ref = url_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getUrl() {
+        java.lang.Object ref = url_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           url_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -2483,11 +2609,11 @@ public final class ProjectProtos {
        */
       public com.google.protobuf.ByteString
           getUrlBytes() {
-        Object ref = url_;
+        java.lang.Object ref = url_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           url_ = b;
           return b;
         } else {
@@ -2498,11 +2624,11 @@ public final class ProjectProtos {
        * <code>string url = 1;</code>
        */
       public Builder setUrl(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         url_ = value;
         onChanged();
         return this;
@@ -2511,7 +2637,7 @@ public final class ProjectProtos {
        * <code>string url = 1;</code>
        */
       public Builder clearUrl() {
-
+        
         url_ = getDefaultInstance().getUrl();
         onChanged();
         return this;
@@ -2525,7 +2651,7 @@ public final class ProjectProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         url_ = value;
         onChanged();
         return this;
@@ -2560,7 +2686,7 @@ public final class ProjectProtos {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         type_ = value.getNumber();
         onChanged();
         return this;
@@ -2569,28 +2695,28 @@ public final class ProjectProtos {
        * <code>.joelbits.CodeRepository.RepositoryType type = 2;</code>
        */
       public Builder clearType() {
-
+        
         type_ = 0;
         onChanged();
         return this;
       }
 
-      private java.util.List<Revision> revision_ =
+      private java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> revision_ =
         java.util.Collections.emptyList();
       private void ensureRevisionIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          revision_ = new java.util.ArrayList<Revision>(revision_);
+          revision_ = new java.util.ArrayList<joelbits.model.project.protobuf.ProjectProtos.Revision>(revision_);
           bitField0_ |= 0x00000004;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          Revision, Revision.Builder, RevisionOrBuilder> revisionBuilder_;
+          joelbits.model.project.protobuf.ProjectProtos.Revision, joelbits.model.project.protobuf.ProjectProtos.Revision.Builder, joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> revisionBuilder_;
 
       /**
        * <code>repeated .joelbits.Revision revision = 3;</code>
        */
-      public java.util.List<Revision> getRevisionList() {
+      public java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> getRevisionList() {
         if (revisionBuilder_ == null) {
           return java.util.Collections.unmodifiableList(revision_);
         } else {
@@ -2713,7 +2839,7 @@ public final class ProjectProtos {
        * <code>repeated .joelbits.Revision revision = 3;</code>
        */
       public Builder addAllRevision(
-          Iterable<? extends Revision> values) {
+          java.lang.Iterable<? extends joelbits.model.project.protobuf.ProjectProtos.Revision> values) {
         if (revisionBuilder_ == null) {
           ensureRevisionIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -2770,7 +2896,7 @@ public final class ProjectProtos {
       /**
        * <code>repeated .joelbits.Revision revision = 3;</code>
        */
-      public java.util.List<? extends RevisionOrBuilder>
+      public java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> 
            getRevisionOrBuilderList() {
         if (revisionBuilder_ != null) {
           return revisionBuilder_.getMessageOrBuilderList();
@@ -2796,16 +2922,16 @@ public final class ProjectProtos {
       /**
        * <code>repeated .joelbits.Revision revision = 3;</code>
        */
-      public java.util.List<Revision.Builder>
+      public java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision.Builder> 
            getRevisionBuilderList() {
         return getRevisionFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          Revision, Revision.Builder, RevisionOrBuilder>
+          joelbits.model.project.protobuf.ProjectProtos.Revision, joelbits.model.project.protobuf.ProjectProtos.Revision.Builder, joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> 
           getRevisionFieldBuilder() {
         if (revisionBuilder_ == null) {
           revisionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              Revision, Revision.Builder, RevisionOrBuilder>(
+              joelbits.model.project.protobuf.ProjectProtos.Revision, joelbits.model.project.protobuf.ProjectProtos.Revision.Builder, joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder>(
                   revision_,
                   ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
@@ -2852,7 +2978,7 @@ public final class ProjectProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<CodeRepository> getParserForType() {
       return PARSER;
     }
@@ -2870,7 +2996,7 @@ public final class ProjectProtos {
     /**
      * <code>string id = 1;</code>
      */
-    String getId();
+    java.lang.String getId();
     /**
      * <code>string id = 1;</code>
      */
@@ -2906,7 +3032,7 @@ public final class ProjectProtos {
     /**
      * <code>repeated .joelbits.ChangedFile files = 4;</code>
      */
-    java.util.List<ChangedFile>
+    java.util.List<joelbits.model.project.protobuf.ProjectProtos.ChangedFile> 
         getFilesList();
     /**
      * <code>repeated .joelbits.ChangedFile files = 4;</code>
@@ -2919,18 +3045,18 @@ public final class ProjectProtos {
     /**
      * <code>repeated .joelbits.ChangedFile files = 4;</code>
      */
-    java.util.List<? extends ChangedFileOrBuilder>
+    java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.ChangedFileOrBuilder> 
         getFilesOrBuilderList();
     /**
      * <code>repeated .joelbits.ChangedFile files = 4;</code>
      */
     joelbits.model.project.protobuf.ProjectProtos.ChangedFileOrBuilder getFilesOrBuilder(
-            int index);
+        int index);
 
     /**
      * <code>string log = 5;</code>
      */
-    String getLog();
+    java.lang.String getLog();
     /**
      * <code>string log = 5;</code>
      */
@@ -2955,7 +3081,7 @@ public final class ProjectProtos {
       log_ = "";
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -2966,7 +3092,7 @@ public final class ProjectProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -2987,7 +3113,7 @@ public final class ProjectProtos {
               break;
             }
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               id_ = s;
               break;
@@ -3020,7 +3146,7 @@ public final class ProjectProtos {
             }
             case 34: {
               if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-                files_ = new java.util.ArrayList<ChangedFile>();
+                files_ = new java.util.ArrayList<joelbits.model.project.protobuf.ProjectProtos.ChangedFile>();
                 mutable_bitField0_ |= 0x00000008;
               }
               files_.add(
@@ -3028,7 +3154,7 @@ public final class ProjectProtos {
               break;
             }
             case 42: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               log_ = s;
               break;
@@ -3053,7 +3179,7 @@ public final class ProjectProtos {
       return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Revision_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Revision_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -3062,18 +3188,18 @@ public final class ProjectProtos {
 
     private int bitField0_;
     public static final int ID_FIELD_NUMBER = 1;
-    private volatile Object id_;
+    private volatile java.lang.Object id_;
     /**
      * <code>string id = 1;</code>
      */
-    public String getId() {
-      Object ref = id_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getId() {
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         id_ = s;
         return s;
       }
@@ -3083,11 +3209,11 @@ public final class ProjectProtos {
      */
     public com.google.protobuf.ByteString
         getIdBytes() {
-      Object ref = id_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = id_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         id_ = b;
         return b;
       } else {
@@ -3138,17 +3264,17 @@ public final class ProjectProtos {
     }
 
     public static final int FILES_FIELD_NUMBER = 4;
-    private java.util.List<ChangedFile> files_;
+    private java.util.List<joelbits.model.project.protobuf.ProjectProtos.ChangedFile> files_;
     /**
      * <code>repeated .joelbits.ChangedFile files = 4;</code>
      */
-    public java.util.List<ChangedFile> getFilesList() {
+    public java.util.List<joelbits.model.project.protobuf.ProjectProtos.ChangedFile> getFilesList() {
       return files_;
     }
     /**
      * <code>repeated .joelbits.ChangedFile files = 4;</code>
      */
-    public java.util.List<? extends ChangedFileOrBuilder>
+    public java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.ChangedFileOrBuilder> 
         getFilesOrBuilderList() {
       return files_;
     }
@@ -3173,18 +3299,18 @@ public final class ProjectProtos {
     }
 
     public static final int LOG_FIELD_NUMBER = 5;
-    private volatile Object log_;
+    private volatile java.lang.Object log_;
     /**
      * <code>string log = 5;</code>
      */
-    public String getLog() {
-      Object ref = log_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getLog() {
+      java.lang.Object ref = log_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         log_ = s;
         return s;
       }
@@ -3194,11 +3320,11 @@ public final class ProjectProtos {
      */
     public com.google.protobuf.ByteString
         getLogBytes() {
-      Object ref = log_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = log_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         log_ = b;
         return b;
       } else {
@@ -3264,8 +3390,8 @@ public final class ProjectProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -3295,7 +3421,7 @@ public final class ProjectProtos {
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -3405,9 +3531,9 @@ public final class ProjectProtos {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -3423,7 +3549,7 @@ public final class ProjectProtos {
         return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Revision_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Revision_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -3436,7 +3562,7 @@ public final class ProjectProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -3525,7 +3651,7 @@ public final class ProjectProtos {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -3538,12 +3664,12 @@ public final class ProjectProtos {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -3585,7 +3711,7 @@ public final class ProjectProtos {
               filesBuilder_ = null;
               files_ = other.files_;
               bitField0_ = (bitField0_ & ~0x00000008);
-              filesBuilder_ =
+              filesBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getFilesFieldBuilder() : null;
             } else {
@@ -3625,20 +3751,20 @@ public final class ProjectProtos {
       }
       private int bitField0_;
 
-      private Object id_ = "";
+      private java.lang.Object id_ = "";
       /**
        * <code>string id = 1;</code>
        */
-      public String getId() {
-        Object ref = id_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getId() {
+        java.lang.Object ref = id_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           id_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -3646,11 +3772,11 @@ public final class ProjectProtos {
        */
       public com.google.protobuf.ByteString
           getIdBytes() {
-        Object ref = id_;
+        java.lang.Object ref = id_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           id_ = b;
           return b;
         } else {
@@ -3661,11 +3787,11 @@ public final class ProjectProtos {
        * <code>string id = 1;</code>
        */
       public Builder setId(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         id_ = value;
         onChanged();
         return this;
@@ -3674,7 +3800,7 @@ public final class ProjectProtos {
        * <code>string id = 1;</code>
        */
       public Builder clearId() {
-
+        
         id_ = getDefaultInstance().getId();
         onChanged();
         return this;
@@ -3688,7 +3814,7 @@ public final class ProjectProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         id_ = value;
         onChanged();
         return this;
@@ -3779,7 +3905,7 @@ public final class ProjectProtos {
        * <code>.google.protobuf.Timestamp commit_date = 2;</code>
        */
       public com.google.protobuf.Timestamp.Builder getCommitDateBuilder() {
-
+        
         onChanged();
         return getCommitDateFieldBuilder().getBuilder();
       }
@@ -3798,7 +3924,7 @@ public final class ProjectProtos {
        * <code>.google.protobuf.Timestamp commit_date = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder>
+          com.google.protobuf.Timestamp, com.google.protobuf.Timestamp.Builder, com.google.protobuf.TimestampOrBuilder> 
           getCommitDateFieldBuilder() {
         if (commitDateBuilder_ == null) {
           commitDateBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
@@ -3813,7 +3939,7 @@ public final class ProjectProtos {
 
       private joelbits.model.project.protobuf.ProjectProtos.Person committer_ = null;
       private com.google.protobuf.SingleFieldBuilderV3<
-          Person, Person.Builder, PersonOrBuilder> committerBuilder_;
+          joelbits.model.project.protobuf.ProjectProtos.Person, joelbits.model.project.protobuf.ProjectProtos.Person.Builder, joelbits.model.project.protobuf.ProjectProtos.PersonOrBuilder> committerBuilder_;
       /**
        * <code>.joelbits.Person committer = 3;</code>
        */
@@ -3896,7 +4022,7 @@ public final class ProjectProtos {
        * <code>.joelbits.Person committer = 3;</code>
        */
       public joelbits.model.project.protobuf.ProjectProtos.Person.Builder getCommitterBuilder() {
-
+        
         onChanged();
         return getCommitterFieldBuilder().getBuilder();
       }
@@ -3915,11 +4041,11 @@ public final class ProjectProtos {
        * <code>.joelbits.Person committer = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilderV3<
-          Person, Person.Builder, PersonOrBuilder>
+          joelbits.model.project.protobuf.ProjectProtos.Person, joelbits.model.project.protobuf.ProjectProtos.Person.Builder, joelbits.model.project.protobuf.ProjectProtos.PersonOrBuilder> 
           getCommitterFieldBuilder() {
         if (committerBuilder_ == null) {
           committerBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-              Person, Person.Builder, PersonOrBuilder>(
+              joelbits.model.project.protobuf.ProjectProtos.Person, joelbits.model.project.protobuf.ProjectProtos.Person.Builder, joelbits.model.project.protobuf.ProjectProtos.PersonOrBuilder>(
                   getCommitter(),
                   getParentForChildren(),
                   isClean());
@@ -3928,22 +4054,22 @@ public final class ProjectProtos {
         return committerBuilder_;
       }
 
-      private java.util.List<ChangedFile> files_ =
+      private java.util.List<joelbits.model.project.protobuf.ProjectProtos.ChangedFile> files_ =
         java.util.Collections.emptyList();
       private void ensureFilesIsMutable() {
         if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-          files_ = new java.util.ArrayList<ChangedFile>(files_);
+          files_ = new java.util.ArrayList<joelbits.model.project.protobuf.ProjectProtos.ChangedFile>(files_);
           bitField0_ |= 0x00000008;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          ChangedFile, ChangedFile.Builder, ChangedFileOrBuilder> filesBuilder_;
+          joelbits.model.project.protobuf.ProjectProtos.ChangedFile, joelbits.model.project.protobuf.ProjectProtos.ChangedFile.Builder, joelbits.model.project.protobuf.ProjectProtos.ChangedFileOrBuilder> filesBuilder_;
 
       /**
        * <code>repeated .joelbits.ChangedFile files = 4;</code>
        */
-      public java.util.List<ChangedFile> getFilesList() {
+      public java.util.List<joelbits.model.project.protobuf.ProjectProtos.ChangedFile> getFilesList() {
         if (filesBuilder_ == null) {
           return java.util.Collections.unmodifiableList(files_);
         } else {
@@ -4066,7 +4192,7 @@ public final class ProjectProtos {
        * <code>repeated .joelbits.ChangedFile files = 4;</code>
        */
       public Builder addAllFiles(
-          Iterable<? extends ChangedFile> values) {
+          java.lang.Iterable<? extends joelbits.model.project.protobuf.ProjectProtos.ChangedFile> values) {
         if (filesBuilder_ == null) {
           ensureFilesIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -4123,7 +4249,7 @@ public final class ProjectProtos {
       /**
        * <code>repeated .joelbits.ChangedFile files = 4;</code>
        */
-      public java.util.List<? extends ChangedFileOrBuilder>
+      public java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.ChangedFileOrBuilder> 
            getFilesOrBuilderList() {
         if (filesBuilder_ != null) {
           return filesBuilder_.getMessageOrBuilderList();
@@ -4149,16 +4275,16 @@ public final class ProjectProtos {
       /**
        * <code>repeated .joelbits.ChangedFile files = 4;</code>
        */
-      public java.util.List<ChangedFile.Builder>
+      public java.util.List<joelbits.model.project.protobuf.ProjectProtos.ChangedFile.Builder> 
            getFilesBuilderList() {
         return getFilesFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          ChangedFile, ChangedFile.Builder, ChangedFileOrBuilder>
+          joelbits.model.project.protobuf.ProjectProtos.ChangedFile, joelbits.model.project.protobuf.ProjectProtos.ChangedFile.Builder, joelbits.model.project.protobuf.ProjectProtos.ChangedFileOrBuilder> 
           getFilesFieldBuilder() {
         if (filesBuilder_ == null) {
           filesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              ChangedFile, ChangedFile.Builder, ChangedFileOrBuilder>(
+              joelbits.model.project.protobuf.ProjectProtos.ChangedFile, joelbits.model.project.protobuf.ProjectProtos.ChangedFile.Builder, joelbits.model.project.protobuf.ProjectProtos.ChangedFileOrBuilder>(
                   files_,
                   ((bitField0_ & 0x00000008) == 0x00000008),
                   getParentForChildren(),
@@ -4168,20 +4294,20 @@ public final class ProjectProtos {
         return filesBuilder_;
       }
 
-      private Object log_ = "";
+      private java.lang.Object log_ = "";
       /**
        * <code>string log = 5;</code>
        */
-      public String getLog() {
-        Object ref = log_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getLog() {
+        java.lang.Object ref = log_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           log_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4189,11 +4315,11 @@ public final class ProjectProtos {
        */
       public com.google.protobuf.ByteString
           getLogBytes() {
-        Object ref = log_;
+        java.lang.Object ref = log_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           log_ = b;
           return b;
         } else {
@@ -4204,11 +4330,11 @@ public final class ProjectProtos {
        * <code>string log = 5;</code>
        */
       public Builder setLog(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         log_ = value;
         onChanged();
         return this;
@@ -4217,7 +4343,7 @@ public final class ProjectProtos {
        * <code>string log = 5;</code>
        */
       public Builder clearLog() {
-
+        
         log_ = getDefaultInstance().getLog();
         onChanged();
         return this;
@@ -4231,7 +4357,7 @@ public final class ProjectProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         log_ = value;
         onChanged();
         return this;
@@ -4274,7 +4400,7 @@ public final class ProjectProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Revision> getParserForType() {
       return PARSER;
     }
@@ -4292,7 +4418,7 @@ public final class ProjectProtos {
     /**
      * <code>string username = 1;</code>
      */
-    String getUsername();
+    java.lang.String getUsername();
     /**
      * <code>string username = 1;</code>
      */
@@ -4302,7 +4428,7 @@ public final class ProjectProtos {
     /**
      * <code>string real_name = 2;</code>
      */
-    String getRealName();
+    java.lang.String getRealName();
     /**
      * <code>string real_name = 2;</code>
      */
@@ -4312,7 +4438,7 @@ public final class ProjectProtos {
     /**
      * <code>string email = 3;</code>
      */
-    String getEmail();
+    java.lang.String getEmail();
     /**
      * <code>string email = 3;</code>
      */
@@ -4337,7 +4463,7 @@ public final class ProjectProtos {
       email_ = "";
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -4348,7 +4474,7 @@ public final class ProjectProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -4369,19 +4495,19 @@ public final class ProjectProtos {
               break;
             }
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               username_ = s;
               break;
             }
             case 18: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               realName_ = s;
               break;
             }
             case 26: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               email_ = s;
               break;
@@ -4403,7 +4529,7 @@ public final class ProjectProtos {
       return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Person_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Person_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -4411,18 +4537,18 @@ public final class ProjectProtos {
     }
 
     public static final int USERNAME_FIELD_NUMBER = 1;
-    private volatile Object username_;
+    private volatile java.lang.Object username_;
     /**
      * <code>string username = 1;</code>
      */
-    public String getUsername() {
-      Object ref = username_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getUsername() {
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         username_ = s;
         return s;
       }
@@ -4432,11 +4558,11 @@ public final class ProjectProtos {
      */
     public com.google.protobuf.ByteString
         getUsernameBytes() {
-      Object ref = username_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = username_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         username_ = b;
         return b;
       } else {
@@ -4445,18 +4571,18 @@ public final class ProjectProtos {
     }
 
     public static final int REAL_NAME_FIELD_NUMBER = 2;
-    private volatile Object realName_;
+    private volatile java.lang.Object realName_;
     /**
      * <code>string real_name = 2;</code>
      */
-    public String getRealName() {
-      Object ref = realName_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getRealName() {
+      java.lang.Object ref = realName_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         realName_ = s;
         return s;
       }
@@ -4466,11 +4592,11 @@ public final class ProjectProtos {
      */
     public com.google.protobuf.ByteString
         getRealNameBytes() {
-      Object ref = realName_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = realName_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         realName_ = b;
         return b;
       } else {
@@ -4479,18 +4605,18 @@ public final class ProjectProtos {
     }
 
     public static final int EMAIL_FIELD_NUMBER = 3;
-    private volatile Object email_;
+    private volatile java.lang.Object email_;
     /**
      * <code>string email = 3;</code>
      */
-    public String getEmail() {
-      Object ref = email_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getEmail() {
+      java.lang.Object ref = email_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         email_ = s;
         return s;
       }
@@ -4500,11 +4626,11 @@ public final class ProjectProtos {
      */
     public com.google.protobuf.ByteString
         getEmailBytes() {
-      Object ref = email_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = email_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         email_ = b;
         return b;
       } else {
@@ -4555,8 +4681,8 @@ public final class ProjectProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -4576,7 +4702,7 @@ public final class ProjectProtos {
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -4676,9 +4802,9 @@ public final class ProjectProtos {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -4694,7 +4820,7 @@ public final class ProjectProtos {
         return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Person_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_Person_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -4707,7 +4833,7 @@ public final class ProjectProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -4758,7 +4884,7 @@ public final class ProjectProtos {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -4771,12 +4897,12 @@ public final class ProjectProtos {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -4829,20 +4955,20 @@ public final class ProjectProtos {
         return this;
       }
 
-      private Object username_ = "";
+      private java.lang.Object username_ = "";
       /**
        * <code>string username = 1;</code>
        */
-      public String getUsername() {
-        Object ref = username_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getUsername() {
+        java.lang.Object ref = username_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           username_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4850,11 +4976,11 @@ public final class ProjectProtos {
        */
       public com.google.protobuf.ByteString
           getUsernameBytes() {
-        Object ref = username_;
+        java.lang.Object ref = username_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           username_ = b;
           return b;
         } else {
@@ -4865,11 +4991,11 @@ public final class ProjectProtos {
        * <code>string username = 1;</code>
        */
       public Builder setUsername(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         username_ = value;
         onChanged();
         return this;
@@ -4878,7 +5004,7 @@ public final class ProjectProtos {
        * <code>string username = 1;</code>
        */
       public Builder clearUsername() {
-
+        
         username_ = getDefaultInstance().getUsername();
         onChanged();
         return this;
@@ -4892,26 +5018,26 @@ public final class ProjectProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         username_ = value;
         onChanged();
         return this;
       }
 
-      private Object realName_ = "";
+      private java.lang.Object realName_ = "";
       /**
        * <code>string real_name = 2;</code>
        */
-      public String getRealName() {
-        Object ref = realName_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getRealName() {
+        java.lang.Object ref = realName_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           realName_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4919,11 +5045,11 @@ public final class ProjectProtos {
        */
       public com.google.protobuf.ByteString
           getRealNameBytes() {
-        Object ref = realName_;
+        java.lang.Object ref = realName_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           realName_ = b;
           return b;
         } else {
@@ -4934,11 +5060,11 @@ public final class ProjectProtos {
        * <code>string real_name = 2;</code>
        */
       public Builder setRealName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         realName_ = value;
         onChanged();
         return this;
@@ -4947,7 +5073,7 @@ public final class ProjectProtos {
        * <code>string real_name = 2;</code>
        */
       public Builder clearRealName() {
-
+        
         realName_ = getDefaultInstance().getRealName();
         onChanged();
         return this;
@@ -4961,26 +5087,26 @@ public final class ProjectProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         realName_ = value;
         onChanged();
         return this;
       }
 
-      private Object email_ = "";
+      private java.lang.Object email_ = "";
       /**
        * <code>string email = 3;</code>
        */
-      public String getEmail() {
-        Object ref = email_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getEmail() {
+        java.lang.Object ref = email_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           email_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -4988,11 +5114,11 @@ public final class ProjectProtos {
        */
       public com.google.protobuf.ByteString
           getEmailBytes() {
-        Object ref = email_;
+        java.lang.Object ref = email_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           email_ = b;
           return b;
         } else {
@@ -5003,11 +5129,11 @@ public final class ProjectProtos {
        * <code>string email = 3;</code>
        */
       public Builder setEmail(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         email_ = value;
         onChanged();
         return this;
@@ -5016,7 +5142,7 @@ public final class ProjectProtos {
        * <code>string email = 3;</code>
        */
       public Builder clearEmail() {
-
+        
         email_ = getDefaultInstance().getEmail();
         onChanged();
         return this;
@@ -5030,7 +5156,7 @@ public final class ProjectProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         email_ = value;
         onChanged();
         return this;
@@ -5073,7 +5199,7 @@ public final class ProjectProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<Person> getParserForType() {
       return PARSER;
     }
@@ -5091,7 +5217,7 @@ public final class ProjectProtos {
     /**
      * <code>string name = 1;</code>
      */
-    String getName();
+    java.lang.String getName();
     /**
      * <code>string name = 1;</code>
      */
@@ -5108,11 +5234,11 @@ public final class ProjectProtos {
     joelbits.model.project.protobuf.ProjectProtos.ChangedFile.ChangeType getChange();
 
     /**
-     * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
+     * <code>.joelbits.ChangedFile.FileType type = 3;</code>
      */
     int getTypeValue();
     /**
-     * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
+     * <code>.joelbits.ChangedFile.FileType type = 3;</code>
      */
     joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType getType();
   }
@@ -5134,7 +5260,7 @@ public final class ProjectProtos {
       type_ = 0;
     }
 
-    @Override
+    @java.lang.Override
     public final com.google.protobuf.UnknownFieldSet
     getUnknownFields() {
       return this.unknownFields;
@@ -5145,7 +5271,7 @@ public final class ProjectProtos {
         throws com.google.protobuf.InvalidProtocolBufferException {
       this();
       if (extensionRegistry == null) {
-        throw new NullPointerException();
+        throw new java.lang.NullPointerException();
       }
       int mutable_bitField0_ = 0;
       com.google.protobuf.UnknownFieldSet.Builder unknownFields =
@@ -5166,7 +5292,7 @@ public final class ProjectProtos {
               break;
             }
             case 10: {
-              String s = input.readStringRequireUtf8();
+              java.lang.String s = input.readStringRequireUtf8();
 
               name_ = s;
               break;
@@ -5200,7 +5326,7 @@ public final class ProjectProtos {
       return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_ChangedFile_descriptor;
     }
 
-    protected FieldAccessorTable
+    protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
       return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_ChangedFile_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
@@ -5243,7 +5369,7 @@ public final class ProjectProtos {
 
       public final int getNumber() {
         if (this == UNRECOGNIZED) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
@@ -5252,7 +5378,7 @@ public final class ProjectProtos {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static ChangeType valueOf(int value) {
         return forNumber(value);
       }
@@ -5296,7 +5422,7 @@ public final class ProjectProtos {
       public static ChangeType valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         if (desc.getIndex() == -1) {
@@ -5315,7 +5441,7 @@ public final class ProjectProtos {
     }
 
     /**
-     * Protobuf enum {@code joelbits.ChangedFile.SourceCodeFileType}
+     * Protobuf enum {@code joelbits.ChangedFile.FileType}
      */
     public enum FileType
         implements com.google.protobuf.ProtocolMessageEnum {
@@ -5382,7 +5508,7 @@ public final class ProjectProtos {
 
       public final int getNumber() {
         if (this == UNRECOGNIZED) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
               "Can't get the number of an unknown enum value.");
         }
         return value;
@@ -5391,7 +5517,7 @@ public final class ProjectProtos {
       /**
        * @deprecated Use {@link #forNumber(int)} instead.
        */
-      @Deprecated
+      @java.lang.Deprecated
       public static FileType valueOf(int value) {
         return forNumber(value);
       }
@@ -5439,7 +5565,7 @@ public final class ProjectProtos {
       public static FileType valueOf(
           com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
         if (desc.getType() != getDescriptor()) {
-          throw new IllegalArgumentException(
+          throw new java.lang.IllegalArgumentException(
             "EnumValueDescriptor is not for this type.");
         }
         if (desc.getIndex() == -1) {
@@ -5454,22 +5580,22 @@ public final class ProjectProtos {
         this.value = value;
       }
 
-      // @@protoc_insertion_point(enum_scope:joelbits.ChangedFile.SourceCodeFileType)
+      // @@protoc_insertion_point(enum_scope:joelbits.ChangedFile.FileType)
     }
 
     public static final int NAME_FIELD_NUMBER = 1;
-    private volatile Object name_;
+    private volatile java.lang.Object name_;
     /**
      * <code>string name = 1;</code>
      */
-    public String getName() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        return (String) ref;
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
+        java.lang.String s = bs.toStringUtf8();
         name_ = s;
         return s;
       }
@@ -5479,11 +5605,11 @@ public final class ProjectProtos {
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
-      Object ref = name_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
-                (String) ref);
+                (java.lang.String) ref);
         name_ = b;
         return b;
       } else {
@@ -5510,13 +5636,13 @@ public final class ProjectProtos {
     public static final int TYPE_FIELD_NUMBER = 3;
     private int type_;
     /**
-     * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
+     * <code>.joelbits.ChangedFile.FileType type = 3;</code>
      */
     public int getTypeValue() {
       return type_;
     }
     /**
-     * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
+     * <code>.joelbits.ChangedFile.FileType type = 3;</code>
      */
     public joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType getType() {
       joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType result = joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType.valueOf(type_);
@@ -5568,8 +5694,8 @@ public final class ProjectProtos {
       return size;
     }
 
-    @Override
-    public boolean equals(final Object obj) {
+    @java.lang.Override
+    public boolean equals(final java.lang.Object obj) {
       if (obj == this) {
        return true;
       }
@@ -5587,7 +5713,7 @@ public final class ProjectProtos {
       return result;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
       if (memoizedHashCode != 0) {
         return memoizedHashCode;
@@ -5687,9 +5813,9 @@ public final class ProjectProtos {
           ? new Builder() : new Builder().mergeFrom(this);
     }
 
-    @Override
+    @java.lang.Override
     protected Builder newBuilderForType(
-        BuilderParent parent) {
+        com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
       Builder builder = new Builder(parent);
       return builder;
     }
@@ -5705,7 +5831,7 @@ public final class ProjectProtos {
         return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_ChangedFile_descriptor;
       }
 
-      protected FieldAccessorTable
+      protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
           internalGetFieldAccessorTable() {
         return joelbits.model.project.protobuf.ProjectProtos.internal_static_joelbits_ChangedFile_fieldAccessorTable
             .ensureFieldAccessorsInitialized(
@@ -5718,7 +5844,7 @@ public final class ProjectProtos {
       }
 
       private Builder(
-          BuilderParent parent) {
+          com.google.protobuf.GeneratedMessageV3.BuilderParent parent) {
         super(parent);
         maybeForceBuilderInitialization();
       }
@@ -5769,7 +5895,7 @@ public final class ProjectProtos {
       }
       public Builder setField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.setField(field, value);
       }
       public Builder clearField(
@@ -5782,12 +5908,12 @@ public final class ProjectProtos {
       }
       public Builder setRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          int index, Object value) {
+          int index, java.lang.Object value) {
         return (Builder) super.setRepeatedField(field, index, value);
       }
       public Builder addRepeatedField(
           com.google.protobuf.Descriptors.FieldDescriptor field,
-          Object value) {
+          java.lang.Object value) {
         return (Builder) super.addRepeatedField(field, value);
       }
       public Builder mergeFrom(com.google.protobuf.Message other) {
@@ -5838,20 +5964,20 @@ public final class ProjectProtos {
         return this;
       }
 
-      private Object name_ = "";
+      private java.lang.Object name_ = "";
       /**
        * <code>string name = 1;</code>
        */
-      public String getName() {
-        Object ref = name_;
-        if (!(ref instanceof String)) {
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
           com.google.protobuf.ByteString bs =
               (com.google.protobuf.ByteString) ref;
-          String s = bs.toStringUtf8();
+          java.lang.String s = bs.toStringUtf8();
           name_ = s;
           return s;
         } else {
-          return (String) ref;
+          return (java.lang.String) ref;
         }
       }
       /**
@@ -5859,11 +5985,11 @@ public final class ProjectProtos {
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
-        Object ref = name_;
+        java.lang.Object ref = name_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
-                  (String) ref);
+                  (java.lang.String) ref);
           name_ = b;
           return b;
         } else {
@@ -5874,11 +6000,11 @@ public final class ProjectProtos {
        * <code>string name = 1;</code>
        */
       public Builder setName(
-          String value) {
+          java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         name_ = value;
         onChanged();
         return this;
@@ -5887,7 +6013,7 @@ public final class ProjectProtos {
        * <code>string name = 1;</code>
        */
       public Builder clearName() {
-
+        
         name_ = getDefaultInstance().getName();
         onChanged();
         return this;
@@ -5901,7 +6027,7 @@ public final class ProjectProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         name_ = value;
         onChanged();
         return this;
@@ -5936,7 +6062,7 @@ public final class ProjectProtos {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         change_ = value.getNumber();
         onChanged();
         return this;
@@ -5945,7 +6071,7 @@ public final class ProjectProtos {
        * <code>.joelbits.ChangedFile.ChangeType change = 2;</code>
        */
       public Builder clearChange() {
-
+        
         change_ = 0;
         onChanged();
         return this;
@@ -5953,13 +6079,13 @@ public final class ProjectProtos {
 
       private int type_ = 0;
       /**
-       * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
+       * <code>.joelbits.ChangedFile.FileType type = 3;</code>
        */
       public int getTypeValue() {
         return type_;
       }
       /**
-       * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
+       * <code>.joelbits.ChangedFile.FileType type = 3;</code>
        */
       public Builder setTypeValue(int value) {
         type_ = value;
@@ -5967,29 +6093,29 @@ public final class ProjectProtos {
         return this;
       }
       /**
-       * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
+       * <code>.joelbits.ChangedFile.FileType type = 3;</code>
        */
       public joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType getType() {
         joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType result = joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType.valueOf(type_);
         return result == null ? joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType.UNRECOGNIZED : result;
       }
       /**
-       * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
+       * <code>.joelbits.ChangedFile.FileType type = 3;</code>
        */
       public Builder setType(joelbits.model.project.protobuf.ProjectProtos.ChangedFile.FileType value) {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         type_ = value.getNumber();
         onChanged();
         return this;
       }
       /**
-       * <code>.joelbits.ChangedFile.SourceCodeFileType type = 3;</code>
+       * <code>.joelbits.ChangedFile.FileType type = 3;</code>
        */
       public Builder clearType() {
-
+        
         type_ = 0;
         onChanged();
         return this;
@@ -6032,7 +6158,7 @@ public final class ProjectProtos {
       return PARSER;
     }
 
-    @Override
+    @java.lang.Override
     public com.google.protobuf.Parser<ChangedFile> getParserForType() {
       return PARSER;
     }
@@ -6045,27 +6171,27 @@ public final class ProjectProtos {
 
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_joelbits_Project_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_joelbits_Project_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_joelbits_CodeRepository_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_joelbits_CodeRepository_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_joelbits_Revision_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_joelbits_Revision_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_joelbits_Person_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_joelbits_Person_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_joelbits_ChangedFile_descriptor;
-  private static final
+  private static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_joelbits_ChangedFile_fieldAccessorTable;
 
@@ -6076,33 +6202,34 @@ public final class ProjectProtos {
   private static  com.google.protobuf.Descriptors.FileDescriptor
       descriptor;
   static {
-    String[] descriptorData = {
+    java.lang.String[] descriptorData = {
       "\n\rproject.proto\022\010joelbits\032\037google/protob" +
-      "uf/timestamp.proto\"\204\002\n\007Project\022\n\n\002id\030\001 \001" +
+      "uf/timestamp.proto\"\245\002\n\007Project\022\n\n\002id\030\001 \001" +
       "(\t\022\014\n\004name\030\002 \001(\t\022+\n\004type\030\003 \001(\0162\035.joelbit" +
       "s.Project.ProjectType\022.\n\014repositories\030\004 " +
       "\003(\0132\030.joelbits.CodeRepository\022\013\n\003url\030\005 \001" +
       "(\t\0220\n\014created_date\030\006 \001(\0132\032.google.protob" +
       "uf.Timestamp\022\035\n\025programming_languages\030\007 " +
-      "\003(\t\"$\n\013ProjectType\022\n\n\006GITHUB\020\000\022\t\n\005OTHER\020" +
-      "\001\"\262\001\n\016CodeRepository\022\013\n\003url\030\001 \001(\t\0225\n\004typ" +
-      "e\030\002 \001(\0162\'.joelbits.CodeRepository.Reposi" +
-      "toryType\022$\n\010revision\030\003 \003(\0132\022.joelbits.Re" +
-      "vision\"6\n\016RepositoryType\022\007\n\003GIT\020\000\022\007\n\003SVN" +
-      "\020\001\022\007\n\003CVS\020\002\022\t\n\005OTHER\020\003\"\237\001\n\010Revision\022\n\n\002i" +
-      "d\030\001 \001(\t\022/\n\013commit_date\030\002 \001(\0132\032.google.pr" +
-      "otobuf.Timestamp\022#\n\tcommitter\030\003 \001(\0132\020.jo" +
-      "elbits.Person\022$\n\005files\030\004 \003(\0132\025.joelbits." +
-      "ChangedFile\022\013\n\003log\030\005 \001(\t\"<\n\006Person\022\020\n\010us" +
-      "ername\030\001 \001(\t\022\021\n\treal_name\030\002 \001(\t\022\r\n\005email" +
-      "\030\003 \001(\t\"\201\002\n\013ChangedFile\022\014\n\004name\030\001 \001(\t\0220\n\006" +
-      "change\030\002 \001(\0162 .joelbits.ChangedFile.Chan" +
-      "geType\022,\n\004type\030\003 \001(\0162\036.joelbits.ChangedF" +
-      "ile.SourceCodeFileType\"2\n\nChangeType\022\t\n\005ADDED\020\000\022\013\n" +
-      "\007DELETED\020\001\022\014\n\010MODIFIED\020\002\"P\n\010FileType\022\n\n\006" +
-      "BINARY\020\000\022\010\n\004JAVA\020\001\022\006\n\002GO\020\002\022\010\n\004TEXT\020\003\022\007\n\003" +
-      "XML\020\004\022\010\n\004JSON\020\005\022\t\n\005OTHER\020\006B(\n\027joelbits.m" +
-      "odel.protobufB\rProjectProtosb\006proto3"
+      "\003(\t\022\r\n\005forks\030\010 \001(\005\022\020\n\010watchers\030\t \001(\005\"$\n\013" +
+      "ProjectType\022\n\n\006GITHUB\020\000\022\t\n\005OTHER\020\001\"\262\001\n\016C" +
+      "odeRepository\022\013\n\003url\030\001 \001(\t\0225\n\004type\030\002 \001(\016" +
+      "2\'.joelbits.CodeRepository.RepositoryTyp" +
+      "e\022$\n\010revision\030\003 \003(\0132\022.joelbits.Revision\"" +
+      "6\n\016RepositoryType\022\007\n\003GIT\020\000\022\007\n\003SVN\020\001\022\007\n\003C" +
+      "VS\020\002\022\t\n\005OTHER\020\003\"\237\001\n\010Revision\022\n\n\002id\030\001 \001(\t" +
+      "\022/\n\013commit_date\030\002 \001(\0132\032.google.protobuf." +
+      "Timestamp\022#\n\tcommitter\030\003 \001(\0132\020.joelbits." +
+      "Person\022$\n\005files\030\004 \003(\0132\025.joelbits.Changed" +
+      "File\022\013\n\003log\030\005 \001(\t\"<\n\006Person\022\020\n\010username\030" +
+      "\001 \001(\t\022\021\n\treal_name\030\002 \001(\t\022\r\n\005email\030\003 \001(\t\"" +
+      "\201\002\n\013ChangedFile\022\014\n\004name\030\001 \001(\t\0220\n\006change\030" +
+      "\002 \001(\0162 .joelbits.ChangedFile.ChangeType\022" +
+      ",\n\004type\030\003 \001(\0162\036.joelbits.ChangedFile.Fil" +
+      "eType\"2\n\nChangeType\022\t\n\005ADDED\020\000\022\013\n\007DELETE" +
+      "D\020\001\022\014\n\010MODIFIED\020\002\"P\n\010FileType\022\n\n\006BINARY\020" +
+      "\000\022\010\n\004JAVA\020\001\022\006\n\002GO\020\002\022\010\n\004TEXT\020\003\022\007\n\003XML\020\004\022\010" +
+      "\n\004JSON\020\005\022\t\n\005OTHER\020\006B0\n\037joelbits.model.pr" +
+      "oject.protobufB\rProjectProtosb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -6122,31 +6249,31 @@ public final class ProjectProtos {
     internal_static_joelbits_Project_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_joelbits_Project_descriptor,
-        new String[] { "Id", "Name", "Type", "Repositories", "Url", "CreatedDate", "ProgrammingLanguages", });
+        new java.lang.String[] { "Id", "Name", "Type", "Repositories", "Url", "CreatedDate", "ProgrammingLanguages", "Forks", "Watchers", });
     internal_static_joelbits_CodeRepository_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_joelbits_CodeRepository_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_joelbits_CodeRepository_descriptor,
-        new String[] { "Url", "Type", "Revision", });
+        new java.lang.String[] { "Url", "Type", "Revision", });
     internal_static_joelbits_Revision_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_joelbits_Revision_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_joelbits_Revision_descriptor,
-        new String[] { "Id", "CommitDate", "Committer", "Files", "Log", });
+        new java.lang.String[] { "Id", "CommitDate", "Committer", "Files", "Log", });
     internal_static_joelbits_Person_descriptor =
       getDescriptor().getMessageTypes().get(3);
     internal_static_joelbits_Person_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_joelbits_Person_descriptor,
-        new String[] { "Username", "RealName", "Email", });
+        new java.lang.String[] { "Username", "RealName", "Email", });
     internal_static_joelbits_ChangedFile_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_joelbits_ChangedFile_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_joelbits_ChangedFile_descriptor,
-        new String[] { "Name", "Change", "Type", });
+        new java.lang.String[] { "Name", "Change", "Type", });
     com.google.protobuf.TimestampProto.getDescriptor();
   }
 

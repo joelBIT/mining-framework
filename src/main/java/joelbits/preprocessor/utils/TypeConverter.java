@@ -12,7 +12,7 @@ import joelbits.model.ast.protobuf.ASTProtos.DeclarationType;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier.ModifierType;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType;
 import joelbits.model.ast.protobuf.ASTProtos.Expression.ExpressionType;
-import joelbits.preprocessor.parsers.utils.ASTNodeCreater;
+import joelbits.preprocessor.parsers.utils.ASTNodeCreator;
 import org.apache.commons.lang.StringUtils;
 
 import java.util.*;
@@ -72,7 +72,7 @@ public class TypeConverter {
     public static List<ASTProtos.Modifier> convertModifiers(EnumSet<Modifier> modifiers) {
         List<ASTProtos.Modifier> argumentModifiers = new ArrayList<>();
         for (Modifier modifier : modifiers) {
-            argumentModifiers.add(ASTNodeCreater.createModifier(modifier.name()));
+            argumentModifiers.add(ASTNodeCreator.createModifier(modifier.name()));
         }
 
         return argumentModifiers;
@@ -85,14 +85,14 @@ public class TypeConverter {
             NodeList<MemberValuePair> pairs = annotationExpr.asNormalAnnotationExpr().getPairs();
             for (MemberValuePair pair : pairs) {
                 String memberName = handleAbsentMembers(annotationExpr, pair.getNameAsString());
-                ASTProtos.Expression memberValue = ASTNodeCreater.createAnnotationMemberExpression(pair.getValue().toString(), getExpressionType(pair.getValue()));
+                ASTProtos.Expression memberValue = ASTNodeCreator.createAnnotationMemberExpression(pair.getValue().toString(), getExpressionType(pair.getValue()));
 
                 membersAndValues.put(memberName, memberValue);
             }
         } else if (annotationExpr.isSingleMemberAnnotationExpr()) {
             SingleMemberAnnotationExpr singleMember = annotationExpr.asSingleMemberAnnotationExpr();
             String memberName = handleAbsentMembers(annotationExpr, singleMember.getNameAsString());
-            ASTProtos.Expression memberValue = ASTNodeCreater.createAnnotationMemberExpression(singleMember.getMemberValue().toString(), getExpressionType(singleMember.getMemberValue()));
+            ASTProtos.Expression memberValue = ASTNodeCreator.createAnnotationMemberExpression(singleMember.getMemberValue().toString(), getExpressionType(singleMember.getMemberValue()));
 
             membersAndValues.put(memberName, memberValue);
         }
