@@ -7,5 +7,5 @@ import java.util.Map;
 public interface PreProcessor {
     void preprocess(File projectsMetadata);
     Map<String, byte[]> projects();
-    Map<String, Map<String, List<byte[]>>> changedBenchmarkFiles();
+    Map<String, Map<String, byte[]>> changedBenchmarkFiles();
 }

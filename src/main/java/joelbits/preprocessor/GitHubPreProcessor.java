@@ -1,6 +1,8 @@
 package joelbits.preprocessor;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.collect.Iterators;
+import com.google.common.collect.PeekingIterator;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
 import com.google.inject.name.Named;
@@ -20,6 +22,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.time.Duration;
+import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.util.*;
 
@@ -29,8 +33,8 @@ import java.util.*;
 public final class GitHubPreProcessor implements PreProcessor {
     private static final Logger log = LoggerFactory.getLogger(GitHubPreProcessor.class);
     private final Map<String, byte[]> projects = new HashMap<>();
-    private final Map<String, Map<String, List<byte[]>>> benchmarkFilesEvolution = new HashMap<>();
-    private final Set<String> benchmarkFiles = new HashSet<>();
+    private final Map<String, Map<String, byte[]>> benchmarkFilesEvolution = new HashMap<>();
+    private final Set<String> benchmarkFilesInNewestSnapshot = new HashSet<>();
 
     @Inject
     @Named("java")
@@ -44,7 +48,7 @@ public final class GitHubPreProcessor implements PreProcessor {
     }
 
     /**
-     * Each projects in the metadata file must be identical to corresponding repository in the input repository list.
+     * Each project in the metadata file must be identical to corresponding repository in the input repository list.
      *
      * @param projectsMetadata
      */
@@ -63,40 +67,49 @@ public final class GitHubPreProcessor implements PreProcessor {
                 }
 
                 List<Revision> repositoryRevisions = new ArrayList<>();
-                String mostRecentCommitId = gitConnector.mostRecentCommitId();
-                identifyBenchmarkFiles(codeRepository, gitConnector.snapshotFiles(mostRecentCommitId));
+                List<ChangedFile> revisionFiles = new ArrayList<>();
 
-                while (gitConnector.hasParentRevisions(mostRecentCommitId)) {
-                    String parentRevision = gitConnector.getParentRevision(mostRecentCommitId);
-                    List<ChangedFile> revisionFiles = new ArrayList<>();
+                try {
+                    identifyBenchmarkFiles(codeRepository, gitConnector.snapshotFiles(gitConnector.mostRecentCommitId()));
+                } catch (Exception e) {
+                    log.error(e.toString(), e);
+                }
 
-                    Map<String, String> changedFiles = gitConnector.changedFilesBetweenCommits(mostRecentCommitId, parentRevision);
-                    for (Map.Entry<String, String> changeFile : changedFiles.entrySet()) {
-                        if (!benchmarkFiles.contains(changeFile.getValue())) {
-                            continue;
+                List<String> allCommitIds = gitConnector.allCommitIds();
+                PeekingIterator<String> commitIterator = Iterators.peekingIterator(allCommitIds.iterator());
+                while (commitIterator.hasNext()) {
+                    String mostRecentCommitId = commitIterator.next();
+                    if (!commitIterator.hasNext()) {
+                        break;
+                    }
+
+                    try {
+                        Map<String, String> changedFiles = gitConnector.changedFilesBetweenCommits(mostRecentCommitId, commitIterator.peek());
+                        for (Map.Entry<String, String> changeFile : changedFiles.entrySet()) {
+                            if (!benchmarkFilesInNewestSnapshot.contains(changeFile.getKey())) {
+                                continue;
+                            }
+
+                            String path = changeFile.getKey();
+                            String changeType = changeFile.getValue();
+                            revisionFiles.add(ProjectNodeCreator.changedFile(path, changeType));
+
+                            String fileTableKey = node.get("url").asText() + ":" + mostRecentCommitId;
+                            try {
+                                addChangedBenchmarkFile(codeRepository, mostRecentCommitId, path, fileTableKey);
+                            } catch (Exception e1) {
+                                log.error(e1.toString(), e1);
+                            }
                         }
-
-                        String path = changeFile.getValue();
-                        String changeType = gitConnector.fileChangeType(changeFile.getKey());
-                        revisionFiles.add(ProjectNodeCreator.changedFile(path, changeType));
-
-                        String fileTableKey = node.get("url").asText() + ":" + mostRecentCommitId;
-                        try {
-                            addChangedBenchmarkFile(codeRepository, mostRecentCommitId, path, fileTableKey);
-                        } catch (Exception e1) {
-                            log.error(e1.toString(), e1);
-                            continue;
-                        }
+                    } catch (Exception e) {
+                        continue;
                     }
 
                     repositoryRevisions.add(createRevision(mostRecentCommitId, revisionFiles));
-                    mostRecentCommitId = parentRevision;
+                    revisionFiles.clear();
                 }
-                List<CodeRepository> codeRepositories = new ArrayList<>();
-                codeRepositories.add(createCodeRepository(node, repositoryRevisions));
-                Project project = createProject(node, codeRepositories);
 
-                projects.put(project.getUrl(), project.toByteArray());
+                addRepositoryToProject(node, repositoryRevisions);
             }
         } catch (Exception e) {
             log.error(e.toString(), e);
@@ -105,15 +118,20 @@ public final class GitHubPreProcessor implements PreProcessor {
         log.info("Finished preprocessing of projects");
     }
 
+    private void addRepositoryToProject(JsonNode node, List<Revision> repositoryRevisions) {
+        List<CodeRepository> codeRepositories = new ArrayList<>();
+        codeRepositories.add(createCodeRepository(node, repositoryRevisions));
+        Project project = createProject(node, codeRepositories);
+
+        projects.put(project.getUrl(), project.toByteArray());
+    }
+
     private void addChangedBenchmarkFile(String codeRepository, String mostRecentCommitId, String path, String fileTableKey) throws Exception {
         if (!benchmarkFilesEvolution.containsKey(fileTableKey)) {
             benchmarkFilesEvolution.put(fileTableKey, new HashMap<>());
         }
-        if (!benchmarkFilesEvolution.get(fileTableKey).containsKey(path)) {
-            benchmarkFilesEvolution.get(fileTableKey).put(path, new ArrayList<>());
-        }
 
-        benchmarkFilesEvolution.get(fileTableKey).get(path).add(parseFile(codeRepository, mostRecentCommitId, path));
+        benchmarkFilesEvolution.get(fileTableKey).put(path, parseFile(codeRepository, mostRecentCommitId, path));
     }
 
     /**
@@ -127,8 +145,8 @@ public final class GitHubPreProcessor implements PreProcessor {
 
         for (String filePath : filesInRepository) {
             try {
-                if (filePath.toLowerCase().endsWith(".java") && javaParser.hasBenchmarks(new File(path + filePath))) {
-                    benchmarkFiles.add(filePath);
+                if (filePath.endsWith(".java") && javaParser.hasBenchmarks(new File(path + filePath))) {
+                    benchmarkFilesInNewestSnapshot.add(filePath);
                 }
             } catch (Exception e) {
                 log.error(e.toString(), e);
@@ -176,7 +194,7 @@ public final class GitHubPreProcessor implements PreProcessor {
     }
 
     @Override
-    public Map<String, Map<String, List<byte[]>>> changedBenchmarkFiles() {
+    public Map<String, Map<String, byte[]>> changedBenchmarkFiles() {
         return benchmarkFilesEvolution;
     }
 }

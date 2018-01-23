@@ -1,8 +1,7 @@
 package joelbits.preprocessor.connectors;
 
-import org.eclipse.jgit.api.errors.GitAPIException;
-
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -12,8 +11,6 @@ import java.util.Set;
 public interface RevisionProcessible {
     Map<String, String> changedFilesBetweenCommits(String newCommitId, String oldCommitId) throws Exception;
     Set<String> snapshotFiles(String commitId) throws IOException;
-    String leastRecentCommitId();
     String mostRecentCommitId();
-    String getParentRevision(String commitId);
-    boolean hasParentRevisions(String commitId);
+    List<String> allCommitIds();
 }

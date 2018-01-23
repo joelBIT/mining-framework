@@ -8,5 +8,4 @@ public interface DataCollector {
     String committerEmail(String commitId);
     int commitTime(String commitId);
     String logMessage(String commitId);
-    String fileChangeType(String fileChangeId);
 }

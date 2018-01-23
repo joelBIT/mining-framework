@@ -15,7 +15,7 @@ public final class Project {
     private final ProjectType type;                       // The type (source) of the projects
     private final List<CodeRepository> repositories;      // A list of all code repositories associated with this projects
     private final String url;                             // A URL to the projects's page (e.g., on GitHub)
-    private final LocalDateTime createdDate;              // The time the projects was created
+    private final LocalDateTime createdDate;              // The time the project was created
     private final List<String> programmingLanguages;      // A list of all programming languages used by the projects
 
     public Project(String id, String name, ProjectType type, List<CodeRepository> repositories, String url, LocalDateTime createdDate, List<String> programmingLanguages) {

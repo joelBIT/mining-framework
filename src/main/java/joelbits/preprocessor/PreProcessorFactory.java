@@ -8,7 +8,6 @@ public final class PreProcessorFactory {
     private final static Logger log = LoggerFactory.getLogger(PreProcessorFactory.class);
 
     public static PreProcessor getPreProcessor(SourceType type) throws IllegalArgumentException {
-        System.out.println(type);
         switch(type) {
             case GITHUB:
                 return new GitHubPreProcessor();
