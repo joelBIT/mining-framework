@@ -84,13 +84,6 @@ public class ASTNodeCreator {
                 .build();
     }
 
-    public static Expression createExpressionExpressions(List<Expression> expressions, ExpressionType type) {
-        return Expression.newBuilder()
-                .setType(type)
-                .addAllExpressions(expressions)
-                .build();
-    }
-
     public static Declaration createNamespaceDeclaration(ClassOrInterfaceDeclaration declaration, List<Variable> allFields, List<Method> allMethods, List<Modifier> topModifiers, List<Declaration> nestedDeclarations) {
         return Declaration.newBuilder()
                 .setName(declaration.getNameAsString())

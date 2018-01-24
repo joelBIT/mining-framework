@@ -9,7 +9,6 @@ import joelbits.model.ast.protobuf.ASTProtos;
 import joelbits.model.ast.protobuf.ASTProtos.Method;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
 import joelbits.model.ast.protobuf.ASTProtos.Expression;
-import joelbits.model.ast.protobuf.ASTProtos.Expression.ExpressionType;
 import joelbits.preprocessor.parsers.utils.ASTNodeCreator;
 import joelbits.preprocessor.utils.TypeConverter;
 
@@ -42,9 +41,6 @@ public class MethodVisitor extends VoidVisitorAdapter<List<Method>> {
 
         List<Expression> methodCalls = new ArrayList<>();
         method.accept(new MethodCallVisitor(), methodCalls);
-
-        List<Expression> methodBodyStatements = new ArrayList<>();
-        methodBodyStatements.add(ASTNodeCreator.createExpressionExpressions(methodCalls, ExpressionType.METHODCALL));
-        methods.add(ASTNodeCreator.createMethod(methodModifiers, method, arguments, methodBodyStatements));
+        methods.add(ASTNodeCreator.createMethod(methodModifiers, method, arguments, methodCalls));
     }
 }

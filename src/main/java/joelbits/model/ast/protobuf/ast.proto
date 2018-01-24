@@ -21,29 +21,22 @@ message Declaration {
 
 message Expression {
     ExpressionType type = 1;
-    repeated Expression expressions = 2;
-    string literal = 3;
-    string method = 4;
-    string variable = 5;
-    repeated Expression method_arguments = 6;
-    repeated Variable variable_declarations = 7;
-    Modifier annotation = 8;
+    string literal = 2;
+    string method = 3;
+    string variable = 4;
+    repeated Expression method_arguments = 5;
+    repeated Variable variable_declarations = 6;
+    Modifier annotation = 7;
     enum ExpressionType {
-        ARRAYINDEX = 0;
-        ARRAYINIT = 1;
+        LITERAL = 0;
+        NEW = 1;
         ASSIGN = 2;
         OTHER = 3;
         TYPECOMPARE = 4;
         VARIABLE_DECLARATION = 5;
-        NEWARRAY = 6;
+        METHODCALL = 6;
         CAST = 7;
         CONDITIONAL = 8;
-        EQ = 9;
-        GT = 10;
-        LT = 11;
-        METHODCALL = 12;
-        LITERAL = 13;
-        NEW = 14;
     }
 }
 

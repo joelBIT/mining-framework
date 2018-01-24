@@ -12,16 +12,14 @@ import java.util.List;
  */
 public final class Expression implements ASTNode {
     private final ExpressionType type;
-    private final List<Expression> expressions;
     private final String literal;               // Syntactic representations of boolean, character, numeric, or string data.
     private final String method;
     private final String variable;
     private final List<Expression> methodArguments;
     private final List<Variable> variableDeclarations;
 
-    public Expression(ExpressionType type, List<Expression> expressions, String literal, String method, String variable, List<Expression> methodArguments, List<Variable> variableDeclarations) {
+    public Expression(ExpressionType type, String literal, String method, String variable, List<Expression> methodArguments, List<Variable> variableDeclarations) {
         this.type = type;
-        this.expressions = new ArrayList<>(expressions);
         this.literal = literal;
         this.method = method;
         this.variable = variable;
@@ -42,11 +40,6 @@ public final class Expression implements ASTNode {
     @Override
     public boolean accept(Visitor visitor) {
         if (visitor.visitEnter(this)) {
-            for (Expression expression : expressions) {
-                if (!expression.accept(visitor)) {
-                    break;
-                }
-            }
             for (Expression argument : methodArguments) {
                 if (!argument.accept(visitor)) {
                     break;
@@ -64,10 +57,6 @@ public final class Expression implements ASTNode {
 
     public ExpressionType getType() {
         return type;
-    }
-
-    public List<Expression> getExpressions() {
-        return expressions;
     }
 
     public String getLiteral() {

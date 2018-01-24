@@ -4,7 +4,9 @@ import joelbits.model.project.types.ProjectType;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Top-level type, represents a single projects.
@@ -16,18 +18,18 @@ public final class Project {
     private final List<CodeRepository> repositories;      // A list of all code repositories associated with this projects
     private final String url;                             // A URL to the projects's page (e.g., on GitHub)
     private final LocalDateTime createdDate;              // The time the project was created
-    private final List<String> programmingLanguages;      // A list of all programming languages used by the projects
+    private final Set<String> languages;                  // A list of all programming languages used by the projects
     private final int forks;                              // The number of forks of the project
     private final int watchers;                           // The number of watchers of the project
 
-    public Project(String id, String name, ProjectType type, List<CodeRepository> repositories, String url, LocalDateTime createdDate, List<String> programmingLanguages, int forks, int watchers) {
+    public Project(String id, String name, ProjectType type, List<CodeRepository> repositories, String url, LocalDateTime createdDate, Set<String> languages, int forks, int watchers) {
         this.id = id;
         this.name = name;
         this.type = type;
         this.repositories = new ArrayList<>(repositories);
         this.url = url;
         this.createdDate = createdDate;
-        this.programmingLanguages = new ArrayList<>(programmingLanguages);
+        this.languages = new HashSet<>(languages);
         this.forks= forks;
         this.watchers = watchers;
     }
@@ -54,8 +56,8 @@ public final class Project {
         return createdDate;
     }
 
-    public List<String> getProgrammingLanguages() {
-        return programmingLanguages;
+    public Set<String> getLanguages() {
+        return languages;
     }
 
     public int getForks() {
