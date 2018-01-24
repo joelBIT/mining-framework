@@ -16,7 +16,7 @@ import java.util.*;
  * iterations, forks, etc, that are run for each @Benchmark we must look at the corresponding class level annotations.
  */
 public class BenchmarkConfigurationVisitor implements Visitor {
-    private final Map<String, Map<String, List<String>>> benchmarkConfigurations = new LinkedHashMap<>();     // key is classname, value is map of @Benchmark annotations (key is method name, and value is configuration of @Benchmark annotation)
+    private final Map<String, Map<String, List<String>>> benchmarkConfigurations = new HashMap<>();     // key is classname, value is map of @Benchmark annotations (key is method name, and value is configuration of @Benchmark annotation)
     private final Map<String, Map<String, List<String>>> classConfigurations = new HashMap<>();               // key is classname, value is map of class annotations (key is annotation name, value is configuration of annotation)
 
     @Override
