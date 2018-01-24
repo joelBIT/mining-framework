@@ -6,12 +6,10 @@ import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier;
 import joelbits.model.ast.protobuf.ASTProtos.Variable;
-import joelbits.model.ast.protobuf.ASTProtos.Expression;
 import joelbits.preprocessor.parsers.utils.ASTNodeCreator;
 import joelbits.preprocessor.utils.TypeConverter;
 
 import java.util.List;
-import java.util.Map;
 
 public class FieldVisitor extends VoidVisitorAdapter<List<Variable>> {
     @Override
@@ -19,7 +17,7 @@ public class FieldVisitor extends VoidVisitorAdapter<List<Variable>> {
         List<Modifier> modifiers = TypeConverter.convertModifiers(field.getModifiers());
 
         for (AnnotationExpr annotationExpr : field.getAnnotations()) {
-            Map<String, Expression> annotationMembers = TypeConverter.convertAnnotationMembers(annotationExpr);
+            List<String> annotationMembers = TypeConverter.convertAnnotationMembers(annotationExpr);
             modifiers.add(ASTNodeCreator.createAnnotationModifier(annotationExpr, annotationMembers));
         }
 

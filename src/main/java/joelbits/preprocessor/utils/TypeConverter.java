@@ -78,23 +78,19 @@ public class TypeConverter {
         return argumentModifiers;
     }
 
-    public static Map<String, ASTProtos.Expression> convertAnnotationMembers(AnnotationExpr annotationExpr) {
-        Map<String, ASTProtos.Expression> membersAndValues = new HashMap<>();
+    public static List<String> convertAnnotationMembers(AnnotationExpr annotationExpr) {
+        List<String> membersAndValues = new ArrayList<>();
 
         if (annotationExpr.isNormalAnnotationExpr()) {
             NodeList<MemberValuePair> pairs = annotationExpr.asNormalAnnotationExpr().getPairs();
             for (MemberValuePair pair : pairs) {
                 String memberName = handleAbsentMembers(annotationExpr, pair.getNameAsString());
-                ASTProtos.Expression memberValue = ASTNodeCreator.createAnnotationMemberExpression(pair.getValue().toString(), getExpressionType(pair.getValue()));
-
-                membersAndValues.put(memberName, memberValue);
+                membersAndValues.add(memberName + " " + pair.getValue().toString());
             }
         } else if (annotationExpr.isSingleMemberAnnotationExpr()) {
             SingleMemberAnnotationExpr singleMember = annotationExpr.asSingleMemberAnnotationExpr();
             String memberName = handleAbsentMembers(annotationExpr, singleMember.getNameAsString());
-            ASTProtos.Expression memberValue = ASTNodeCreator.createAnnotationMemberExpression(singleMember.getMemberValue().toString(), getExpressionType(singleMember.getMemberValue()));
-
-            membersAndValues.put(memberName, memberValue);
+            membersAndValues.add(memberName + " " + singleMember.getMemberValue().toString());
         }
 
         return membersAndValues;

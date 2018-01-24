@@ -59,10 +59,9 @@ message Method {
 message Modifier {
     string name = 1;
     ModifierType type = 2;
-    repeated string members = 3;
-    repeated Expression values = 4;
-    VisibilityType visibility = 5;
-    string other = 6;
+    repeated string members_and_values = 3;
+    VisibilityType visibility = 4;
+    string other = 5;
     enum ModifierType {
         ABSTRACT = 0;
         ANNOTATION = 1;

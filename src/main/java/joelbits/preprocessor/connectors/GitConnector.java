@@ -135,11 +135,11 @@ public final class GitConnector implements Connector {
 
     /**
      * Returns the path of the files that have been changed between the two supplied commits, and their respective
-     * sha1 values. The sha1 value of a file change is used as key since the sha1 values are unique.
+     * change types. The path of a file is used as key since it is unique within a revision.
      *
      * @param newCommitId       the ID of the commits that is newest in time
      * @param oldCommitId       the ID of the commits that are oldest in time
-     * @return                  a map containing pairs of the sha1 value of a file change and the file path
+     * @return                  a map containing pairs of the file path and the change type
      */
     @Override
     public Map<String, String> changedFilesBetweenCommits(String newCommitId, String oldCommitId) throws Exception {

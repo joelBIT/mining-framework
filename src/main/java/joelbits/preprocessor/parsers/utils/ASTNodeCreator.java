@@ -20,7 +20,6 @@ import static joelbits.model.ast.protobuf.ASTProtos.ASTRoot;
 import static joelbits.model.ast.protobuf.ASTProtos.Namespace;
 
 import java.util.List;
-import java.util.Map;
 
 public class ASTNodeCreator {
     public static Variable createVariable(String name, String type, List<Modifier> argumentModifiers) {
@@ -38,12 +37,11 @@ public class ASTNodeCreator {
                 .build();
     }
 
-    public static Modifier createAnnotationModifier(AnnotationExpr annotationExpr, Map<String, Expression> annotationMembers) {
+    public static Modifier createAnnotationModifier(AnnotationExpr annotationExpr, List<String> membersAndValues) {
         return Modifier.newBuilder()
                 .setType(ModifierType.ANNOTATION)
                 .setName(annotationExpr.getNameAsString())
-                .addAllMembers(annotationMembers.keySet())
-                .addAllValues(annotationMembers.values())
+                .addAllMembersAndValues(membersAndValues)
                 .build();
     }
 
@@ -111,13 +109,6 @@ public class ASTNodeCreator {
                 .addAllModifiers(modifiers)
                 .addAllFields(allFields)
                 .addAllMethods(allMethods)
-                .build();
-    }
-
-    public static Expression createAnnotationMemberExpression(String value, ExpressionType type) {
-        return Expression.newBuilder()
-                .setLiteral(value)
-                .setType(type)
                 .build();
     }
 

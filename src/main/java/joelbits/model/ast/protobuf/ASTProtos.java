@@ -8182,63 +8182,39 @@ public final class ASTProtos {
     joelbits.model.ast.protobuf.ASTProtos.Modifier.ModifierType getType();
 
     /**
-     * <code>repeated string members = 3;</code>
+     * <code>repeated string members_and_values = 3;</code>
      */
     java.util.List<java.lang.String>
-        getMembersList();
+        getMembersAndValuesList();
     /**
-     * <code>repeated string members = 3;</code>
+     * <code>repeated string members_and_values = 3;</code>
      */
-    int getMembersCount();
+    int getMembersAndValuesCount();
     /**
-     * <code>repeated string members = 3;</code>
+     * <code>repeated string members_and_values = 3;</code>
      */
-    java.lang.String getMembers(int index);
+    java.lang.String getMembersAndValues(int index);
     /**
-     * <code>repeated string members = 3;</code>
+     * <code>repeated string members_and_values = 3;</code>
      */
     com.google.protobuf.ByteString
-        getMembersBytes(int index);
+        getMembersAndValuesBytes(int index);
 
     /**
-     * <code>repeated .joelbits.Expression values = 4;</code>
-     */
-    java.util.List<joelbits.model.ast.protobuf.ASTProtos.Expression> 
-        getValuesList();
-    /**
-     * <code>repeated .joelbits.Expression values = 4;</code>
-     */
-    joelbits.model.ast.protobuf.ASTProtos.Expression getValues(int index);
-    /**
-     * <code>repeated .joelbits.Expression values = 4;</code>
-     */
-    int getValuesCount();
-    /**
-     * <code>repeated .joelbits.Expression values = 4;</code>
-     */
-    java.util.List<? extends joelbits.model.ast.protobuf.ASTProtos.ExpressionOrBuilder> 
-        getValuesOrBuilderList();
-    /**
-     * <code>repeated .joelbits.Expression values = 4;</code>
-     */
-    joelbits.model.ast.protobuf.ASTProtos.ExpressionOrBuilder getValuesOrBuilder(
-        int index);
-
-    /**
-     * <code>.joelbits.Modifier.VisibilityType visibility = 5;</code>
+     * <code>.joelbits.Modifier.VisibilityType visibility = 4;</code>
      */
     int getVisibilityValue();
     /**
-     * <code>.joelbits.Modifier.VisibilityType visibility = 5;</code>
+     * <code>.joelbits.Modifier.VisibilityType visibility = 4;</code>
      */
     joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType getVisibility();
 
     /**
-     * <code>string other = 6;</code>
+     * <code>string other = 5;</code>
      */
     java.lang.String getOther();
     /**
-     * <code>string other = 6;</code>
+     * <code>string other = 5;</code>
      */
     com.google.protobuf.ByteString
         getOtherBytes();
@@ -8258,8 +8234,7 @@ public final class ASTProtos {
     private Modifier() {
       name_ = "";
       type_ = 0;
-      members_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      values_ = java.util.Collections.emptyList();
+      membersAndValues_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       visibility_ = 0;
       other_ = "";
     }
@@ -8310,28 +8285,19 @@ public final class ASTProtos {
             case 26: {
               java.lang.String s = input.readStringRequireUtf8();
               if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                members_ = new com.google.protobuf.LazyStringArrayList();
+                membersAndValues_ = new com.google.protobuf.LazyStringArrayList();
                 mutable_bitField0_ |= 0x00000004;
               }
-              members_.add(s);
+              membersAndValues_.add(s);
               break;
             }
-            case 34: {
-              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-                values_ = new java.util.ArrayList<joelbits.model.ast.protobuf.ASTProtos.Expression>();
-                mutable_bitField0_ |= 0x00000008;
-              }
-              values_.add(
-                  input.readMessage(joelbits.model.ast.protobuf.ASTProtos.Expression.parser(), extensionRegistry));
-              break;
-            }
-            case 40: {
+            case 32: {
               int rawValue = input.readEnum();
 
               visibility_ = rawValue;
               break;
             }
-            case 50: {
+            case 42: {
               java.lang.String s = input.readStringRequireUtf8();
 
               other_ = s;
@@ -8346,10 +8312,7 @@ public final class ASTProtos {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-          members_ = members_.getUnmodifiableView();
-        }
-        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-          values_ = java.util.Collections.unmodifiableList(values_);
+          membersAndValues_ = membersAndValues_.getUnmodifiableView();
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -8677,90 +8640,55 @@ public final class ASTProtos {
       return result == null ? joelbits.model.ast.protobuf.ASTProtos.Modifier.ModifierType.UNRECOGNIZED : result;
     }
 
-    public static final int MEMBERS_FIELD_NUMBER = 3;
-    private com.google.protobuf.LazyStringList members_;
+    public static final int MEMBERS_AND_VALUES_FIELD_NUMBER = 3;
+    private com.google.protobuf.LazyStringList membersAndValues_;
     /**
-     * <code>repeated string members = 3;</code>
+     * <code>repeated string members_and_values = 3;</code>
      */
     public com.google.protobuf.ProtocolStringList
-        getMembersList() {
-      return members_;
+        getMembersAndValuesList() {
+      return membersAndValues_;
     }
     /**
-     * <code>repeated string members = 3;</code>
+     * <code>repeated string members_and_values = 3;</code>
      */
-    public int getMembersCount() {
-      return members_.size();
+    public int getMembersAndValuesCount() {
+      return membersAndValues_.size();
     }
     /**
-     * <code>repeated string members = 3;</code>
+     * <code>repeated string members_and_values = 3;</code>
      */
-    public java.lang.String getMembers(int index) {
-      return members_.get(index);
+    public java.lang.String getMembersAndValues(int index) {
+      return membersAndValues_.get(index);
     }
     /**
-     * <code>repeated string members = 3;</code>
+     * <code>repeated string members_and_values = 3;</code>
      */
     public com.google.protobuf.ByteString
-        getMembersBytes(int index) {
-      return members_.getByteString(index);
+        getMembersAndValuesBytes(int index) {
+      return membersAndValues_.getByteString(index);
     }
 
-    public static final int VALUES_FIELD_NUMBER = 4;
-    private java.util.List<joelbits.model.ast.protobuf.ASTProtos.Expression> values_;
-    /**
-     * <code>repeated .joelbits.Expression values = 4;</code>
-     */
-    public java.util.List<joelbits.model.ast.protobuf.ASTProtos.Expression> getValuesList() {
-      return values_;
-    }
-    /**
-     * <code>repeated .joelbits.Expression values = 4;</code>
-     */
-    public java.util.List<? extends joelbits.model.ast.protobuf.ASTProtos.ExpressionOrBuilder> 
-        getValuesOrBuilderList() {
-      return values_;
-    }
-    /**
-     * <code>repeated .joelbits.Expression values = 4;</code>
-     */
-    public int getValuesCount() {
-      return values_.size();
-    }
-    /**
-     * <code>repeated .joelbits.Expression values = 4;</code>
-     */
-    public joelbits.model.ast.protobuf.ASTProtos.Expression getValues(int index) {
-      return values_.get(index);
-    }
-    /**
-     * <code>repeated .joelbits.Expression values = 4;</code>
-     */
-    public joelbits.model.ast.protobuf.ASTProtos.ExpressionOrBuilder getValuesOrBuilder(
-        int index) {
-      return values_.get(index);
-    }
-
-    public static final int VISIBILITY_FIELD_NUMBER = 5;
+    public static final int VISIBILITY_FIELD_NUMBER = 4;
     private int visibility_;
     /**
-     * <code>.joelbits.Modifier.VisibilityType visibility = 5;</code>
+     * <code>.joelbits.Modifier.VisibilityType visibility = 4;</code>
      */
     public int getVisibilityValue() {
       return visibility_;
     }
     /**
-     * <code>.joelbits.Modifier.VisibilityType visibility = 5;</code>
+     * <code>.joelbits.Modifier.VisibilityType visibility = 4;</code>
      */
     public joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType getVisibility() {
       joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType result = joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType.valueOf(visibility_);
       return result == null ? joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType.UNRECOGNIZED : result;
     }
 
-    public static final int OTHER_FIELD_NUMBER = 6;
+    public static final int OTHER_FIELD_NUMBER = 5;
     private volatile java.lang.Object other_;
     /**
-     * <code>string other = 6;</code>
+     * <code>string other = 5;</code>
      */
     public java.lang.String getOther() {
       java.lang.Object ref = other_;
@@ -8775,7 +8703,7 @@ public final class ASTProtos {
       }
     }
     /**
-     * <code>string other = 6;</code>
+     * <code>string other = 5;</code>
      */
     public com.google.protobuf.ByteString
         getOtherBytes() {
@@ -8809,17 +8737,14 @@ public final class ASTProtos {
       if (type_ != joelbits.model.ast.protobuf.ASTProtos.Modifier.ModifierType.ABSTRACT.getNumber()) {
         output.writeEnum(2, type_);
       }
-      for (int i = 0; i < members_.size(); i++) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, members_.getRaw(i));
-      }
-      for (int i = 0; i < values_.size(); i++) {
-        output.writeMessage(4, values_.get(i));
+      for (int i = 0; i < membersAndValues_.size(); i++) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, membersAndValues_.getRaw(i));
       }
       if (visibility_ != joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType.NAMESPACE.getNumber()) {
-        output.writeEnum(5, visibility_);
+        output.writeEnum(4, visibility_);
       }
       if (!getOtherBytes().isEmpty()) {
-        com.google.protobuf.GeneratedMessageV3.writeString(output, 6, other_);
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 5, other_);
       }
       unknownFields.writeTo(output);
     }
@@ -8838,22 +8763,18 @@ public final class ASTProtos {
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < members_.size(); i++) {
-          dataSize += computeStringSizeNoTag(members_.getRaw(i));
+        for (int i = 0; i < membersAndValues_.size(); i++) {
+          dataSize += computeStringSizeNoTag(membersAndValues_.getRaw(i));
         }
         size += dataSize;
-        size += 1 * getMembersList().size();
-      }
-      for (int i = 0; i < values_.size(); i++) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, values_.get(i));
+        size += 1 * getMembersAndValuesList().size();
       }
       if (visibility_ != joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType.NAMESPACE.getNumber()) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(5, visibility_);
+          .computeEnumSize(4, visibility_);
       }
       if (!getOtherBytes().isEmpty()) {
-        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(6, other_);
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, other_);
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -8874,10 +8795,8 @@ public final class ASTProtos {
       result = result && getName()
           .equals(other.getName());
       result = result && type_ == other.type_;
-      result = result && getMembersList()
-          .equals(other.getMembersList());
-      result = result && getValuesList()
-          .equals(other.getValuesList());
+      result = result && getMembersAndValuesList()
+          .equals(other.getMembersAndValuesList());
       result = result && visibility_ == other.visibility_;
       result = result && getOther()
           .equals(other.getOther());
@@ -8896,13 +8815,9 @@ public final class ASTProtos {
       hash = (53 * hash) + getName().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + type_;
-      if (getMembersCount() > 0) {
-        hash = (37 * hash) + MEMBERS_FIELD_NUMBER;
-        hash = (53 * hash) + getMembersList().hashCode();
-      }
-      if (getValuesCount() > 0) {
-        hash = (37 * hash) + VALUES_FIELD_NUMBER;
-        hash = (53 * hash) + getValuesList().hashCode();
+      if (getMembersAndValuesCount() > 0) {
+        hash = (37 * hash) + MEMBERS_AND_VALUES_FIELD_NUMBER;
+        hash = (53 * hash) + getMembersAndValuesList().hashCode();
       }
       hash = (37 * hash) + VISIBILITY_FIELD_NUMBER;
       hash = (53 * hash) + visibility_;
@@ -9033,7 +8948,6 @@ public final class ASTProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getValuesFieldBuilder();
         }
       }
       public Builder clear() {
@@ -9042,14 +8956,8 @@ public final class ASTProtos {
 
         type_ = 0;
 
-        members_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        membersAndValues_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
-        if (valuesBuilder_ == null) {
-          values_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
-        } else {
-          valuesBuilder_.clear();
-        }
         visibility_ = 0;
 
         other_ = "";
@@ -9081,19 +8989,10 @@ public final class ASTProtos {
         result.name_ = name_;
         result.type_ = type_;
         if (((bitField0_ & 0x00000004) == 0x00000004)) {
-          members_ = members_.getUnmodifiableView();
+          membersAndValues_ = membersAndValues_.getUnmodifiableView();
           bitField0_ = (bitField0_ & ~0x00000004);
         }
-        result.members_ = members_;
-        if (valuesBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008)) {
-            values_ = java.util.Collections.unmodifiableList(values_);
-            bitField0_ = (bitField0_ & ~0x00000008);
-          }
-          result.values_ = values_;
-        } else {
-          result.values_ = valuesBuilder_.build();
-        }
+        result.membersAndValues_ = membersAndValues_;
         result.visibility_ = visibility_;
         result.other_ = other_;
         result.bitField0_ = to_bitField0_;
@@ -9145,41 +9044,15 @@ public final class ASTProtos {
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
         }
-        if (!other.members_.isEmpty()) {
-          if (members_.isEmpty()) {
-            members_ = other.members_;
+        if (!other.membersAndValues_.isEmpty()) {
+          if (membersAndValues_.isEmpty()) {
+            membersAndValues_ = other.membersAndValues_;
             bitField0_ = (bitField0_ & ~0x00000004);
           } else {
-            ensureMembersIsMutable();
-            members_.addAll(other.members_);
+            ensureMembersAndValuesIsMutable();
+            membersAndValues_.addAll(other.membersAndValues_);
           }
           onChanged();
-        }
-        if (valuesBuilder_ == null) {
-          if (!other.values_.isEmpty()) {
-            if (values_.isEmpty()) {
-              values_ = other.values_;
-              bitField0_ = (bitField0_ & ~0x00000008);
-            } else {
-              ensureValuesIsMutable();
-              values_.addAll(other.values_);
-            }
-            onChanged();
-          }
-        } else {
-          if (!other.values_.isEmpty()) {
-            if (valuesBuilder_.isEmpty()) {
-              valuesBuilder_.dispose();
-              valuesBuilder_ = null;
-              values_ = other.values_;
-              bitField0_ = (bitField0_ & ~0x00000008);
-              valuesBuilder_ = 
-                com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getValuesFieldBuilder() : null;
-            } else {
-              valuesBuilder_.addAllMessages(other.values_);
-            }
-          }
         }
         if (other.visibility_ != 0) {
           setVisibilityValue(other.getVisibilityValue());
@@ -9329,349 +9202,109 @@ public final class ASTProtos {
         return this;
       }
 
-      private com.google.protobuf.LazyStringList members_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      private void ensureMembersIsMutable() {
+      private com.google.protobuf.LazyStringList membersAndValues_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureMembersAndValuesIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          members_ = new com.google.protobuf.LazyStringArrayList(members_);
+          membersAndValues_ = new com.google.protobuf.LazyStringArrayList(membersAndValues_);
           bitField0_ |= 0x00000004;
          }
       }
       /**
-       * <code>repeated string members = 3;</code>
+       * <code>repeated string members_and_values = 3;</code>
        */
       public com.google.protobuf.ProtocolStringList
-          getMembersList() {
-        return members_.getUnmodifiableView();
+          getMembersAndValuesList() {
+        return membersAndValues_.getUnmodifiableView();
       }
       /**
-       * <code>repeated string members = 3;</code>
+       * <code>repeated string members_and_values = 3;</code>
        */
-      public int getMembersCount() {
-        return members_.size();
+      public int getMembersAndValuesCount() {
+        return membersAndValues_.size();
       }
       /**
-       * <code>repeated string members = 3;</code>
+       * <code>repeated string members_and_values = 3;</code>
        */
-      public java.lang.String getMembers(int index) {
-        return members_.get(index);
+      public java.lang.String getMembersAndValues(int index) {
+        return membersAndValues_.get(index);
       }
       /**
-       * <code>repeated string members = 3;</code>
+       * <code>repeated string members_and_values = 3;</code>
        */
       public com.google.protobuf.ByteString
-          getMembersBytes(int index) {
-        return members_.getByteString(index);
+          getMembersAndValuesBytes(int index) {
+        return membersAndValues_.getByteString(index);
       }
       /**
-       * <code>repeated string members = 3;</code>
+       * <code>repeated string members_and_values = 3;</code>
        */
-      public Builder setMembers(
+      public Builder setMembersAndValues(
           int index, java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  ensureMembersIsMutable();
-        members_.set(index, value);
+  ensureMembersAndValuesIsMutable();
+        membersAndValues_.set(index, value);
         onChanged();
         return this;
       }
       /**
-       * <code>repeated string members = 3;</code>
+       * <code>repeated string members_and_values = 3;</code>
        */
-      public Builder addMembers(
+      public Builder addMembersAndValues(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  ensureMembersIsMutable();
-        members_.add(value);
+  ensureMembersAndValuesIsMutable();
+        membersAndValues_.add(value);
         onChanged();
         return this;
       }
       /**
-       * <code>repeated string members = 3;</code>
+       * <code>repeated string members_and_values = 3;</code>
        */
-      public Builder addAllMembers(
+      public Builder addAllMembersAndValues(
           java.lang.Iterable<java.lang.String> values) {
-        ensureMembersIsMutable();
+        ensureMembersAndValuesIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, members_);
+            values, membersAndValues_);
         onChanged();
         return this;
       }
       /**
-       * <code>repeated string members = 3;</code>
+       * <code>repeated string members_and_values = 3;</code>
        */
-      public Builder clearMembers() {
-        members_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      public Builder clearMembersAndValues() {
+        membersAndValues_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
         onChanged();
         return this;
       }
       /**
-       * <code>repeated string members = 3;</code>
+       * <code>repeated string members_and_values = 3;</code>
        */
-      public Builder addMembersBytes(
+      public Builder addMembersAndValuesBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-        ensureMembersIsMutable();
-        members_.add(value);
+        ensureMembersAndValuesIsMutable();
+        membersAndValues_.add(value);
         onChanged();
         return this;
       }
 
-      private java.util.List<joelbits.model.ast.protobuf.ASTProtos.Expression> values_ =
-        java.util.Collections.emptyList();
-      private void ensureValuesIsMutable() {
-        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-          values_ = new java.util.ArrayList<joelbits.model.ast.protobuf.ASTProtos.Expression>(values_);
-          bitField0_ |= 0x00000008;
-         }
-      }
-
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          joelbits.model.ast.protobuf.ASTProtos.Expression, joelbits.model.ast.protobuf.ASTProtos.Expression.Builder, joelbits.model.ast.protobuf.ASTProtos.ExpressionOrBuilder> valuesBuilder_;
-
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public java.util.List<joelbits.model.ast.protobuf.ASTProtos.Expression> getValuesList() {
-        if (valuesBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(values_);
-        } else {
-          return valuesBuilder_.getMessageList();
-        }
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public int getValuesCount() {
-        if (valuesBuilder_ == null) {
-          return values_.size();
-        } else {
-          return valuesBuilder_.getCount();
-        }
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public joelbits.model.ast.protobuf.ASTProtos.Expression getValues(int index) {
-        if (valuesBuilder_ == null) {
-          return values_.get(index);
-        } else {
-          return valuesBuilder_.getMessage(index);
-        }
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public Builder setValues(
-          int index, joelbits.model.ast.protobuf.ASTProtos.Expression value) {
-        if (valuesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureValuesIsMutable();
-          values_.set(index, value);
-          onChanged();
-        } else {
-          valuesBuilder_.setMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public Builder setValues(
-          int index, joelbits.model.ast.protobuf.ASTProtos.Expression.Builder builderForValue) {
-        if (valuesBuilder_ == null) {
-          ensureValuesIsMutable();
-          values_.set(index, builderForValue.build());
-          onChanged();
-        } else {
-          valuesBuilder_.setMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public Builder addValues(joelbits.model.ast.protobuf.ASTProtos.Expression value) {
-        if (valuesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureValuesIsMutable();
-          values_.add(value);
-          onChanged();
-        } else {
-          valuesBuilder_.addMessage(value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public Builder addValues(
-          int index, joelbits.model.ast.protobuf.ASTProtos.Expression value) {
-        if (valuesBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          ensureValuesIsMutable();
-          values_.add(index, value);
-          onChanged();
-        } else {
-          valuesBuilder_.addMessage(index, value);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public Builder addValues(
-          joelbits.model.ast.protobuf.ASTProtos.Expression.Builder builderForValue) {
-        if (valuesBuilder_ == null) {
-          ensureValuesIsMutable();
-          values_.add(builderForValue.build());
-          onChanged();
-        } else {
-          valuesBuilder_.addMessage(builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public Builder addValues(
-          int index, joelbits.model.ast.protobuf.ASTProtos.Expression.Builder builderForValue) {
-        if (valuesBuilder_ == null) {
-          ensureValuesIsMutable();
-          values_.add(index, builderForValue.build());
-          onChanged();
-        } else {
-          valuesBuilder_.addMessage(index, builderForValue.build());
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public Builder addAllValues(
-          java.lang.Iterable<? extends joelbits.model.ast.protobuf.ASTProtos.Expression> values) {
-        if (valuesBuilder_ == null) {
-          ensureValuesIsMutable();
-          com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, values_);
-          onChanged();
-        } else {
-          valuesBuilder_.addAllMessages(values);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public Builder clearValues() {
-        if (valuesBuilder_ == null) {
-          values_ = java.util.Collections.emptyList();
-          bitField0_ = (bitField0_ & ~0x00000008);
-          onChanged();
-        } else {
-          valuesBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public Builder removeValues(int index) {
-        if (valuesBuilder_ == null) {
-          ensureValuesIsMutable();
-          values_.remove(index);
-          onChanged();
-        } else {
-          valuesBuilder_.remove(index);
-        }
-        return this;
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public joelbits.model.ast.protobuf.ASTProtos.Expression.Builder getValuesBuilder(
-          int index) {
-        return getValuesFieldBuilder().getBuilder(index);
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public joelbits.model.ast.protobuf.ASTProtos.ExpressionOrBuilder getValuesOrBuilder(
-          int index) {
-        if (valuesBuilder_ == null) {
-          return values_.get(index);  } else {
-          return valuesBuilder_.getMessageOrBuilder(index);
-        }
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public java.util.List<? extends joelbits.model.ast.protobuf.ASTProtos.ExpressionOrBuilder> 
-           getValuesOrBuilderList() {
-        if (valuesBuilder_ != null) {
-          return valuesBuilder_.getMessageOrBuilderList();
-        } else {
-          return java.util.Collections.unmodifiableList(values_);
-        }
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public joelbits.model.ast.protobuf.ASTProtos.Expression.Builder addValuesBuilder() {
-        return getValuesFieldBuilder().addBuilder(
-            joelbits.model.ast.protobuf.ASTProtos.Expression.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public joelbits.model.ast.protobuf.ASTProtos.Expression.Builder addValuesBuilder(
-          int index) {
-        return getValuesFieldBuilder().addBuilder(
-            index, joelbits.model.ast.protobuf.ASTProtos.Expression.getDefaultInstance());
-      }
-      /**
-       * <code>repeated .joelbits.Expression values = 4;</code>
-       */
-      public java.util.List<joelbits.model.ast.protobuf.ASTProtos.Expression.Builder> 
-           getValuesBuilderList() {
-        return getValuesFieldBuilder().getBuilderList();
-      }
-      private com.google.protobuf.RepeatedFieldBuilderV3<
-          joelbits.model.ast.protobuf.ASTProtos.Expression, joelbits.model.ast.protobuf.ASTProtos.Expression.Builder, joelbits.model.ast.protobuf.ASTProtos.ExpressionOrBuilder> 
-          getValuesFieldBuilder() {
-        if (valuesBuilder_ == null) {
-          valuesBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-              joelbits.model.ast.protobuf.ASTProtos.Expression, joelbits.model.ast.protobuf.ASTProtos.Expression.Builder, joelbits.model.ast.protobuf.ASTProtos.ExpressionOrBuilder>(
-                  values_,
-                  ((bitField0_ & 0x00000008) == 0x00000008),
-                  getParentForChildren(),
-                  isClean());
-          values_ = null;
-        }
-        return valuesBuilder_;
-      }
-
       private int visibility_ = 0;
       /**
-       * <code>.joelbits.Modifier.VisibilityType visibility = 5;</code>
+       * <code>.joelbits.Modifier.VisibilityType visibility = 4;</code>
        */
       public int getVisibilityValue() {
         return visibility_;
       }
       /**
-       * <code>.joelbits.Modifier.VisibilityType visibility = 5;</code>
+       * <code>.joelbits.Modifier.VisibilityType visibility = 4;</code>
        */
       public Builder setVisibilityValue(int value) {
         visibility_ = value;
@@ -9679,14 +9312,14 @@ public final class ASTProtos {
         return this;
       }
       /**
-       * <code>.joelbits.Modifier.VisibilityType visibility = 5;</code>
+       * <code>.joelbits.Modifier.VisibilityType visibility = 4;</code>
        */
       public joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType getVisibility() {
         joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType result = joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType.valueOf(visibility_);
         return result == null ? joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType.UNRECOGNIZED : result;
       }
       /**
-       * <code>.joelbits.Modifier.VisibilityType visibility = 5;</code>
+       * <code>.joelbits.Modifier.VisibilityType visibility = 4;</code>
        */
       public Builder setVisibility(joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType value) {
         if (value == null) {
@@ -9698,7 +9331,7 @@ public final class ASTProtos {
         return this;
       }
       /**
-       * <code>.joelbits.Modifier.VisibilityType visibility = 5;</code>
+       * <code>.joelbits.Modifier.VisibilityType visibility = 4;</code>
        */
       public Builder clearVisibility() {
         
@@ -9709,7 +9342,7 @@ public final class ASTProtos {
 
       private java.lang.Object other_ = "";
       /**
-       * <code>string other = 6;</code>
+       * <code>string other = 5;</code>
        */
       public java.lang.String getOther() {
         java.lang.Object ref = other_;
@@ -9724,7 +9357,7 @@ public final class ASTProtos {
         }
       }
       /**
-       * <code>string other = 6;</code>
+       * <code>string other = 5;</code>
        */
       public com.google.protobuf.ByteString
           getOtherBytes() {
@@ -9740,7 +9373,7 @@ public final class ASTProtos {
         }
       }
       /**
-       * <code>string other = 6;</code>
+       * <code>string other = 5;</code>
        */
       public Builder setOther(
           java.lang.String value) {
@@ -9753,7 +9386,7 @@ public final class ASTProtos {
         return this;
       }
       /**
-       * <code>string other = 6;</code>
+       * <code>string other = 5;</code>
        */
       public Builder clearOther() {
         
@@ -9762,7 +9395,7 @@ public final class ASTProtos {
         return this;
       }
       /**
-       * <code>string other = 6;</code>
+       * <code>string other = 5;</code>
        */
       public Builder setOtherBytes(
           com.google.protobuf.ByteString value) {
@@ -13066,28 +12699,28 @@ public final class ASTProtos {
       "\016.joelbits.Type\022%\n\tmodifiers\030\004 \003(\0132\022.joe" +
       "lbits.Modifier\022\'\n\017exception_types\030\005 \003(\0132" +
       "\016.joelbits.Type\022*\n\014body_content\030\006 \003(\0132\024." +
-      "joelbits.Expression\"\377\002\n\010Modifier\022\014\n\004name" +
+      "joelbits.Expression\"\344\002\n\010Modifier\022\014\n\004name" +
       "\030\001 \001(\t\022-\n\004type\030\002 \001(\0162\037.joelbits.Modifier" +
-      ".ModifierType\022\017\n\007members\030\003 \003(\t\022$\n\006values" +
-      "\030\004 \003(\0132\024.joelbits.Expression\0225\n\nvisibili" +
-      "ty\030\005 \001(\0162!.joelbits.Modifier.VisibilityT" +
-      "ype\022\r\n\005other\030\006 \001(\t\"p\n\014ModifierType\022\014\n\010AB" +
-      "STRACT\020\000\022\016\n\nANNOTATION\020\001\022\t\n\005FINAL\020\002\022\n\n\006S" +
-      "TATIC\020\003\022\020\n\014SYNCHRONIZED\020\004\022\016\n\nVISIBILITY\020" +
-      "\005\022\t\n\005OTHER\020\006\"G\n\016VisibilityType\022\r\n\tNAMESP" +
-      "ACE\020\000\022\n\n\006PUBLIC\020\001\022\r\n\tPROTECTED\020\002\022\013\n\007PRIV" +
-      "ATE\020\003\"m\n\tNamespace\022\014\n\004name\030\001 \001(\t\022+\n\014decl" +
-      "arations\030\002 \003(\0132\025.joelbits.Declaration\022%\n" +
-      "\tmodifiers\030\003 \003(\0132\022.joelbits.Modifier\"\210\001\n" +
-      "\010Variable\022\014\n\004name\030\001 \001(\t\022\034\n\004type\030\002 \001(\0132\016." +
-      "joelbits.Type\022)\n\013initializer\030\003 \001(\0132\024.joe" +
-      "lbits.Expression\022%\n\tmodifiers\030\004 \003(\0132\022.jo" +
-      "elbits.Modifier\"=\n\004Type\022\014\n\004name\030\001 \001(\t\022\'\n" +
-      "\004type\030\002 \001(\0162\031.joelbits.DeclarationType*l" +
-      "\n\017DeclarationType\022\t\n\005CLASS\020\000\022\r\n\tANONYMOU" +
-      "S\020\001\022\016\n\nANNOTATION\020\002\022\r\n\tINTERFACE\020\003\022\013\n\007GE" +
-      "NERIC\020\004\022\010\n\004ENUM\020\005\022\t\n\005OTHER\020\006B(\n\033joelbits" +
-      ".model.ast.protobufB\tASTProtosb\006proto3"
+      ".ModifierType\022\032\n\022members_and_values\030\003 \003(" +
+      "\t\0225\n\nvisibility\030\004 \001(\0162!.joelbits.Modifie" +
+      "r.VisibilityType\022\r\n\005other\030\005 \001(\t\"p\n\014Modif" +
+      "ierType\022\014\n\010ABSTRACT\020\000\022\016\n\nANNOTATION\020\001\022\t\n" +
+      "\005FINAL\020\002\022\n\n\006STATIC\020\003\022\020\n\014SYNCHRONIZED\020\004\022\016" +
+      "\n\nVISIBILITY\020\005\022\t\n\005OTHER\020\006\"G\n\016VisibilityT" +
+      "ype\022\r\n\tNAMESPACE\020\000\022\n\n\006PUBLIC\020\001\022\r\n\tPROTEC" +
+      "TED\020\002\022\013\n\007PRIVATE\020\003\"m\n\tNamespace\022\014\n\004name\030" +
+      "\001 \001(\t\022+\n\014declarations\030\002 \003(\0132\025.joelbits.D" +
+      "eclaration\022%\n\tmodifiers\030\003 \003(\0132\022.joelbits" +
+      ".Modifier\"\210\001\n\010Variable\022\014\n\004name\030\001 \001(\t\022\034\n\004" +
+      "type\030\002 \001(\0132\016.joelbits.Type\022)\n\013initialize" +
+      "r\030\003 \001(\0132\024.joelbits.Expression\022%\n\tmodifie" +
+      "rs\030\004 \003(\0132\022.joelbits.Modifier\"=\n\004Type\022\014\n\004" +
+      "name\030\001 \001(\t\022\'\n\004type\030\002 \001(\0162\031.joelbits.Decl" +
+      "arationType*l\n\017DeclarationType\022\t\n\005CLASS\020" +
+      "\000\022\r\n\tANONYMOUS\020\001\022\016\n\nANNOTATION\020\002\022\r\n\tINTE" +
+      "RFACE\020\003\022\013\n\007GENERIC\020\004\022\010\n\004ENUM\020\005\022\t\n\005OTHER\020" +
+      "\006B(\n\033joelbits.model.ast.protobufB\tASTPro" +
+      "tosb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -13130,7 +12763,7 @@ public final class ASTProtos {
     internal_static_joelbits_Modifier_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_joelbits_Modifier_descriptor,
-        new java.lang.String[] { "Name", "Type", "Members", "Values", "Visibility", "Other", });
+        new java.lang.String[] { "Name", "Type", "MembersAndValues", "Visibility", "Other", });
     internal_static_joelbits_Namespace_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_joelbits_Namespace_fieldAccessorTable = new

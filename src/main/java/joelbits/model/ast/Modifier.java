@@ -13,16 +13,14 @@ import java.util.List;
 public final class Modifier implements ASTNode {
     private final String name;                    // If the DeclarationType is ANNOTATION, then the name of the annotation
     private final ModifierType type;              // The type of modifier
-    private final List<String> members;           // If the DeclarationType is ANNOTATION, then a list of all members explicitly assigned values
-    private final List<Expression> values;        // If the DeclarationType is ANNOTATION, then a list of all values that were assigned to members
+    private final List<String> membersAndValues;  // If the DeclarationType is ANNOTATION, then a list of all members and their assigned values, if any
     private final VisibilityType visibility;      // A type of visibility modifier
     private final String other;                   // If the DeclarationType is OTHER, the modifier string from the source code
 
-    public Modifier(String name, ModifierType type, List<String> members, List<Expression> values, VisibilityType visibility, String other) {
+    public Modifier(String name, ModifierType type, List<String> membersAndValues, VisibilityType visibility, String other) {
         this.name = name;
         this.type = type;
-        this.members = new ArrayList<>(members);
-        this.values = new ArrayList<>(values);
+        this.membersAndValues = new ArrayList<>(membersAndValues);
         this.visibility = visibility;
         this.other = other;
     }
@@ -39,15 +37,7 @@ public final class Modifier implements ASTNode {
      */
     @Override
     public boolean accept(Visitor visitor) {
-        if (visitor.visitEnter(this)) {
-            for (Expression expression : values) {
-                if (!expression.accept(visitor)) {
-                    break;
-                }
-            }
-        }
-
-        return visitor.visitLeave(this);
+        return visitor.visit(this);
     }
 
     public String getName() {
@@ -58,19 +48,15 @@ public final class Modifier implements ASTNode {
         return type;
     }
 
-    public List<String> getMembers() {
-        return members;
-    }
-
-    public List<Expression> getValues() {
-        return values;
-    }
-
     public VisibilityType getVisibility() {
         return visibility;
     }
 
     public String getOther() {
         return other;
+    }
+
+    public List<String> getMembersAndValues() {
+        return membersAndValues;
     }
 }

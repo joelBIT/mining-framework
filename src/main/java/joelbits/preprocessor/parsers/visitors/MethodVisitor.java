@@ -15,7 +15,6 @@ import joelbits.preprocessor.utils.TypeConverter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * A visitor parsing data from the loaded class on a method level.
@@ -31,7 +30,7 @@ public class MethodVisitor extends VoidVisitorAdapter<List<Method>> {
         }
 
         for (AnnotationExpr annotationExpr : method.getAnnotations()) {
-            Map<String, Expression> annotationMembers = TypeConverter.convertAnnotationMembers(annotationExpr);
+            List<String> annotationMembers = TypeConverter.convertAnnotationMembers(annotationExpr);
             methodModifiers.add(ASTNodeCreator.createAnnotationModifier(annotationExpr, annotationMembers));
         }
 
@@ -46,7 +45,6 @@ public class MethodVisitor extends VoidVisitorAdapter<List<Method>> {
 
         List<Expression> methodBodyStatements = new ArrayList<>();
         methodBodyStatements.add(ASTNodeCreator.createExpressionExpressions(methodCalls, ExpressionType.METHODCALL));
-
         methods.add(ASTNodeCreator.createMethod(methodModifiers, method, arguments, methodBodyStatements));
     }
 }
