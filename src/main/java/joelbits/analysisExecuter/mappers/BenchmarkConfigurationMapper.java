@@ -1,4 +1,4 @@
-package joelbits.analysisExecuter;
+package joelbits.analysisExecuter.mappers;
 
 import joelbits.analysisExecuter.utils.AnalysisUtil;
 import joelbits.analysisExecuter.visitors.BenchmarkConfigurationVisitor;

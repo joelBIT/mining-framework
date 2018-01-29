@@ -1,4 +1,4 @@
-package joelbits.analysisExecuter;
+package joelbits.analysisExecuter.reducers;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;

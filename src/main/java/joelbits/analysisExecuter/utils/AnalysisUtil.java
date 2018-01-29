@@ -8,6 +8,7 @@ import joelbits.model.project.ChangedFile;
 import joelbits.model.project.CodeRepository;
 import joelbits.model.project.Project;
 import joelbits.model.project.Revision;
+import joelbits.utils.FrameworkUtil;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
@@ -66,7 +67,7 @@ public class AnalysisUtil {
         Set<byte[]> benchmarkFiles = new HashSet<>();
 
         Configuration conf = new Configuration();
-        Path path = new Path(System.getProperty("user.dir") + File.separator + "benchmarkFiles" + File.separator);
+        Path path = new Path(FrameworkUtil.benchmarksMapFile());
         try (MapFile.Reader mapReader = new MapFile.Reader(path, conf)) {
             for (String fileKey : mapFileKeys) {
                 BytesWritable value = (BytesWritable) ReflectionUtils.newInstance(mapReader.getValueClass(), conf);
