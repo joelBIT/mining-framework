@@ -92,7 +92,7 @@ public final class GitHubPreProcessor implements PreProcessor {
                             String changeType = changeFile.getValue();
                             revisionFiles.add(ProjectNodeCreator.changedFile(path, changeType));
 
-                            String fileTableKey = node.get("url").asText() + ":" + mostRecentCommitId;
+                            String fileTableKey = node.get("html_url").asText() + ":" + mostRecentCommitId;
                             try {
                                 addChangedBenchmarkFile(codeRepository, mostRecentCommitId, path, fileTableKey);
                             } catch (Exception e1) {
@@ -103,8 +103,10 @@ public final class GitHubPreProcessor implements PreProcessor {
                         continue;
                     }
 
-                    repositoryRevisions.add(createRevision(mostRecentCommitId, revisionFiles));
-                    revisionFiles.clear();
+                    if (!revisionFiles.isEmpty()) {
+                        repositoryRevisions.add(createRevision(mostRecentCommitId, revisionFiles));
+                        revisionFiles.clear();
+                    }
                 }
 
                 addRepositoryToProject(node, repositoryRevisions);

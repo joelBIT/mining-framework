@@ -1,9 +1,9 @@
 package joelbits.preprocessor.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.google.common.base.Charsets;
 import com.google.common.io.Files;
 import joelbits.preprocessor.types.InputFileType;
-import org.apache.commons.codec.Charsets;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.codehaus.jackson.map.ObjectMapper;
