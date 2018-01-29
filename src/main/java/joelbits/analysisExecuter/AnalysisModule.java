@@ -1,7 +1,7 @@
 package joelbits.analysisExecuter;
 
-import joelbits.analysisExecuter.utils.AnalysisMapperFactory;
-import joelbits.analysisExecuter.utils.AnalysisReducerFactory;
+import joelbits.analysisExecuter.mappers.AnalysisMapperFactory;
+import joelbits.analysisExecuter.reducers.AnalysisReducerFactory;
 import joelbits.utils.FrameworkUtil;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
