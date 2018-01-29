@@ -16,8 +16,8 @@ import java.util.*;
  * iterations, forks, etc, that are run for each @Benchmark we must look at the corresponding class level annotations.
  */
 public class BenchmarkConfigurationVisitor implements Visitor {
-    private final Map<String, Map<String, List<String>>> benchmarkConfigurations = new HashMap<>();     // key is classname, value is map of @Benchmark annotations (key is method name, and value is configuration of @Benchmark annotation)
-    private final Map<String, Map<String, List<String>>> classConfigurations = new HashMap<>();               // key is classname, value is map of class annotations (key is annotation name, value is configuration of annotation)
+    private final Map<String, Map<String, List<String>>> benchmarkConfigurations = new HashMap<>();       // key is method name that have @Benchmark annotation, value is list of benchmark configuration parameters
+    private final Map<String, List<String>> classConfigurations = new HashMap<>();                        // key is annotation name, value is list of the annotations configuration parameters
 
     @Override
     public boolean visit(ASTNode node) {
@@ -28,31 +28,15 @@ public class BenchmarkConfigurationVisitor implements Visitor {
     public boolean visitEnter(ASTNode node) {
         if (node instanceof Declaration) {
             Declaration declaration = (Declaration) node;
-            classConfigurations.put(declaration.getName(), new HashMap<>());
-            benchmarkConfigurations.put(declaration.getName(), new HashMap<>());
+            classConfigurations.clear();
+            extractClassConfiguration(declaration);
 
-            for (Modifier modifier : declaration.getModifiers()) {
-                if (modifier.getType().equals(ModifierType.ANNOTATION)) {
-                    classConfigurations.get(declaration.getName()).put(modifier.getName(), new ArrayList<>());
-
-                    for (String configuration : modifier.getMembersAndValues()) {
-                        classConfigurations.get(declaration.getName()).get(modifier.getName()).add(configuration);
-                    }
-                }
-            }
-
+            benchmarkConfigurations.clear();
             for (Method method : declaration.getMethods()) {
-                for (Modifier modifier : method.getModifiers()) {
-                    if (!modifier.getName().equals("Benchmark") || !modifier.getType().equals(ModifierType.ANNOTATION)) {
-                        continue;
-                    }
-                    benchmarkConfigurations.get(declaration.getName()).put(method.getName(), new ArrayList<>());
-
-                    for (String configuration : modifier.getMembersAndValues()) {
-                        benchmarkConfigurations.get(declaration.getName()).get(method.getName()).add(configuration);
-                    }
-                }
+                extractBenchmarkConfiguration(method);
             }
+
+            return false;
         }
 
         if (node instanceof Variable || node instanceof Method) {
@@ -60,6 +44,27 @@ public class BenchmarkConfigurationVisitor implements Visitor {
         }
 
         return true;
+    }
+
+    private void extractBenchmarkConfiguration(Method method) {
+        if (method.getModifiers().stream().anyMatch(this::isBenchmark)) {
+            benchmarkConfigurations.put(method.getName(), new HashMap<>());
+            for (Modifier modifier : method.getModifiers()) {
+                benchmarkConfigurations.get(method.getName()).put(modifier.getName(), modifier.getMembersAndValues());
+            }
+        }
+    }
+
+    private boolean isBenchmark(Modifier modifier) {
+        return modifier.getName().equals("Benchmark") && modifier.getType().equals(ModifierType.ANNOTATION);
+    }
+
+    private void extractClassConfiguration(Declaration declaration) {
+        for (Modifier modifier : declaration.getModifiers()) {
+            if (modifier.getType().equals(ModifierType.ANNOTATION)) {
+                classConfigurations.put(modifier.getName(), modifier.getMembersAndValues());
+            }
+        }
     }
 
     @Override
@@ -74,7 +79,7 @@ public class BenchmarkConfigurationVisitor implements Visitor {
         return benchmarkConfigurations;
     }
 
-    public Map<String, Map<String, List<String>>> getClassConfigurations() {
+    public Map<String, List<String>> getClassConfigurations() {
         return classConfigurations;
     }
 }

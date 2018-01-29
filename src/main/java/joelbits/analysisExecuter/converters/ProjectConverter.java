@@ -11,10 +11,7 @@ import joelbits.model.project.types.SourceCodeFileType;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Maps a Project protocol buffer message into its Project model representation.
