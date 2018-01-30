@@ -31,6 +31,33 @@ public class AnalysisUtil {
     }
 
     /**
+     * Retrieve all changed files in a revision that contains benchmarks.
+     *
+     * @param revision          the revision of interest
+     * @param repositoryUrl     repository url of the project containing the revision
+     * @return                  list of changed benchmark files in the revision
+     */
+    public static List<ASTRoot> allChangedBenchmarkFiles(Revision revision, String repositoryUrl) {
+        List<ASTRoot> changedBenchmarkFiles = new ArrayList<>();
+        Set<String> mapFileKeys = new HashSet<>();
+
+        for (ChangedFile file : revision.getFiles()) {
+            mapFileKeys.add(repositoryUrl + ":" + revision.getId() + ":" + file.getName());
+        }
+
+        Set<byte[]> benchmarkFiles = readMapFile(mapFileKeys);
+        for (byte[] file : benchmarkFiles) {
+            try {
+                changedBenchmarkFiles.add(ASTConverter.convert(file));
+            } catch (Exception e) {
+                log.error(e.toString(), e);
+            }
+        }
+
+        return changedBenchmarkFiles;
+    }
+
+    /**
      * Return latest version of all unique benchmark files (in their ASTRoot representation) from repository.
      *
      * @param repository        the repository to retrieve latest benchmark file snapshots from

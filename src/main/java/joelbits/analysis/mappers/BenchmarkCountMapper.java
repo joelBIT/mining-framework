@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class BenchmarkCountMapper extends Mapper<Text, BytesWritable, Text, Text> {
+public final class BenchmarkCountMapper extends Mapper<Text, BytesWritable, Text, Text> {
     private final List<String> processedBenchmarkFiles = new ArrayList<>();
 
     @Override

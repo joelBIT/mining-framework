@@ -2,7 +2,7 @@ package joelbits.analysis.mappers;
 
 import org.apache.hadoop.mapreduce.Mapper;
 
-public class AnalysisMapperFactory {
+public final class AnalysisMapperFactory {
     private AnalysisMapperFactory() {}
 
     public static Class<? extends Mapper> mapper(String mapper) throws IllegalArgumentException {
@@ -11,6 +11,8 @@ public class AnalysisMapperFactory {
                 return BenchmarkConfigurationMapper.class;
             case "count":
                 return BenchmarkCountMapper.class;
+            case "evolution":
+                return BenchmarkEvolutionMapper.class;
             default:
                 throw new IllegalArgumentException();
         }

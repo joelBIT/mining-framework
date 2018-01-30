@@ -8,9 +8,9 @@ public final class AnalysisReducerFactory {
     public static Class<? extends Reducer> reducer(String reducer) throws IllegalArgumentException {
         switch (reducer) {
             case "configurations":
-                return BenchmarkConfigurationReducer.class;
             case "count":
-                return BenchmarkCountReducer.class;
+            case "evolution":
+                return BenchmarkReducer.class;
             default:
                 throw new IllegalArgumentException();
         }

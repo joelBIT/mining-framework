@@ -15,7 +15,7 @@ import java.util.*;
  * case there is no need to configure each @Benchmark and thus they are probably empty. In order to know how many
  * iterations, forks, etc, that are run for each @Benchmark we must look at the corresponding class level annotations.
  */
-public class BenchmarkConfigurationVisitor implements Visitor {
+public final class BenchmarkConfigurationVisitor implements Visitor {
     private final Map<String, Map<String, List<String>>> benchmarkConfigurations = new HashMap<>();       // key is method name that have @Benchmark annotation, value is list of benchmark configuration parameters
     private final Map<String, List<String>> classConfigurations = new HashMap<>();                        // key is annotation name, value is list of the annotations configuration parameters
 

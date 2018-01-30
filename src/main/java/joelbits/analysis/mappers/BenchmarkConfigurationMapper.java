@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class BenchmarkConfigurationMapper extends Mapper<Text, BytesWritable, Text, Text> {
+public final class BenchmarkConfigurationMapper extends Mapper<Text, BytesWritable, Text, Text> {
     private final List<String> processedBenchmarkFiles = new ArrayList<>();
 
     @Override
