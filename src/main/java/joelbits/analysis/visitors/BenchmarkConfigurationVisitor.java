@@ -39,11 +39,7 @@ public class BenchmarkConfigurationVisitor implements Visitor {
             return false;
         }
 
-        if (node instanceof Variable || node instanceof Method) {
-            return false;
-        }
-
-        return true;
+        return !(node instanceof Variable) && !(node instanceof Method);
     }
 
     private void extractBenchmarkConfiguration(Method method) {
@@ -69,10 +65,7 @@ public class BenchmarkConfigurationVisitor implements Visitor {
 
     @Override
     public boolean visitLeave(ASTNode node) {
-        if (node instanceof Variable) {
-            return false;
-        }
-        return true;
+        return !(node instanceof Variable);
     }
 
     public Map<String, Map<String, List<String>>> getBenchmarkConfigurations() {

@@ -9,6 +9,8 @@ public class AnalysisMapperFactory {
         switch (mapper) {
             case "configurations":
                 return BenchmarkConfigurationMapper.class;
+            case "count":
+                return BenchmarkCountMapper.class;
             default:
                 throw new IllegalArgumentException();
         }

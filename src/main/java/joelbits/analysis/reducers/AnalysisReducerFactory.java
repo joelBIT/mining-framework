@@ -9,6 +9,8 @@ public final class AnalysisReducerFactory {
         switch (reducer) {
             case "configurations":
                 return BenchmarkConfigurationReducer.class;
+            case "count":
+                return BenchmarkCountReducer.class;
             default:
                 throw new IllegalArgumentException();
         }
