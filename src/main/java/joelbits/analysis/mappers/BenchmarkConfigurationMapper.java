@@ -1,7 +1,7 @@
-package joelbits.analysisExecuter.mappers;
+package joelbits.analysis.mappers;
 
-import joelbits.analysisExecuter.utils.AnalysisUtil;
-import joelbits.analysisExecuter.visitors.BenchmarkConfigurationVisitor;
+import joelbits.analysis.utils.AnalysisUtil;
+import joelbits.analysis.visitors.BenchmarkConfigurationVisitor;
 import joelbits.model.ast.ASTRoot;
 import joelbits.model.project.CodeRepository;
 import joelbits.model.project.Project;

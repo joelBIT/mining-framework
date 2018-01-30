@@ -1,7 +1,7 @@
-package joelbits.analysisExecuter;
+package joelbits.analysis;
 
-import joelbits.analysisExecuter.mappers.AnalysisMapperFactory;
-import joelbits.analysisExecuter.reducers.AnalysisReducerFactory;
+import joelbits.analysis.mappers.AnalysisMapperFactory;
+import joelbits.analysis.reducers.AnalysisReducerFactory;
 import joelbits.utils.FrameworkUtil;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
@@ -49,7 +49,6 @@ public class AnalysisModule extends Configured implements Tool {
             System.err.println("Could not find mapper/reducer for " + args[0]);
             System.exit(2);
         }
-
 
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);

@@ -2,6 +2,7 @@ package joelbits.preprocessing.connectors;
 
 import joelbits.model.project.types.SourceCodeFileType;
 import joelbits.preprocessing.connectors.utils.TreeIterator;
+import joelbits.utils.FrameworkUtil;
 import org.apache.commons.lang.StringUtils;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.*;
@@ -31,7 +32,7 @@ public final class GitConnector implements Connector {
 
     @Override
     public void connect(String repositoryName) throws Exception {
-        String path = System.getProperty("user.dir") + File.separator + repositoryName + File.separator;
+        String path = FrameworkUtil.jarPath() + repositoryName + File.separator;
         File repository = new File(path + Constants.DOT_GIT);
         this.repository = new FileRepositoryBuilder()
                 .setGitDir(repository)

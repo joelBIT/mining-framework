@@ -1,4 +1,4 @@
-package joelbits.analysisExecuter.converters;
+package joelbits.analysis.converters;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import joelbits.model.ast.*;

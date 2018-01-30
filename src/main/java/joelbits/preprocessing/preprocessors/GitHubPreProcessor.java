@@ -57,8 +57,10 @@ public final class GitHubPreProcessor implements PreProcessor {
         try {
             Iterator<JsonNode> iterator = FileRepositoryExtractor.getRepositoryIterator(projectsMetadata, "items");
             while (iterator.hasNext()) {
+                benchmarkFilesInNewestSnapshot.clear();
                 JsonNode node = iterator.next();
                 String codeRepository = node.get("full_name").asText();
+
                 try {
                     gitConnector.connect(codeRepository);
                 } catch (Exception e) {

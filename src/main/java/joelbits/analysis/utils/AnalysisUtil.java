@@ -1,8 +1,8 @@
-package joelbits.analysisExecuter.utils;
+package joelbits.analysis.utils;
 
 import com.google.protobuf.InvalidProtocolBufferException;
-import joelbits.analysisExecuter.converters.ASTConverter;
-import joelbits.analysisExecuter.converters.ProjectConverter;
+import joelbits.analysis.converters.ASTConverter;
+import joelbits.analysis.converters.ProjectConverter;
 import joelbits.model.ast.ASTRoot;
 import joelbits.model.project.ChangedFile;
 import joelbits.model.project.CodeRepository;
@@ -16,7 +16,6 @@ import org.apache.hadoop.util.ReflectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.util.*;
 
 public class AnalysisUtil {
@@ -71,7 +70,7 @@ public class AnalysisUtil {
         try (MapFile.Reader mapReader = new MapFile.Reader(path, conf)) {
             for (String fileKey : mapFileKeys) {
                 BytesWritable value = (BytesWritable) ReflectionUtils.newInstance(mapReader.getValueClass(), conf);
-                mapReader.next(new Text(fileKey), value);
+                mapReader.get(new Text(fileKey), value);
                 benchmarkFiles.add(Arrays.copyOf(value.getBytes(), value.getLength()));
             }
         } catch (Exception e) {

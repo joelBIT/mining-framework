@@ -1,7 +1,7 @@
 package joelbits.model.ast;
 
 import joelbits.model.ast.types.ExpressionType;
-import joelbits.analysisExecuter.visitors.Visitor;
+import joelbits.analysis.visitors.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
