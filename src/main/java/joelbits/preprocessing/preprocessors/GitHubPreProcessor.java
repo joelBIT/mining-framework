@@ -86,7 +86,7 @@ public final class GitHubPreProcessor implements PreProcessor {
                     }
 
                     try {
-                        Map<String, String> changedFiles = gitConnector.changedFilesBetweenCommits(mostRecentCommitId, commitIterator.peek());
+                        Map<String, String> changedFiles = gitConnector.getCommitFileChanges(mostRecentCommitId);
                         for (Map.Entry<String, String> changeFile : changedFiles.entrySet()) {
                             if (!benchmarkFilesInNewestSnapshot.contains(changeFile.getKey())) {
                                 continue;

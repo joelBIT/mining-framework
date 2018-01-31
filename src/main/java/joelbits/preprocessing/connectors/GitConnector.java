@@ -1,5 +1,7 @@
 package joelbits.preprocessing.connectors;
 
+import com.google.common.collect.Iterators;
+import com.google.common.collect.PeekingIterator;
 import joelbits.model.project.types.SourceCodeFileType;
 import joelbits.preprocessing.connectors.utils.TreeIterator;
 import joelbits.utils.FrameworkUtil;
@@ -29,6 +31,8 @@ public final class GitConnector implements Connector {
     private Repository repository;
     private final Map<String, RevCommit> commits = new HashMap<>();
     private final List<String> allCommitIds = new ArrayList<>();
+    private final Map<String, Map<String, String>> differenceConsecutiveCommits = new HashMap<>();
+    private final List<String> benchmarkFiles = new ArrayList<>();
 
     @Override
     public void connect(String repositoryName) throws Exception {
@@ -44,13 +48,25 @@ public final class GitConnector implements Connector {
         log.info("Finished collecting data from " + repository.getName());
     }
 
-    private void collect() throws GitAPIException, IOException {
+    @Override
+    public List<String> benchmarkFiles() {
+        return benchmarkFiles;
+    }
+
+    private void collect() throws Exception {
         clearData();
         try (Git git = new Git(repository)) {
-            for (RevCommit commit : git.log().call()) {
+            PeekingIterator<RevCommit> commitIterator = Iterators.peekingIterator(git.log().call().iterator());
+            while (commitIterator.hasNext()) {
+                RevCommit commit = commitIterator.next();
+                if (!commitIterator.hasNext()) {
+                    continue;
+                }
+
                 String commitId = commit.getId().name();
                 commits.put(commitId, commit);
                 allCommitIds.add(commitId);
+                storeConsecutiveCommitChanges(git, commitId, commitIterator.peek().getId().name());
             }
         }
     }
@@ -58,6 +74,36 @@ public final class GitConnector implements Connector {
     private void clearData() {
         commits.clear();
         allCommitIds.clear();
+        differenceConsecutiveCommits.clear();
+    }
+
+    /**
+     * Stores the path of the files that have been changed between the two supplied commits, and their respective
+     * change types. The path of a file is used as key since it is unique within a revision.
+     *
+     * @param commitId       the ID of the commits that is newest in time
+     * @param parentId       the ID of the commits that are oldest in time
+     */
+    private void storeConsecutiveCommitChanges(Git git, String commitId, String parentId) throws GitAPIException, IOException {
+        List<DiffEntry> diffs = git.diff()
+                .setOldTree(TreeIterator.prepareTreeParser(repository, parentId))
+                .setNewTree(TreeIterator.prepareTreeParser(repository, commitId))
+                .call();
+
+        Map<String, String> files = diffs.stream()
+                .filter(file -> hasRelevantFileType(file.getNewPath()))
+                .filter(file -> hasRelevantChangeType(file.getChangeType()))
+                .collect(toMap(DiffEntry::getNewPath, file -> file.getChangeType().name()));
+
+        differenceConsecutiveCommits.put(commitId, files);
+    }
+
+    private boolean hasRelevantChangeType(ChangeType type) {
+        return EnumSet.of(ChangeType.ADD, ChangeType.MODIFY, ChangeType.DELETE).contains(type);
+    }
+
+    private boolean hasRelevantFileType(String file) {
+        return SourceCodeFileType.exist(file);
     }
 
     /**
@@ -134,39 +180,8 @@ public final class GitConnector implements Connector {
         return allCommitIds;
     }
 
-    /**
-     * Returns the path of the files that have been changed between the two supplied commits, and their respective
-     * change types. The path of a file is used as key since it is unique within a revision.
-     *
-     * @param newCommitId       the ID of the commits that is newest in time
-     * @param oldCommitId       the ID of the commits that are oldest in time
-     * @return                  a map containing pairs of the file path and the change type
-     */
-    @Override
-    public Map<String, String> changedFilesBetweenCommits(String newCommitId, String oldCommitId) throws Exception {
-        try (Git git = new Git(repository)) {
-            List<DiffEntry> diffs = git.diff()
-                    .setOldTree(TreeIterator.prepareTreeParser(repository, oldCommitId))
-                    .setNewTree(TreeIterator.prepareTreeParser(repository, newCommitId))
-                    .call();
-
-            return diffs.stream()
-                    .filter(file -> hasRelevantFileType(file.getNewPath()))
-                    .filter(file -> hasRelevantChangeType(file.getChangeType()))
-                    .collect(toMap(DiffEntry::getNewPath, file -> file.getChangeType().name()));
-        } catch (GitAPIException | IOException e) {
-            log.error(e.toString(), e);
-        }
-
-        return Collections.emptyMap();
-    }
-
-    private boolean hasRelevantChangeType(ChangeType type) {
-        return EnumSet.of(ChangeType.ADD, ChangeType.MODIFY, ChangeType.DELETE).contains(type);
-    }
-
-    private boolean hasRelevantFileType(String file) {
-        return SourceCodeFileType.exist(file);
+    public Map<String, String> getCommitFileChanges(String commitId) {
+        return differenceConsecutiveCommits.get(commitId);
     }
 
     @Override
