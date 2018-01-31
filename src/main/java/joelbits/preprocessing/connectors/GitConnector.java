@@ -32,7 +32,6 @@ public final class GitConnector implements Connector {
     private final Map<String, RevCommit> commits = new HashMap<>();
     private final List<String> allCommitIds = new ArrayList<>();
     private final Map<String, Map<String, String>> differenceConsecutiveCommits = new HashMap<>();
-    private final List<String> benchmarkFiles = new ArrayList<>();
 
     @Override
     public void connect(String repositoryName) throws Exception {
@@ -46,11 +45,6 @@ public final class GitConnector implements Connector {
 
         collect();
         log.info("Finished collecting data from " + repository.getName());
-    }
-
-    @Override
-    public List<String> benchmarkFiles() {
-        return benchmarkFiles;
     }
 
     private void collect() throws Exception {
