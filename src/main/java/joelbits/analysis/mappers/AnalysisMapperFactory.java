@@ -13,6 +13,8 @@ public final class AnalysisMapperFactory {
                 return BenchmarkCountMapper.class;
             case "evolution":
                 return BenchmarkEvolutionMapper.class;
+            case "measurement":
+                return BenchmarkMeasurementMapper.class;
             default:
                 throw new IllegalArgumentException();
         }

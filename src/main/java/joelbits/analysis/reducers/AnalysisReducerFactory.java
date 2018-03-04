@@ -11,6 +11,8 @@ public final class AnalysisReducerFactory {
             case "count":
             case "evolution":
                 return BenchmarkReducer.class;
+            case "measurement":
+                return BenchmarkMeasurementReducer.class;
             default:
                 throw new IllegalArgumentException();
         }
