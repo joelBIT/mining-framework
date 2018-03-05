@@ -84,6 +84,14 @@ public class ASTNodeCreator {
                 .build();
     }
 
+    public static Expression createBodyContentAssignmentExpression(ExpressionType type, String variable, String literal) {
+        return Expression.newBuilder()
+                .setType(type)
+                .setVariable(variable)
+                .setLiteral(literal)
+                .build();
+    }
+
     public static Declaration createNamespaceDeclaration(ClassOrInterfaceDeclaration declaration, List<Variable> allFields, List<Method> allMethods, List<Modifier> topModifiers, List<Declaration> nestedDeclarations) {
         return Declaration.newBuilder()
                 .setName(declaration.getNameAsString())

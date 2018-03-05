@@ -60,7 +60,7 @@ public final class ProjectNodeCreator {
         return CodeRepository.newBuilder()
                 .setUrl(url)
                 .setType(type)
-                .addAllRevision(revisions)
+                .addAllRevisions(revisions)
                 .build();
     }
 

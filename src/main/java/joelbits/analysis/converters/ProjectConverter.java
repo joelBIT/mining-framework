@@ -39,7 +39,7 @@ public class ProjectConverter {
         RepositoryType type = RepositoryType.valueOf(repository.getType().name());
 
         List<Revision> revisions = new ArrayList<>();
-        for (ProjectProtos.Revision revision : repository.getRevisionList()) {
+        for (ProjectProtos.Revision revision : repository.getRevisionsList()) {
             revisions.add(convertRevision(revision));
         }
 

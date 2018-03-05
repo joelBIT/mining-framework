@@ -39,8 +39,12 @@ public class MethodVisitor extends VoidVisitorAdapter<List<Method>> {
             arguments.add(ASTNodeCreator.createVariable(parameter.getNameAsString(), parameter.getType().asString(), argumentModifiers));
         }
 
+        List<Expression> bodyContent = new ArrayList<>();
+        method.accept(new MethodBodyAssignmentVisitor(), bodyContent);
+
         List<Expression> methodCalls = new ArrayList<>();
         method.accept(new MethodCallVisitor(), methodCalls);
-        methods.add(ASTNodeCreator.createMethod(methodModifiers, method, arguments, methodCalls));
+        bodyContent.addAll(methodCalls);
+        methods.add(ASTNodeCreator.createMethod(methodModifiers, method, arguments, bodyContent));
     }
 }

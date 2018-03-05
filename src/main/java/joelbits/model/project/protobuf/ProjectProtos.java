@@ -282,9 +282,17 @@ public final class ProjectProtos {
        */
       GITHUB(0),
       /**
-       * <code>OTHER = 1;</code>
+       * <code>SOURCEFORGE = 1;</code>
        */
-      OTHER(1),
+      SOURCEFORGE(1),
+      /**
+       * <code>BITBUCKET = 2;</code>
+       */
+      BITBUCKET(2),
+      /**
+       * <code>OTHER = 3;</code>
+       */
+      OTHER(3),
       UNRECOGNIZED(-1),
       ;
 
@@ -293,9 +301,17 @@ public final class ProjectProtos {
        */
       public static final int GITHUB_VALUE = 0;
       /**
-       * <code>OTHER = 1;</code>
+       * <code>SOURCEFORGE = 1;</code>
        */
-      public static final int OTHER_VALUE = 1;
+      public static final int SOURCEFORGE_VALUE = 1;
+      /**
+       * <code>BITBUCKET = 2;</code>
+       */
+      public static final int BITBUCKET_VALUE = 2;
+      /**
+       * <code>OTHER = 3;</code>
+       */
+      public static final int OTHER_VALUE = 3;
 
 
       public final int getNumber() {
@@ -317,7 +333,9 @@ public final class ProjectProtos {
       public static ProjectType forNumber(int value) {
         switch (value) {
           case 0: return GITHUB;
-          case 1: return OTHER;
+          case 1: return SOURCEFORGE;
+          case 2: return BITBUCKET;
+          case 3: return OTHER;
           default: return null;
         }
       }
@@ -1908,27 +1926,27 @@ public final class ProjectProtos {
     joelbits.model.project.protobuf.ProjectProtos.CodeRepository.RepositoryType getType();
 
     /**
-     * <code>repeated .joelbits.Revision revision = 3;</code>
+     * <code>repeated .joelbits.Revision revisions = 3;</code>
      */
     java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> 
-        getRevisionList();
+        getRevisionsList();
     /**
-     * <code>repeated .joelbits.Revision revision = 3;</code>
+     * <code>repeated .joelbits.Revision revisions = 3;</code>
      */
-    joelbits.model.project.protobuf.ProjectProtos.Revision getRevision(int index);
+    joelbits.model.project.protobuf.ProjectProtos.Revision getRevisions(int index);
     /**
-     * <code>repeated .joelbits.Revision revision = 3;</code>
+     * <code>repeated .joelbits.Revision revisions = 3;</code>
      */
-    int getRevisionCount();
+    int getRevisionsCount();
     /**
-     * <code>repeated .joelbits.Revision revision = 3;</code>
+     * <code>repeated .joelbits.Revision revisions = 3;</code>
      */
     java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> 
-        getRevisionOrBuilderList();
+        getRevisionsOrBuilderList();
     /**
-     * <code>repeated .joelbits.Revision revision = 3;</code>
+     * <code>repeated .joelbits.Revision revisions = 3;</code>
      */
-    joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder getRevisionOrBuilder(
+    joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder getRevisionsOrBuilder(
         int index);
   }
   /**
@@ -1946,7 +1964,7 @@ public final class ProjectProtos {
     private CodeRepository() {
       url_ = "";
       type_ = 0;
-      revision_ = java.util.Collections.emptyList();
+      revisions_ = java.util.Collections.emptyList();
     }
 
     @java.lang.Override
@@ -1994,10 +2012,10 @@ public final class ProjectProtos {
             }
             case 26: {
               if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-                revision_ = new java.util.ArrayList<joelbits.model.project.protobuf.ProjectProtos.Revision>();
+                revisions_ = new java.util.ArrayList<joelbits.model.project.protobuf.ProjectProtos.Revision>();
                 mutable_bitField0_ |= 0x00000004;
               }
-              revision_.add(
+              revisions_.add(
                   input.readMessage(joelbits.model.project.protobuf.ProjectProtos.Revision.parser(), extensionRegistry));
               break;
             }
@@ -2010,7 +2028,7 @@ public final class ProjectProtos {
             e).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
-          revision_ = java.util.Collections.unmodifiableList(revision_);
+          revisions_ = java.util.Collections.unmodifiableList(revisions_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -2195,39 +2213,39 @@ public final class ProjectProtos {
       return result == null ? joelbits.model.project.protobuf.ProjectProtos.CodeRepository.RepositoryType.UNRECOGNIZED : result;
     }
 
-    public static final int REVISION_FIELD_NUMBER = 3;
-    private java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> revision_;
+    public static final int REVISIONS_FIELD_NUMBER = 3;
+    private java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> revisions_;
     /**
-     * <code>repeated .joelbits.Revision revision = 3;</code>
+     * <code>repeated .joelbits.Revision revisions = 3;</code>
      */
-    public java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> getRevisionList() {
-      return revision_;
+    public java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> getRevisionsList() {
+      return revisions_;
     }
     /**
-     * <code>repeated .joelbits.Revision revision = 3;</code>
+     * <code>repeated .joelbits.Revision revisions = 3;</code>
      */
     public java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> 
-        getRevisionOrBuilderList() {
-      return revision_;
+        getRevisionsOrBuilderList() {
+      return revisions_;
     }
     /**
-     * <code>repeated .joelbits.Revision revision = 3;</code>
+     * <code>repeated .joelbits.Revision revisions = 3;</code>
      */
-    public int getRevisionCount() {
-      return revision_.size();
+    public int getRevisionsCount() {
+      return revisions_.size();
     }
     /**
-     * <code>repeated .joelbits.Revision revision = 3;</code>
+     * <code>repeated .joelbits.Revision revisions = 3;</code>
      */
-    public joelbits.model.project.protobuf.ProjectProtos.Revision getRevision(int index) {
-      return revision_.get(index);
+    public joelbits.model.project.protobuf.ProjectProtos.Revision getRevisions(int index) {
+      return revisions_.get(index);
     }
     /**
-     * <code>repeated .joelbits.Revision revision = 3;</code>
+     * <code>repeated .joelbits.Revision revisions = 3;</code>
      */
-    public joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder getRevisionOrBuilder(
+    public joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder getRevisionsOrBuilder(
         int index) {
-      return revision_.get(index);
+      return revisions_.get(index);
     }
 
     private byte memoizedIsInitialized = -1;
@@ -2248,8 +2266,8 @@ public final class ProjectProtos {
       if (type_ != joelbits.model.project.protobuf.ProjectProtos.CodeRepository.RepositoryType.GIT.getNumber()) {
         output.writeEnum(2, type_);
       }
-      for (int i = 0; i < revision_.size(); i++) {
-        output.writeMessage(3, revision_.get(i));
+      for (int i = 0; i < revisions_.size(); i++) {
+        output.writeMessage(3, revisions_.get(i));
       }
       unknownFields.writeTo(output);
     }
@@ -2266,9 +2284,9 @@ public final class ProjectProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(2, type_);
       }
-      for (int i = 0; i < revision_.size(); i++) {
+      for (int i = 0; i < revisions_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, revision_.get(i));
+          .computeMessageSize(3, revisions_.get(i));
       }
       size += unknownFields.getSerializedSize();
       memoizedSize = size;
@@ -2289,8 +2307,8 @@ public final class ProjectProtos {
       result = result && getUrl()
           .equals(other.getUrl());
       result = result && type_ == other.type_;
-      result = result && getRevisionList()
-          .equals(other.getRevisionList());
+      result = result && getRevisionsList()
+          .equals(other.getRevisionsList());
       result = result && unknownFields.equals(other.unknownFields);
       return result;
     }
@@ -2306,9 +2324,9 @@ public final class ProjectProtos {
       hash = (53 * hash) + getUrl().hashCode();
       hash = (37 * hash) + TYPE_FIELD_NUMBER;
       hash = (53 * hash) + type_;
-      if (getRevisionCount() > 0) {
-        hash = (37 * hash) + REVISION_FIELD_NUMBER;
-        hash = (53 * hash) + getRevisionList().hashCode();
+      if (getRevisionsCount() > 0) {
+        hash = (37 * hash) + REVISIONS_FIELD_NUMBER;
+        hash = (53 * hash) + getRevisionsList().hashCode();
       }
       hash = (29 * hash) + unknownFields.hashCode();
       memoizedHashCode = hash;
@@ -2435,7 +2453,7 @@ public final class ProjectProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessageV3
                 .alwaysUseFieldBuilders) {
-          getRevisionFieldBuilder();
+          getRevisionsFieldBuilder();
         }
       }
       public Builder clear() {
@@ -2444,11 +2462,11 @@ public final class ProjectProtos {
 
         type_ = 0;
 
-        if (revisionBuilder_ == null) {
-          revision_ = java.util.Collections.emptyList();
+        if (revisionsBuilder_ == null) {
+          revisions_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000004);
         } else {
-          revisionBuilder_.clear();
+          revisionsBuilder_.clear();
         }
         return this;
       }
@@ -2476,14 +2494,14 @@ public final class ProjectProtos {
         int to_bitField0_ = 0;
         result.url_ = url_;
         result.type_ = type_;
-        if (revisionBuilder_ == null) {
+        if (revisionsBuilder_ == null) {
           if (((bitField0_ & 0x00000004) == 0x00000004)) {
-            revision_ = java.util.Collections.unmodifiableList(revision_);
+            revisions_ = java.util.Collections.unmodifiableList(revisions_);
             bitField0_ = (bitField0_ & ~0x00000004);
           }
-          result.revision_ = revision_;
+          result.revisions_ = revisions_;
         } else {
-          result.revision_ = revisionBuilder_.build();
+          result.revisions_ = revisionsBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -2534,29 +2552,29 @@ public final class ProjectProtos {
         if (other.type_ != 0) {
           setTypeValue(other.getTypeValue());
         }
-        if (revisionBuilder_ == null) {
-          if (!other.revision_.isEmpty()) {
-            if (revision_.isEmpty()) {
-              revision_ = other.revision_;
+        if (revisionsBuilder_ == null) {
+          if (!other.revisions_.isEmpty()) {
+            if (revisions_.isEmpty()) {
+              revisions_ = other.revisions_;
               bitField0_ = (bitField0_ & ~0x00000004);
             } else {
-              ensureRevisionIsMutable();
-              revision_.addAll(other.revision_);
+              ensureRevisionsIsMutable();
+              revisions_.addAll(other.revisions_);
             }
             onChanged();
           }
         } else {
-          if (!other.revision_.isEmpty()) {
-            if (revisionBuilder_.isEmpty()) {
-              revisionBuilder_.dispose();
-              revisionBuilder_ = null;
-              revision_ = other.revision_;
+          if (!other.revisions_.isEmpty()) {
+            if (revisionsBuilder_.isEmpty()) {
+              revisionsBuilder_.dispose();
+              revisionsBuilder_ = null;
+              revisions_ = other.revisions_;
               bitField0_ = (bitField0_ & ~0x00000004);
-              revisionBuilder_ = 
+              revisionsBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                   getRevisionFieldBuilder() : null;
+                   getRevisionsFieldBuilder() : null;
             } else {
-              revisionBuilder_.addAllMessages(other.revision_);
+              revisionsBuilder_.addAllMessages(other.revisions_);
             }
           }
         }
@@ -2701,244 +2719,244 @@ public final class ProjectProtos {
         return this;
       }
 
-      private java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> revision_ =
+      private java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> revisions_ =
         java.util.Collections.emptyList();
-      private void ensureRevisionIsMutable() {
+      private void ensureRevisionsIsMutable() {
         if (!((bitField0_ & 0x00000004) == 0x00000004)) {
-          revision_ = new java.util.ArrayList<joelbits.model.project.protobuf.ProjectProtos.Revision>(revision_);
+          revisions_ = new java.util.ArrayList<joelbits.model.project.protobuf.ProjectProtos.Revision>(revisions_);
           bitField0_ |= 0x00000004;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilderV3<
-          joelbits.model.project.protobuf.ProjectProtos.Revision, joelbits.model.project.protobuf.ProjectProtos.Revision.Builder, joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> revisionBuilder_;
+          joelbits.model.project.protobuf.ProjectProtos.Revision, joelbits.model.project.protobuf.ProjectProtos.Revision.Builder, joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> revisionsBuilder_;
 
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> getRevisionList() {
-        if (revisionBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(revision_);
+      public java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision> getRevisionsList() {
+        if (revisionsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(revisions_);
         } else {
-          return revisionBuilder_.getMessageList();
+          return revisionsBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public int getRevisionCount() {
-        if (revisionBuilder_ == null) {
-          return revision_.size();
+      public int getRevisionsCount() {
+        if (revisionsBuilder_ == null) {
+          return revisions_.size();
         } else {
-          return revisionBuilder_.getCount();
+          return revisionsBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public joelbits.model.project.protobuf.ProjectProtos.Revision getRevision(int index) {
-        if (revisionBuilder_ == null) {
-          return revision_.get(index);
+      public joelbits.model.project.protobuf.ProjectProtos.Revision getRevisions(int index) {
+        if (revisionsBuilder_ == null) {
+          return revisions_.get(index);
         } else {
-          return revisionBuilder_.getMessage(index);
+          return revisionsBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public Builder setRevision(
+      public Builder setRevisions(
           int index, joelbits.model.project.protobuf.ProjectProtos.Revision value) {
-        if (revisionBuilder_ == null) {
+        if (revisionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureRevisionIsMutable();
-          revision_.set(index, value);
+          ensureRevisionsIsMutable();
+          revisions_.set(index, value);
           onChanged();
         } else {
-          revisionBuilder_.setMessage(index, value);
+          revisionsBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public Builder setRevision(
+      public Builder setRevisions(
           int index, joelbits.model.project.protobuf.ProjectProtos.Revision.Builder builderForValue) {
-        if (revisionBuilder_ == null) {
-          ensureRevisionIsMutable();
-          revision_.set(index, builderForValue.build());
+        if (revisionsBuilder_ == null) {
+          ensureRevisionsIsMutable();
+          revisions_.set(index, builderForValue.build());
           onChanged();
         } else {
-          revisionBuilder_.setMessage(index, builderForValue.build());
+          revisionsBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public Builder addRevision(joelbits.model.project.protobuf.ProjectProtos.Revision value) {
-        if (revisionBuilder_ == null) {
+      public Builder addRevisions(joelbits.model.project.protobuf.ProjectProtos.Revision value) {
+        if (revisionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureRevisionIsMutable();
-          revision_.add(value);
+          ensureRevisionsIsMutable();
+          revisions_.add(value);
           onChanged();
         } else {
-          revisionBuilder_.addMessage(value);
+          revisionsBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public Builder addRevision(
+      public Builder addRevisions(
           int index, joelbits.model.project.protobuf.ProjectProtos.Revision value) {
-        if (revisionBuilder_ == null) {
+        if (revisionsBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureRevisionIsMutable();
-          revision_.add(index, value);
+          ensureRevisionsIsMutable();
+          revisions_.add(index, value);
           onChanged();
         } else {
-          revisionBuilder_.addMessage(index, value);
+          revisionsBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public Builder addRevision(
+      public Builder addRevisions(
           joelbits.model.project.protobuf.ProjectProtos.Revision.Builder builderForValue) {
-        if (revisionBuilder_ == null) {
-          ensureRevisionIsMutable();
-          revision_.add(builderForValue.build());
+        if (revisionsBuilder_ == null) {
+          ensureRevisionsIsMutable();
+          revisions_.add(builderForValue.build());
           onChanged();
         } else {
-          revisionBuilder_.addMessage(builderForValue.build());
+          revisionsBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public Builder addRevision(
+      public Builder addRevisions(
           int index, joelbits.model.project.protobuf.ProjectProtos.Revision.Builder builderForValue) {
-        if (revisionBuilder_ == null) {
-          ensureRevisionIsMutable();
-          revision_.add(index, builderForValue.build());
+        if (revisionsBuilder_ == null) {
+          ensureRevisionsIsMutable();
+          revisions_.add(index, builderForValue.build());
           onChanged();
         } else {
-          revisionBuilder_.addMessage(index, builderForValue.build());
+          revisionsBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public Builder addAllRevision(
+      public Builder addAllRevisions(
           java.lang.Iterable<? extends joelbits.model.project.protobuf.ProjectProtos.Revision> values) {
-        if (revisionBuilder_ == null) {
-          ensureRevisionIsMutable();
+        if (revisionsBuilder_ == null) {
+          ensureRevisionsIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, revision_);
+              values, revisions_);
           onChanged();
         } else {
-          revisionBuilder_.addAllMessages(values);
+          revisionsBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public Builder clearRevision() {
-        if (revisionBuilder_ == null) {
-          revision_ = java.util.Collections.emptyList();
+      public Builder clearRevisions() {
+        if (revisionsBuilder_ == null) {
+          revisions_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000004);
           onChanged();
         } else {
-          revisionBuilder_.clear();
+          revisionsBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public Builder removeRevision(int index) {
-        if (revisionBuilder_ == null) {
-          ensureRevisionIsMutable();
-          revision_.remove(index);
+      public Builder removeRevisions(int index) {
+        if (revisionsBuilder_ == null) {
+          ensureRevisionsIsMutable();
+          revisions_.remove(index);
           onChanged();
         } else {
-          revisionBuilder_.remove(index);
+          revisionsBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public joelbits.model.project.protobuf.ProjectProtos.Revision.Builder getRevisionBuilder(
+      public joelbits.model.project.protobuf.ProjectProtos.Revision.Builder getRevisionsBuilder(
           int index) {
-        return getRevisionFieldBuilder().getBuilder(index);
+        return getRevisionsFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder getRevisionOrBuilder(
+      public joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder getRevisionsOrBuilder(
           int index) {
-        if (revisionBuilder_ == null) {
-          return revision_.get(index);  } else {
-          return revisionBuilder_.getMessageOrBuilder(index);
+        if (revisionsBuilder_ == null) {
+          return revisions_.get(index);  } else {
+          return revisionsBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
       public java.util.List<? extends joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> 
-           getRevisionOrBuilderList() {
-        if (revisionBuilder_ != null) {
-          return revisionBuilder_.getMessageOrBuilderList();
+           getRevisionsOrBuilderList() {
+        if (revisionsBuilder_ != null) {
+          return revisionsBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(revision_);
+          return java.util.Collections.unmodifiableList(revisions_);
         }
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public joelbits.model.project.protobuf.ProjectProtos.Revision.Builder addRevisionBuilder() {
-        return getRevisionFieldBuilder().addBuilder(
+      public joelbits.model.project.protobuf.ProjectProtos.Revision.Builder addRevisionsBuilder() {
+        return getRevisionsFieldBuilder().addBuilder(
             joelbits.model.project.protobuf.ProjectProtos.Revision.getDefaultInstance());
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
-      public joelbits.model.project.protobuf.ProjectProtos.Revision.Builder addRevisionBuilder(
+      public joelbits.model.project.protobuf.ProjectProtos.Revision.Builder addRevisionsBuilder(
           int index) {
-        return getRevisionFieldBuilder().addBuilder(
+        return getRevisionsFieldBuilder().addBuilder(
             index, joelbits.model.project.protobuf.ProjectProtos.Revision.getDefaultInstance());
       }
       /**
-       * <code>repeated .joelbits.Revision revision = 3;</code>
+       * <code>repeated .joelbits.Revision revisions = 3;</code>
        */
       public java.util.List<joelbits.model.project.protobuf.ProjectProtos.Revision.Builder> 
-           getRevisionBuilderList() {
-        return getRevisionFieldBuilder().getBuilderList();
+           getRevisionsBuilderList() {
+        return getRevisionsFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilderV3<
           joelbits.model.project.protobuf.ProjectProtos.Revision, joelbits.model.project.protobuf.ProjectProtos.Revision.Builder, joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder> 
-          getRevisionFieldBuilder() {
-        if (revisionBuilder_ == null) {
-          revisionBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
+          getRevisionsFieldBuilder() {
+        if (revisionsBuilder_ == null) {
+          revisionsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
               joelbits.model.project.protobuf.ProjectProtos.Revision, joelbits.model.project.protobuf.ProjectProtos.Revision.Builder, joelbits.model.project.protobuf.ProjectProtos.RevisionOrBuilder>(
-                  revision_,
+                  revisions_,
                   ((bitField0_ & 0x00000004) == 0x00000004),
                   getParentForChildren(),
                   isClean());
-          revision_ = null;
+          revisions_ = null;
         }
-        return revisionBuilder_;
+        return revisionsBuilder_;
       }
       public final Builder setUnknownFields(
           final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -6204,32 +6222,33 @@ public final class ProjectProtos {
   static {
     java.lang.String[] descriptorData = {
       "\n\rproject.proto\022\010joelbits\032\037google/protob" +
-      "uf/timestamp.proto\"\245\002\n\007Project\022\n\n\002id\030\001 \001" +
+      "uf/timestamp.proto\"\305\002\n\007Project\022\n\n\002id\030\001 \001" +
       "(\t\022\014\n\004name\030\002 \001(\t\022+\n\004type\030\003 \001(\0162\035.joelbit" +
       "s.Project.ProjectType\022.\n\014repositories\030\004 " +
       "\003(\0132\030.joelbits.CodeRepository\022\013\n\003url\030\005 \001" +
       "(\t\0220\n\014created_date\030\006 \001(\0132\032.google.protob" +
       "uf.Timestamp\022\035\n\025programming_languages\030\007 " +
-      "\003(\t\022\r\n\005forks\030\010 \001(\005\022\020\n\010watchers\030\t \001(\005\"$\n\013" +
-      "ProjectType\022\n\n\006GITHUB\020\000\022\t\n\005OTHER\020\001\"\262\001\n\016C" +
-      "odeRepository\022\013\n\003url\030\001 \001(\t\0225\n\004type\030\002 \001(\016" +
-      "2\'.joelbits.CodeRepository.RepositoryTyp" +
-      "e\022$\n\010revision\030\003 \003(\0132\022.joelbits.Revision\"" +
-      "6\n\016RepositoryType\022\007\n\003GIT\020\000\022\007\n\003SVN\020\001\022\007\n\003C" +
-      "VS\020\002\022\t\n\005OTHER\020\003\"\237\001\n\010Revision\022\n\n\002id\030\001 \001(\t" +
-      "\022/\n\013commit_date\030\002 \001(\0132\032.google.protobuf." +
-      "Timestamp\022#\n\tcommitter\030\003 \001(\0132\020.joelbits." +
-      "Person\022$\n\005files\030\004 \003(\0132\025.joelbits.Changed" +
-      "File\022\013\n\003log\030\005 \001(\t\"<\n\006Person\022\020\n\010username\030" +
-      "\001 \001(\t\022\021\n\treal_name\030\002 \001(\t\022\r\n\005email\030\003 \001(\t\"" +
-      "\201\002\n\013ChangedFile\022\014\n\004name\030\001 \001(\t\0220\n\006change\030" +
-      "\002 \001(\0162 .joelbits.ChangedFile.ChangeType\022" +
-      ",\n\004type\030\003 \001(\0162\036.joelbits.ChangedFile.Fil" +
-      "eType\"2\n\nChangeType\022\t\n\005ADDED\020\000\022\013\n\007DELETE" +
-      "D\020\001\022\014\n\010MODIFIED\020\002\"P\n\010FileType\022\n\n\006BINARY\020" +
-      "\000\022\010\n\004JAVA\020\001\022\006\n\002GO\020\002\022\010\n\004TEXT\020\003\022\007\n\003XML\020\004\022\010" +
-      "\n\004JSON\020\005\022\t\n\005OTHER\020\006B0\n\037joelbits.model.pr" +
-      "oject.protobufB\rProjectProtosb\006proto3"
+      "\003(\t\022\r\n\005forks\030\010 \001(\005\022\020\n\010watchers\030\t \001(\005\"D\n\013" +
+      "ProjectType\022\n\n\006GITHUB\020\000\022\017\n\013SOURCEFORGE\020\001" +
+      "\022\r\n\tBITBUCKET\020\002\022\t\n\005OTHER\020\003\"\263\001\n\016CodeRepos" +
+      "itory\022\013\n\003url\030\001 \001(\t\0225\n\004type\030\002 \001(\0162\'.joelb" +
+      "its.CodeRepository.RepositoryType\022%\n\trev" +
+      "isions\030\003 \003(\0132\022.joelbits.Revision\"6\n\016Repo" +
+      "sitoryType\022\007\n\003GIT\020\000\022\007\n\003SVN\020\001\022\007\n\003CVS\020\002\022\t\n" +
+      "\005OTHER\020\003\"\237\001\n\010Revision\022\n\n\002id\030\001 \001(\t\022/\n\013com" +
+      "mit_date\030\002 \001(\0132\032.google.protobuf.Timesta" +
+      "mp\022#\n\tcommitter\030\003 \001(\0132\020.joelbits.Person\022" +
+      "$\n\005files\030\004 \003(\0132\025.joelbits.ChangedFile\022\013\n" +
+      "\003log\030\005 \001(\t\"<\n\006Person\022\020\n\010username\030\001 \001(\t\022\021" +
+      "\n\treal_name\030\002 \001(\t\022\r\n\005email\030\003 \001(\t\"\201\002\n\013Cha" +
+      "ngedFile\022\014\n\004name\030\001 \001(\t\0220\n\006change\030\002 \001(\0162 " +
+      ".joelbits.ChangedFile.ChangeType\022,\n\004type" +
+      "\030\003 \001(\0162\036.joelbits.ChangedFile.FileType\"2" +
+      "\n\nChangeType\022\t\n\005ADDED\020\000\022\013\n\007DELETED\020\001\022\014\n\010" +
+      "MODIFIED\020\002\"P\n\010FileType\022\n\n\006BINARY\020\000\022\010\n\004JA" +
+      "VA\020\001\022\006\n\002GO\020\002\022\010\n\004TEXT\020\003\022\007\n\003XML\020\004\022\010\n\004JSON\020" +
+      "\005\022\t\n\005OTHER\020\006B0\n\037joelbits.model.project.p" +
+      "rotobufB\rProjectProtosb\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -6255,7 +6274,7 @@ public final class ProjectProtos {
     internal_static_joelbits_CodeRepository_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_joelbits_CodeRepository_descriptor,
-        new java.lang.String[] { "Url", "Type", "Revision", });
+        new java.lang.String[] { "Url", "Type", "Revisions", });
     internal_static_joelbits_Revision_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_joelbits_Revision_fieldAccessorTable = new

@@ -27,7 +27,7 @@ message Project {
 message CodeRepository {
     string url = 1;
     RepositoryType type = 2;
-    repeated Revision revision = 3;
+    repeated Revision revisions = 3;
     enum RepositoryType {
         GIT = 0;
         SVN = 1;
