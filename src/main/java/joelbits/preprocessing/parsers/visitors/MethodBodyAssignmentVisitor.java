@@ -19,7 +19,7 @@ public class MethodBodyAssignmentVisitor extends VoidVisitorAdapter<List<Express
         String target = assignmentExpression.getTarget().toString();
         String value = assignmentExpression.getValue().toString();
         Expression assignment = ASTNodeCreator.
-                createBodyContentAssignmentExpression(ExpressionType.ASSIGN, target, value);
+                createMethodBodyAssignmentExpression(ExpressionType.ASSIGN, target, value);
 
         methodBodyAssignments.add(assignment);
     }

@@ -84,7 +84,17 @@ public class ASTNodeCreator {
                 .build();
     }
 
-    public static Expression createBodyContentAssignmentExpression(ExpressionType type, String variable, String literal) {
+    public static Expression createExpression(ExpressionType type, String literal, String variable, List<Variable> declarations, List<Expression> arguments) {
+        return Expression.newBuilder()
+                .setType(type)
+                .setLiteral(literal)
+                .setVariable(variable)
+                .addAllVariableDeclarations(declarations)
+                .addAllMethodArguments(arguments)
+                .build();
+    }
+
+    public static Expression createMethodBodyAssignmentExpression(ExpressionType type, String variable, String literal) {
         return Expression.newBuilder()
                 .setType(type)
                 .setVariable(variable)
