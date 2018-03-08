@@ -1,4 +1,4 @@
-package joelbits.analysis.reducers;
+package joelbits.modules.analysis.reducers;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.io.Text;

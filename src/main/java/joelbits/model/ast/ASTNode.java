@@ -1,6 +1,6 @@
 package joelbits.model.ast;
 
-import joelbits.analysis.visitors.Visitor;
+import joelbits.modules.analysis.visitors.Visitor;
 
 /**
  * Any time a call to accept answers false, it signals the parent node's accept method to stop

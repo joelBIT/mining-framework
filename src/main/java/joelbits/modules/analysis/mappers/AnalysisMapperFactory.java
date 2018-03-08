@@ -1,4 +1,4 @@
-package joelbits.analysis.mappers;
+package joelbits.modules.analysis.mappers;
 
 import org.apache.hadoop.mapreduce.Mapper;
 

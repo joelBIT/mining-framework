@@ -1,7 +1,7 @@
-package joelbits.analysis.mappers;
+package joelbits.modules.analysis.mappers;
 
-import joelbits.analysis.utils.AnalysisUtil;
-import joelbits.analysis.visitors.BenchmarkEvolutionVisitor;
+import joelbits.modules.analysis.utils.AnalysisUtil;
+import joelbits.modules.analysis.visitors.BenchmarkEvolutionVisitor;
 import joelbits.model.ast.ASTRoot;
 import joelbits.model.project.CodeRepository;
 import joelbits.model.project.Project;

@@ -1,4 +1,4 @@
-package joelbits.analysis.visitors;
+package joelbits.modules.analysis.visitors;
 
 import joelbits.model.ast.*;
 

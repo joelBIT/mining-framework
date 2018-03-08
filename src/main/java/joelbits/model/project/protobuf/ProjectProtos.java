@@ -278,7 +278,7 @@ public final class ProjectProtos {
     public enum ProjectType
         implements com.google.protobuf.ProtocolMessageEnum {
       /**
-       * <code>GITHUB = 0;</code>
+       * <code>GIT = 0;</code>
        */
       GITHUB(0),
       /**
@@ -297,7 +297,7 @@ public final class ProjectProtos {
       ;
 
       /**
-       * <code>GITHUB = 0;</code>
+       * <code>GIT = 0;</code>
        */
       public static final int GITHUB_VALUE = 0;
       /**

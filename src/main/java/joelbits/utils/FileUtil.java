@@ -27,4 +27,8 @@ public class FileUtil {
 
         return nodeList.elements();
     }
+
+    public static File createFile(String fileName) {
+        return new File(PathUtil.jarPath() + fileName);
+    }
 }

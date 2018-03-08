@@ -5,11 +5,9 @@ import com.google.inject.Inject;
 import joelbits.configs.FileConfig;
 import joelbits.modules.cloning.plugins.CloneService;
 import joelbits.modules.cloning.plugins.spi.Clone;
-import joelbits.preprocessing.PreProcessorModule;
+import joelbits.modules.preprocessing.PreProcessorModule;
 import joelbits.modules.cloning.utils.FileRepositoryExtractor;
-import joelbits.utils.PathUtil;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.util.GenericOptionsParser;
+import joelbits.utils.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,8 +40,7 @@ public class CloneModule {
     }
 
     public void clone(String[] args) throws IOException {
-        String[] otherArgs = new GenericOptionsParser(new Configuration(), args).getRemainingArgs();
-        if (otherArgs.length != 2) {
+        if (args.length != 2) {
             error("Expects exactly 2 parameters", new IllegalArgumentException());
         }
 
@@ -80,7 +77,7 @@ public class CloneModule {
      */
     private List<String> getRepositories(String inputFileName,String repositoryNameNode, String repositoryListNode) {
         List<String> repositories = new ArrayList<>();
-        File metadataFile = createFile(inputFileName);
+        File metadataFile = FileUtil.createFile(inputFileName);
 
         try {
             repositories.addAll(FileRepositoryExtractor
@@ -90,9 +87,5 @@ public class CloneModule {
         }
 
         return repositories;
-    }
-
-    private File createFile(String fileName) {
-        return new File(PathUtil.jarPath() + fileName);
     }
 }

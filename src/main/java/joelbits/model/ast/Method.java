@@ -1,6 +1,6 @@
 package joelbits.model.ast;
 
-import joelbits.analysis.visitors.Visitor;
+import joelbits.modules.analysis.visitors.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;

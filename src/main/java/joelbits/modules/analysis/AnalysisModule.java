@@ -1,8 +1,8 @@
-package joelbits.analysis;
+package joelbits.modules.analysis;
 
-import joelbits.analysis.mappers.AnalysisMapperFactory;
-import joelbits.analysis.reducers.AnalysisReducerFactory;
-import joelbits.utils.FrameworkUtil;
+import joelbits.modules.analysis.mappers.AnalysisMapperFactory;
+import joelbits.modules.analysis.reducers.AnalysisReducerFactory;
+import joelbits.utils.PathUtil;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileSystem;
@@ -21,7 +21,9 @@ import org.apache.hadoop.util.ToolRunner;
 import java.io.IOException;
 
 /**
- * The driver program for MapReduce job.
+ * minimum 3 input parameters;  --analysisPlugin --outputFileName --dataset(s)
+ * Example: --benchmarkConfigurations --configurations.txt --jmh_dataset
+ *
  */
 public class AnalysisModule extends Configured implements Tool {
     private static final String OUTPUT_JOB_DIRECTORY = "output";
@@ -34,8 +36,8 @@ public class AnalysisModule extends Configured implements Tool {
     public int run(String[] args) throws Exception {
         Configuration configuration = this.getConf();
         String[] otherArgs = new GenericOptionsParser(configuration, args).getRemainingArgs();
-        if (otherArgs.length < 2) {
-            System.err.println("At least two parameters expected");
+        if (otherArgs.length < 3) {
+            System.err.println("At least three parameters are expected");
             System.exit(2);
         }
 
@@ -53,18 +55,18 @@ public class AnalysisModule extends Configured implements Tool {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
 
-        FileInputFormat.addInputPath(job, new Path(FrameworkUtil.projectSequenceFile()));
+        FileInputFormat.addInputPath(job, new Path(PathUtil.projectSequenceFile()));
         //FileInputFormat.addInputPaths(job, "commaSeparatedPaths");  // use this to take input dataset to allow for replication (combining several dataset for a specific analysis)
         job.setInputFormatClass(SequenceFileInputFormat.class);
 
-        FileOutputFormat.setOutputPath(job, new Path(FrameworkUtil.jarPath() + OUTPUT_JOB_DIRECTORY));
+        FileOutputFormat.setOutputPath(job, new Path(PathUtil.jarPath() + OUTPUT_JOB_DIRECTORY));
         job.setOutputFormatClass(TextOutputFormat.class);
 
         int completionStatus = job.waitForCompletion(true) ? 0 : 1;
 
         if (completionStatus == 0) {
-            String inputJobDirectory = FrameworkUtil.jarPath() + OUTPUT_JOB_DIRECTORY;
-            String outputFile = FrameworkUtil.jarPath() + args[1];
+            String inputJobDirectory = PathUtil.jarPath() + OUTPUT_JOB_DIRECTORY;
+            String outputFile = PathUtil.jarPath() + args[1];
             try {
                 FileUtil.copyMerge(FileSystem.get(configuration), new Path(inputJobDirectory), FileSystem.get(configuration), new Path(outputFile), true, configuration, null);
             } catch (IOException e) {

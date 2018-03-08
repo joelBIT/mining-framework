@@ -2,7 +2,7 @@ package joelbits.model.ast;
 
 import joelbits.model.ast.types.ModifierType;
 import joelbits.model.ast.types.VisibilityType;
-import joelbits.analysis.visitors.Visitor;
+import joelbits.modules.analysis.visitors.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
