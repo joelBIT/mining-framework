@@ -1,4 +1,4 @@
-package joelbits.plugins.spi;
+package joelbits.modules.cloning.plugins.spi;
 
 import java.util.List;
 

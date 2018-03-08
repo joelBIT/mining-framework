@@ -31,6 +31,23 @@ public class AnalysisUtil {
     }
 
     /**
+     * Retrieves the difference of each file that has been changed between two revisions in a repository.
+     * A map is returned containing the difference between the revisions of each file. The key is the file path
+     * since it is unique for each file in a repository, and the value is the ASTRoot representing the changes
+     * of the file.
+     *
+     * @param leastRecent       the revision of interest oldest in time
+     * @param mostRecent        the revision of interest most recent in time
+     * @param repositoryUrl     the url of the repository containing the revisions
+     * @return                  a list containing the difference of each file between the revisions
+     */
+    public static Map<String, ASTRoot> differenceRevisions(Revision leastRecent, Revision mostRecent, String repositoryUrl) {
+
+
+        return new HashMap<>();
+    }
+
+    /**
      * Retrieve all changed files in a revision that contains benchmarks.
      *
      * @param revision          the revision of interest

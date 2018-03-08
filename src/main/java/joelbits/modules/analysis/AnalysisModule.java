@@ -54,6 +54,7 @@ public class AnalysisModule extends Configured implements Tool {
         job.setOutputValueClass(Text.class);
 
         FileInputFormat.addInputPath(job, new Path(FrameworkUtil.projectSequenceFile()));
+        //FileInputFormat.addInputPaths(job, "commaSeparatedPaths");  // use this to take input dataset to allow for replication (combining several dataset for a specific analysis)
         job.setInputFormatClass(SequenceFileInputFormat.class);
 
         FileOutputFormat.setOutputPath(job, new Path(FrameworkUtil.jarPath() + OUTPUT_JOB_DIRECTORY));

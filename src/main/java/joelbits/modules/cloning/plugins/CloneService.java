@@ -1,6 +1,6 @@
-package joelbits.plugins;
+package joelbits.modules.cloning.plugins;
 
-import joelbits.plugins.spi.Clone;
+import joelbits.modules.cloning.plugins.spi.Clone;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,20 +23,6 @@ public class CloneService {
         return service;
     }
 
-    public List<Clone> clonePlugins() {
-        List<Clone> clonePlugins = new ArrayList<>();
-
-        try {
-            for (Clone clone : loader) {
-                clonePlugins.add(clone);
-            }
-        } catch (ServiceConfigurationError e) {
-            log.error(e.toString(), e);
-        }
-
-        return clonePlugins;
-    }
-
     public Clone getClonePlugin(String clonePlugin) throws IllegalArgumentException {
         try {
             for (Clone clone : loader) {
@@ -47,6 +33,6 @@ public class CloneService {
         } catch (ServiceConfigurationError e) {
             log.error(e.toString(), e);
         }
-        throw new IllegalArgumentException(clonePlugin + " not found");
+        throw new NoSuchElementException(clonePlugin + " not found");
     }
 }
