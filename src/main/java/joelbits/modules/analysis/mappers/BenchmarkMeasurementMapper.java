@@ -5,10 +5,10 @@ import joelbits.modules.analysis.visitors.BenchmarkMeasurementVisitor;
 import joelbits.model.ast.ASTRoot;
 import joelbits.model.project.CodeRepository;
 import joelbits.model.project.Project;
+import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.eclipse.jgit.util.StringUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ public final class BenchmarkMeasurementMapper extends Mapper<Text, BytesWritable
         if (classConfigurations.isEmpty()) {
             for (Map.Entry<String, Map<String, List<String>>> benchmark : visitor.getBenchmarkConfigurations().entrySet()) {
                 for (Map.Entry<String, List<String>> configuration : benchmark.getValue().entrySet()) {
-                    if (!StringUtils.isEmptyOrNull(configuration.getKey())) {
+                    if (!StringUtils.isEmpty(configuration.getKey())) {
                         context.write(new Text(declarationName + ":" + benchmark.getKey()), new Text("@" + configuration.getKey() + "(" + StringUtils.join(configuration.getValue(), ",").trim() + ")"));
                     }
                 }

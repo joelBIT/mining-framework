@@ -3,7 +3,7 @@ package joelbits.modules.preprocessing.preprocessor;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.PeekingIterator;
-import joelbits.modules.preprocessing.connectors.Connector;
+import joelbits.modules.preprocessing.plugins.spi.Connector;
 import static joelbits.model.project.protobuf.ProjectProtos.Person;
 import static joelbits.model.project.protobuf.ProjectProtos.Revision;
 import static joelbits.model.project.protobuf.ProjectProtos.ChangedFile;
@@ -147,7 +147,7 @@ public final class RepositoryPreProcessor implements PreProcessor {
 
         for (String filePath : filesInRepository) {
             try {
-                if (filePath.toLowerCase().endsWith(".java") && parser.hasBenchmarks(new File(path + filePath))) {
+                if (filePath.toLowerCase().endsWith("." + parser.toString().toLowerCase()) && parser.hasBenchmarks(new File(path + filePath))) {
                     benchmarkFilesInNewestSnapshot.add(filePath);
                 }
             } catch (Exception e) {

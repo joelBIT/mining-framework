@@ -2,8 +2,9 @@ package joelbits.modules.preprocessing;
 
 import com.google.inject.Guice;
 import com.google.inject.Inject;
-import joelbits.modules.preprocessing.connectors.GitConnector;
+import joelbits.modules.preprocessing.plugins.ConnectorService;
 import joelbits.modules.preprocessing.plugins.ParserService;
+import joelbits.modules.preprocessing.plugins.spi.Connector;
 import joelbits.modules.preprocessing.plugins.spi.MicrobenchmarkParser;
 import joelbits.modules.preprocessing.preprocessor.PreProcessor;
 import joelbits.modules.preprocessing.preprocessor.RepositoryPreProcessor;
@@ -49,9 +50,9 @@ public final class PreProcessorModule {
             error("Expects 3 or 4 parameters", new IllegalArgumentException());
         }
 
+        Connector connector = ConnectorService.getInstance().getConnectorPlugin(args[0]);
         MicrobenchmarkParser parser = ParserService.getInstance().getParserPlugin(args[1]);
 
-        String connector = args[0];
         String metadataFile = args[2];
         String outputFileName = Instant.now().toString();
 
@@ -60,7 +61,7 @@ public final class PreProcessorModule {
         }
 
         try {
-            preProcessor = new RepositoryPreProcessor(parser, new GitConnector());
+            preProcessor = new RepositoryPreProcessor(parser, connector);
             preProcessor.process(FileUtil.createFile(metadataFile));
 
             persistenceUtil.persistProjects(preProcessor.projects());

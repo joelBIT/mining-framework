@@ -5,10 +5,10 @@ import joelbits.modules.analysis.visitors.BenchmarkConfigurationVisitor;
 import joelbits.model.ast.ASTRoot;
 import joelbits.model.project.CodeRepository;
 import joelbits.model.project.Project;
+import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.io.BytesWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
-import org.eclipse.jgit.util.StringUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,7 +44,7 @@ public final class BenchmarkConfigurationMapper extends Mapper<Text, BytesWritab
     private void writeBenchmarkConfigurations(Context context, String declarationName, BenchmarkConfigurationVisitor visitor) throws IOException, InterruptedException {
         for (Map.Entry<String, Map<String, List<String>>> configuration : visitor.getBenchmarkConfigurations().entrySet()) {
             for (Map.Entry<String, List<String>> benchmark : configuration.getValue().entrySet()) {
-                if (!StringUtils.isEmptyOrNull(benchmark.getKey())) {
+                if (!StringUtils.isEmpty(benchmark.getKey())) {
                     context.write(new Text(declarationName + ":" + configuration.getKey()), new Text("@" + benchmark.getKey() + "(" + StringUtils.join(benchmark.getValue(), ",").trim() + ")"));
                 }
             }
