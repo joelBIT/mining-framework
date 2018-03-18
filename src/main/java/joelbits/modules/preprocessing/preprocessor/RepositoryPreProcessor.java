@@ -3,10 +3,6 @@ package joelbits.modules.preprocessing.preprocessor;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.PeekingIterator;
-import com.google.inject.Guice;
-import com.google.inject.Inject;
-import com.google.inject.name.Named;
-import joelbits.modules.preprocessing.InjectionPreProcessingModule;
 import joelbits.modules.preprocessing.connectors.Connector;
 import static joelbits.model.project.protobuf.ProjectProtos.Person;
 import static joelbits.model.project.protobuf.ProjectProtos.Revision;
@@ -16,7 +12,7 @@ import static joelbits.model.project.protobuf.ProjectProtos.CodeRepository.Repos
 import static joelbits.model.project.protobuf.ProjectProtos.Project;
 import static joelbits.model.project.protobuf.ProjectProtos.Project.ProjectType;
 
-import joelbits.modules.preprocessing.parsers.Parser;
+import joelbits.modules.preprocessing.plugins.spi.MicrobenchmarkParser;
 import joelbits.modules.preprocessing.utils.ProjectNodeCreator;
 import joelbits.utils.FileUtil;
 import joelbits.utils.PathUtil;
@@ -35,17 +31,13 @@ public final class RepositoryPreProcessor implements PreProcessor {
     private final Map<String, byte[]> projects = new HashMap<>();
     private final Map<String, Map<String, byte[]>> benchmarkFilesEvolution = new HashMap<>();
     private final Set<String> benchmarkFilesInNewestSnapshot = new HashSet<>();
-    @Inject
-    @Named("java")
-    private Parser javaParser;
-    @Inject
-    @Named("git")
-    private Connector gitConnector;
-    @Inject
-    private ProjectNodeCreator projectNodeCreator;
+    private final ProjectNodeCreator projectNodeCreator = new ProjectNodeCreator();
+    private final MicrobenchmarkParser parser;
+    private final Connector connector;
 
-    public RepositoryPreProcessor() {
-        Guice.createInjector(new InjectionPreProcessingModule()).injectMembers(this);
+    public RepositoryPreProcessor(MicrobenchmarkParser parser, Connector connector) {
+        this.parser = parser;
+        this.connector = connector;
     }
 
     /**
@@ -63,9 +55,10 @@ public final class RepositoryPreProcessor implements PreProcessor {
                 String codeRepository = node.get("full_name").asText();
 
                 try {
-                    gitConnector.connect(codeRepository);
+                    connector.connect(codeRepository);
                 } catch (Exception e) {
                     log.error(e.toString(), e);
+                    System.err.println(e);
                     continue;
                 }
 
@@ -73,12 +66,13 @@ public final class RepositoryPreProcessor implements PreProcessor {
                 List<ChangedFile> revisionFiles = new ArrayList<>();
 
                 try {
-                    identifyBenchmarkFiles(codeRepository, gitConnector.snapshotFiles(gitConnector.mostRecentCommitId()));
+                    identifyBenchmarkFiles(codeRepository, connector.snapshotFiles(connector.mostRecentCommitId()));
                 } catch (Exception e) {
                     log.error(e.toString(), e);
+                    System.err.println(e);
                 }
 
-                List<String> allCommitIds = gitConnector.allCommitIds();
+                List<String> allCommitIds = connector.allCommitIds();
                 System.out.println(codeRepository + " has " + allCommitIds.size() + " revisions");
                 PeekingIterator<String> commitIterator = Iterators.peekingIterator(allCommitIds.iterator());
                 while (commitIterator.hasNext()) {
@@ -88,7 +82,7 @@ public final class RepositoryPreProcessor implements PreProcessor {
                     }
 
                     try {
-                        Map<String, String> changedFiles = gitConnector.getCommitFileChanges(mostRecentCommitId);
+                        Map<String, String> changedFiles = connector.getCommitFileChanges(mostRecentCommitId);
                         for (Map.Entry<String, String> changeFile : changedFiles.entrySet()) {
                             if (!benchmarkFilesInNewestSnapshot.contains(changeFile.getKey())) {
                                 continue;
@@ -119,9 +113,11 @@ public final class RepositoryPreProcessor implements PreProcessor {
             }
         } catch (Exception e) {
             log.error(e.toString(), e);
+            System.err.println(e);
         }
 
         log.info("Finished preprocessing of projects");
+        System.out.println("Finished preprocessing of projects");
     }
 
     private void addRepositoryToProject(JsonNode node, List<Revision> repositoryRevisions) {
@@ -151,11 +147,12 @@ public final class RepositoryPreProcessor implements PreProcessor {
 
         for (String filePath : filesInRepository) {
             try {
-                if (filePath.toLowerCase().endsWith(".java") && javaParser.hasBenchmarks(new File(path + filePath))) {
+                if (filePath.toLowerCase().endsWith(".java") && parser.hasBenchmarks(new File(path + filePath))) {
                     benchmarkFilesInNewestSnapshot.add(filePath);
                 }
             } catch (Exception e) {
                 log.error(e.toString(), e);
+                System.err.println(e);
                 continue;
             }
         }
@@ -164,21 +161,21 @@ public final class RepositoryPreProcessor implements PreProcessor {
 
     private byte[] parseFile(String codeRepository, String mostRecentCommitId, String path) throws Exception {
         String fullPath = PathUtil.clonedRepositoriesFolder() + File.separator + codeRepository + File.separator + path;
-        gitConnector.checkOutFile(mostRecentCommitId, path);
+        connector.checkOutFile(mostRecentCommitId, path);
 
-        return javaParser.parse(new File(fullPath));
+        return parser.parse(new File(fullPath));
     }
 
     private Revision createRevision(String mostRecentCommitId, List<ChangedFile> revisionFiles) {
         Person committer = createCommitter(mostRecentCommitId);
-        int commitTime = gitConnector.commitTime(mostRecentCommitId);
-        String log = gitConnector.logMessage(mostRecentCommitId);
+        int commitTime = connector.commitTime(mostRecentCommitId);
+        String log = connector.logMessage(mostRecentCommitId);
 
         return projectNodeCreator.createRevision(mostRecentCommitId, revisionFiles, committer, commitTime, log);
     }
 
     private Person createCommitter(String mostRecentCommitId) {
-        return projectNodeCreator.committer(gitConnector.committerName(mostRecentCommitId), gitConnector.committerEmail(mostRecentCommitId));
+        return projectNodeCreator.committer(connector.committerName(mostRecentCommitId), connector.committerEmail(mostRecentCommitId));
     }
 
     private CodeRepository createCodeRepository(JsonNode node, List<Revision> protosRevisions) {

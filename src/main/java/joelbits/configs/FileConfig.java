@@ -39,7 +39,6 @@ public class FileConfig {
      * metadata file was retrieved, the name of that property is retrieved from a key-value
      * configuration file where the source is mapped to the corresponding property name.
      *
-     *
      * @source      the source from which the metadata file were retrieved, e.g., github
      * @return      name of the repository name property
      */

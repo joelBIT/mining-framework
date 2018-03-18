@@ -25,13 +25,13 @@ import java.util.List;
  * Also, the source, e.g., github, of the remote repositories must be stated so that correct cloning
  * plugin can be found and used.
  */
-public class CloneModule {
+public final class CloneModule {
     private static final Logger log = LoggerFactory.getLogger(PreProcessorModule.class);
 
     @Inject
     private FileConfig fileConfig;
 
-    public CloneModule() {
+    private CloneModule() {
         Guice.createInjector(new InjectionCloningModule()).injectMembers(this);
     }
 
@@ -39,7 +39,7 @@ public class CloneModule {
         new CloneModule().clone(args);
     }
 
-    public void clone(String[] args) throws IOException {
+    private void clone(String[] args) throws IOException {
         if (args.length != 2) {
             error("Expects exactly 2 parameters", new IllegalArgumentException());
         }

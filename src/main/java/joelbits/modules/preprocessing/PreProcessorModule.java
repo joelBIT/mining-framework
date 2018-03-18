@@ -1,13 +1,17 @@
 package joelbits.modules.preprocessing;
 
 import com.google.inject.Guice;
+import com.google.inject.Inject;
+import joelbits.modules.preprocessing.connectors.GitConnector;
+import joelbits.modules.preprocessing.plugins.ParserService;
+import joelbits.modules.preprocessing.plugins.spi.MicrobenchmarkParser;
 import joelbits.modules.preprocessing.preprocessor.PreProcessor;
+import joelbits.modules.preprocessing.preprocessor.RepositoryPreProcessor;
 import joelbits.modules.preprocessing.utils.PersistenceUtil;
 import joelbits.utils.FileUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
 import java.io.IOException;
 import java.time.Instant;
 
@@ -25,15 +29,14 @@ import java.time.Instant;
  * The optional --datasetName parameter will be the name given to the created dataset. If this parameter
  * is left out, a default name will be given to the created dataset.
  */
-public class PreProcessorModule {
+public final class PreProcessorModule {
     private static final Logger log = LoggerFactory.getLogger(PreProcessorModule.class);
 
     @Inject
     private PersistenceUtil persistenceUtil;
-    @Inject
     private PreProcessor preProcessor;
 
-    public PreProcessorModule() {
+    private PreProcessorModule() {
         Guice.createInjector(new InjectionPreProcessingModule()).injectMembers(this);
     }
 
@@ -41,13 +44,14 @@ public class PreProcessorModule {
         new PreProcessorModule().preProcess(args);
     }
 
-    public void preProcess(String[] args) throws IOException {
+    private void preProcess(String[] args) throws IOException {
         if (args.length < 3 || args.length > 4) {
             error("Expects 3 or 4 parameters", new IllegalArgumentException());
         }
 
+        MicrobenchmarkParser parser = ParserService.getInstance().getParserPlugin(args[1]);
+
         String connector = args[0];
-        String parser = args[1];
         String metadataFile = args[2];
         String outputFileName = Instant.now().toString();
 
@@ -56,6 +60,7 @@ public class PreProcessorModule {
         }
 
         try {
+            preProcessor = new RepositoryPreProcessor(parser, new GitConnector());
             preProcessor.process(FileUtil.createFile(metadataFile));
 
             persistenceUtil.persistProjects(preProcessor.projects());

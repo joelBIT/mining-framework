@@ -1,4 +1,4 @@
-package joelbits.modules.preprocessing.connectors;
+package joelbits.modules.preprocessing.connectors.spi;
 
 /**
  * Connect to a repository of specific type (e.g., SVN, GIT, CVS) and access its data.

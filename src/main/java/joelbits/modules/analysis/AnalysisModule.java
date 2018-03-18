@@ -36,17 +36,20 @@ public class AnalysisModule extends Configured implements Tool {
     public int run(String[] args) throws Exception {
         Configuration configuration = this.getConf();
         String[] otherArgs = new GenericOptionsParser(configuration, args).getRemainingArgs();
-        if (otherArgs.length < 3) {
-            System.err.println("At least three parameters are expected");
-            System.exit(2);
-        }
+//        if (otherArgs.length < 3) {
+//            System.err.println("At least three parameters are expected");
+//            System.exit(2);
+//        }
+
+        String analysis = "measurement";
+        String output = "measurement.txt";
 
         Job job = Job.getInstance(configuration, "Analysis Job");
         job.setJarByClass(AnalysisModule.class);
 
         try {
-            job.setMapperClass(AnalysisMapperFactory.mapper(args[0]));
-            job.setReducerClass(AnalysisReducerFactory.reducer(args[0]));
+            job.setMapperClass(AnalysisMapperFactory.mapper(analysis));      // args[0]
+            job.setReducerClass(AnalysisReducerFactory.reducer(analysis));  // args[0]
         } catch (IllegalArgumentException e) {
             System.err.println("Could not find mapper/reducer for " + args[0]);
             System.exit(2);
@@ -66,7 +69,7 @@ public class AnalysisModule extends Configured implements Tool {
 
         if (completionStatus == 0) {
             String inputJobDirectory = PathUtil.jarPath() + OUTPUT_JOB_DIRECTORY;
-            String outputFile = PathUtil.jarPath() + args[1];
+            String outputFile = PathUtil.jarPath() + output; // args[1];
             try {
                 FileUtil.copyMerge(FileSystem.get(configuration), new Path(inputJobDirectory), FileSystem.get(configuration), new Path(outputFile), true, configuration, null);
             } catch (IOException e) {

@@ -2,13 +2,11 @@ package joelbits.modules.preprocessing.utils;
 
 import com.github.javaparser.ast.Modifier;
 import com.github.javaparser.ast.NodeList;
-import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
 import com.github.javaparser.ast.expr.AnnotationExpr;
 import com.github.javaparser.ast.expr.Expression;
 import com.github.javaparser.ast.expr.MemberValuePair;
 import com.github.javaparser.ast.expr.SingleMemberAnnotationExpr;
 import joelbits.model.ast.protobuf.ASTProtos;
-import joelbits.model.ast.protobuf.ASTProtos.DeclarationType;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier.ModifierType;
 import joelbits.model.ast.protobuf.ASTProtos.Modifier.VisibilityType;
 import joelbits.model.ast.protobuf.ASTProtos.Expression.ExpressionType;
@@ -17,26 +15,6 @@ import org.apache.commons.lang.StringUtils;
 import java.util.*;
 
 public final class TypeConverter {
-
-    public ModifierType getModifierType(String modifier) {
-        if (ModifierType.STATIC.name().equals(modifier.toUpperCase())) {
-            return ModifierType.STATIC;
-        } else if (ModifierType.FINAL.name().equals(modifier.toUpperCase())) {
-            return ModifierType.FINAL;
-        } else if (ModifierType.ABSTRACT.name().equals(modifier.toUpperCase())) {
-            return ModifierType.ABSTRACT;
-        } else if (ModifierType.SYNCHRONIZED.name().equals(modifier.toUpperCase())) {
-            return ModifierType.SYNCHRONIZED;
-        }
-
-        String[] visibilityModifiers = Arrays.asList(VisibilityType.values()).stream().map(Enum::name).toArray(String[]::new);
-        if (Arrays.asList(visibilityModifiers).contains(modifier.toUpperCase())) {
-            return ModifierType.VISIBILITY;
-        }
-
-        return ModifierType.OTHER;
-    }
-
     public ExpressionType getExpressionType(Expression expression) {
         if (expression.isLiteralExpr()) {
             return ExpressionType.LITERAL;
@@ -51,22 +29,6 @@ public final class TypeConverter {
         }
 
         return ExpressionType.OTHER;
-    }
-
-    public DeclarationType getDeclarationType(ClassOrInterfaceDeclaration declaration) {
-        if (declaration.isInterface()) {
-            return DeclarationType.INTERFACE;
-        } else if (declaration.isAnnotationDeclaration()) {
-            return DeclarationType.ANNOTATION;
-        } else if (declaration.isEnumDeclaration()) {
-            return DeclarationType.ENUM;
-        } else if (declaration.isGeneric()) {
-            return DeclarationType.GENERIC;
-        } else if (declaration.isInnerClass() || declaration.isLocalClassDeclaration() || declaration.isClassOrInterfaceDeclaration()) {
-            return DeclarationType.CLASS;
-        }
-
-        return DeclarationType.OTHER;
     }
 
     public List<ASTProtos.Modifier> convertModifiers(EnumSet<Modifier> modifiers) {
@@ -92,6 +54,25 @@ public final class TypeConverter {
         }
 
         return argumentModifiers;
+    }
+
+    private ModifierType getModifierType(String modifier) {
+        if (ModifierType.STATIC.name().equals(modifier.toUpperCase())) {
+            return ModifierType.STATIC;
+        } else if (ModifierType.FINAL.name().equals(modifier.toUpperCase())) {
+            return ModifierType.FINAL;
+        } else if (ModifierType.ABSTRACT.name().equals(modifier.toUpperCase())) {
+            return ModifierType.ABSTRACT;
+        } else if (ModifierType.SYNCHRONIZED.name().equals(modifier.toUpperCase())) {
+            return ModifierType.SYNCHRONIZED;
+        }
+
+        String[] visibilityModifiers = Arrays.asList(VisibilityType.values()).stream().map(Enum::name).toArray(String[]::new);
+        if (Arrays.asList(visibilityModifiers).contains(modifier.toUpperCase())) {
+            return ModifierType.VISIBILITY;
+        }
+
+        return ModifierType.OTHER;
     }
 
     public List<String> convertAnnotationMembers(AnnotationExpr annotationExpr) {

@@ -23,10 +23,20 @@ public final class BenchmarkMeasurementMapper extends Mapper<Text, BytesWritable
     public void map(Text key, BytesWritable value, Context context) throws IOException, InterruptedException {
         Project project = AnalysisUtil.getProject(value);
         for (CodeRepository repository : project.getRepositories()) {
+            System.out.println(repository.getUrl());
             Set<ASTRoot> benchmarkFiles = AnalysisUtil.latestFileSnapshots(repository);
+            System.out.println(benchmarkFiles.size());
 
             for (ASTRoot changedFile : benchmarkFiles) {
-                String declarationName = changedFile.getNamespaces().get(0).getDeclarations().get(0).getName();
+                String declarationName = "";
+                if (changedFile.getNamespaces().isEmpty()) {
+                    declarationName = "default";
+                } else if (changedFile.getNamespaces().get(0).getDeclarations().isEmpty()) {
+                    declarationName = "missing_declaration";
+                } else {
+                    declarationName = changedFile.getNamespaces().get(0).getDeclarations().get(0).getName();
+                }
+
                 if (processedBenchmarkFiles.contains(declarationName)) {
                     continue;
                 }
