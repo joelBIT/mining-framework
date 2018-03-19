@@ -1,7 +1,5 @@
 package joelbits.modules.preprocessing;
 
-import com.google.inject.Guice;
-import com.google.inject.Inject;
 import joelbits.modules.preprocessing.plugins.PluginService;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
 import joelbits.modules.preprocessing.plugins.spi.MicrobenchmarkParser;
@@ -31,14 +29,8 @@ import java.time.Instant;
  */
 public final class PreProcessorModule {
     private static final Logger log = LoggerFactory.getLogger(PreProcessorModule.class);
-
-    @Inject
-    private PersistenceUtil persistenceUtil;
+    private PersistenceUtil persistenceUtil = new PersistenceUtil();;
     private PreProcessor preProcessor;
-
-    private PreProcessorModule() {
-        Guice.createInjector(new InjectionPreProcessingModule()).injectMembers(this);
-    }
 
     public static void main(String[] args) throws IOException {
         new PreProcessorModule().preProcess(args);
