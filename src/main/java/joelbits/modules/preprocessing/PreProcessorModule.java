@@ -1,5 +1,6 @@
 package joelbits.modules.preprocessing;
 
+import joelbits.configs.FileConfig;
 import joelbits.modules.preprocessing.plugins.PluginService;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
 import joelbits.modules.preprocessing.plugins.spi.MicrobenchmarkParser;
@@ -17,13 +18,15 @@ import java.time.Instant;
  * This module pre-processes the projects found in the /repositories folder which must exist
  * in the same directory as the framework jar is run.
  *
- * There are 4 input parameters; --connector --language --fileName --datasetName
- * Example: git java jmh_metadata.json jmh_dataset
+ * There are 5 input parameters; --connector --language --fileName --source --datasetName
+ * Example: git java jmh_metadata.json github jmh_dataset
  *
  * The --connector parameter informs which connector should be used to connect to the repositories cvs. The
  * reason for using a connector is to be able to collect the history of the repository development.
  * The --language parameter represent which language parser should be used to extract the raw data.
  * The --fileName parameter is the name of the input file that contains the projects metadata.
+ * The --source parameter identifies the source of the repositories, i.e., where the metadata file were
+ * retrieved from, e.g., github.
  * The optional --datasetName parameter will be the name given to the created dataset. If this parameter
  * is left out, a default name will be given to the created dataset.
  */
@@ -37,22 +40,23 @@ public final class PreProcessorModule {
     }
 
     private void preProcess(String[] args) throws IOException {
-        if (args.length < 3 || args.length > 4) {
-            error("Expects 3 or 4 parameters", new IllegalArgumentException());
+        if (args.length < 3 || args.length > 5) {
+            error("Expects 3 to 5 parameters", new IllegalArgumentException());
         }
 
         Connector connector = PluginService.getInstance().getConnectorPlugin(args[0]);
         MicrobenchmarkParser parser = PluginService.getInstance().getParserPlugin(args[1]);
 
         String metadataFile = args[2];
+        String source = args[3].toLowerCase();
         String outputFileName = Instant.now().toString();
 
-        if (args.length == 4) {
-            outputFileName = args[3];
+        if (args.length == 5) {
+            outputFileName = args[4];
         }
 
         try {
-            preProcessor = new RepositoryPreProcessor(parser, connector);
+            preProcessor = new RepositoryPreProcessor(parser, connector, source);
             preProcessor.process(FileUtil.createFile(metadataFile));
 
             persistenceUtil.persistProjects(preProcessor.projects());

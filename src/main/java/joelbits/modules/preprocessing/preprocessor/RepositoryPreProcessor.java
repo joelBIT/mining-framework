@@ -3,6 +3,7 @@ package joelbits.modules.preprocessing.preprocessor;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.PeekingIterator;
+import joelbits.configs.FileConfig;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
 import static joelbits.model.project.protobuf.ProjectProtos.Person;
 import static joelbits.model.project.protobuf.ProjectProtos.Revision;
@@ -32,12 +33,15 @@ public final class RepositoryPreProcessor implements PreProcessor {
     private final Map<String, Map<String, byte[]>> benchmarkFilesEvolution = new HashMap<>();
     private final Set<String> benchmarkFilesInNewestSnapshot = new HashSet<>();
     private final ProjectNodeCreator projectNodeCreator = new ProjectNodeCreator();
+    private final FileConfig fileConfig = new FileConfig();
     private final MicrobenchmarkParser parser;
     private final Connector connector;
+    private final String source;
 
-    public RepositoryPreProcessor(MicrobenchmarkParser parser, Connector connector) {
+    public RepositoryPreProcessor(MicrobenchmarkParser parser, Connector connector, String source) {
         this.parser = parser;
         this.connector = connector;
+        this.source = source;
     }
 
     /**
@@ -48,11 +52,11 @@ public final class RepositoryPreProcessor implements PreProcessor {
     @Override
     public void process(File projectsMetadata) {
         try {
-            Iterator<JsonNode> iterator = FileUtil.getJSONFileIterator(projectsMetadata, "items");
+            Iterator<JsonNode> iterator = FileUtil.getJSONFileIterator(projectsMetadata, fileConfig.repositoryListNode(source));
             while (iterator.hasNext()) {
                 benchmarkFilesInNewestSnapshot.clear();
                 JsonNode node = iterator.next();
-                String codeRepository = node.get("full_name").asText();
+                String codeRepository = node.get(fileConfig.repositoryFullNameNode(source)).asText();
 
                 try {
                     connector.connect(codeRepository);
@@ -92,7 +96,7 @@ public final class RepositoryPreProcessor implements PreProcessor {
                             String changeType = changeFile.getValue();
                             revisionFiles.add(projectNodeCreator.changedFile(path, changeType));
 
-                            String fileTableKey = node.get("html_url").asText() + ":" + mostRecentCommitId;
+                            String fileTableKey = node.get(fileConfig.repositoryHtmlUrlNode(source)).asText() + ":" + mostRecentCommitId;
                             try {
                                 addChangedBenchmarkFile(codeRepository, mostRecentCommitId, path, fileTableKey);
                             } catch (Exception e1) {
@@ -179,17 +183,17 @@ public final class RepositoryPreProcessor implements PreProcessor {
     }
 
     private CodeRepository createCodeRepository(JsonNode node, List<Revision> protosRevisions) {
-        return projectNodeCreator.repository(node.get("html_url").asText(), RepositoryType.GIT, protosRevisions);
+        return projectNodeCreator.repository(node.get(fileConfig.repositoryHtmlUrlNode(source)).asText(), RepositoryType.GIT, protosRevisions);
     }
 
     private Project createProject(JsonNode node, List<CodeRepository> codeRepositories) {
-        int creationTime = Math.toIntExact(OffsetDateTime.parse(node.get("created_at").asText()).toEpochSecond());
-        String id = node.get("id").asText();
-        String name = node.get("name").asText();
-        String url = node.get("url").asText();
-        String language = node.get("language").asText();
-        int forks = node.get("forks").asInt();
-        int watchers = node.get("watchers").asInt();
+        int creationTime = Math.toIntExact(OffsetDateTime.parse(node.get(fileConfig.repositoryCreatedAtNode(source)).asText()).toEpochSecond());
+        String id = node.get(fileConfig.repositoryIdNode(source)).asText();
+        String name = node.get(fileConfig.repositoryNameNode(source)).asText();
+        String url = node.get(fileConfig.repositoryUrlNode(source)).asText();
+        String language = node.get(fileConfig.repositoryLanguageNode(source)).asText();
+        int forks = node.get(fileConfig.repositoryForksNode(source)).asInt();
+        int watchers = node.get(fileConfig.repositoryWatchersNode(source)).asInt();
 
         return projectNodeCreator.project(name, creationTime, id, url, ProjectType.GITHUB, codeRepositories, Collections.singletonList(language), forks, watchers);
     }

@@ -47,7 +47,7 @@ public final class CloneModule {
         String inputFileName = args[0];
         String source = args[1];
 
-        String repositoryNameNode = fileConfig.repositoryNameNode(source);
+        String repositoryNameNode = fileConfig.repositoryFullNameNode(source);
         String repositoryListNode = fileConfig.repositoryListNode(source);
 
         try {

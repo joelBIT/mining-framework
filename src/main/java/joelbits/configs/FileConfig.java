@@ -11,11 +11,19 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 
-public class FileConfig {
+public final class FileConfig {
     private static final Logger log = LoggerFactory.getLogger(FileConfig.class);
     private final Properties properties = new Properties();
-    private static final String REPOSITORY_NAME_NODE = "repository_name_node_";
+    private static final String REPOSITORY_FULL_NAME_NODE = "repository_full_name_node_";
     private static final String REPOSITORY_LIST_NODE = "repository_list_node_";
+    private static final String REPOSITORY_WATCHERS_NODE = "repository_watchers_node_";
+    private static final String REPOSITORY_FORKS_NODE = "repository_forks_node_";
+    private static final String REPOSITORY_URL_NODE = "repository_url_node_";
+    private static final String REPOSITORY_CREATED_AT_NODE = "repository_created_at_node_";
+    private static final String REPOSITORY_HTML_URL_NODE = "repository_html_url_node_";
+    private static final String REPOSITORY_ID_NODE = "repository_id_node_";
+    private static final String REPOSITORY_LANGUAGE_NODE = "repository_language_node_";
+    private static final String REPOSITORY_NAME_NODE = "repository_name_node_";
 
     public FileConfig() {
         try (FileInputStream stream = new FileInputStream(PathUtil.configurationFile())) {
@@ -42,12 +50,16 @@ public class FileConfig {
      * @source      the source from which the metadata file were retrieved, e.g., github
      * @return      name of the repository name property
      */
-    public String repositoryNameNode(String source) throws NoSuchElementException {
-        String nameNode = properties.getProperty(REPOSITORY_NAME_NODE + source);
-        if (StringUtils.isNotEmpty(nameNode)) {
-            return nameNode;
+    public String repositoryFullNameNode(String source) throws NoSuchElementException {
+        String nameNode = properties.getProperty(REPOSITORY_FULL_NAME_NODE + source);
+        checkIfExists(source, nameNode, REPOSITORY_FULL_NAME_NODE);
+        return nameNode;
+    }
+
+    private void checkIfExists(String source, String nameNode, String node) {
+        if (StringUtils.isEmpty(nameNode)) {
+            throw new NoSuchElementException("No " + node + source + " mapping found");
         }
-        throw new NoSuchElementException("No " + REPOSITORY_NAME_NODE + source + " mapping found");
     }
 
     /**
@@ -59,11 +71,57 @@ public class FileConfig {
      * @param source        the source from which the metadata file were retrieved, e.g., github
      * @return              name of the repository list property
      */
-    public String repositoryListNode(String source) {
+    public String repositoryListNode(String source) throws NoSuchElementException {
         String listNode = properties.getProperty(REPOSITORY_LIST_NODE + source);
-        if (StringUtils.isNotEmpty(listNode)) {
-            return listNode;
-        }
-        throw new NoSuchElementException("No " + REPOSITORY_LIST_NODE + source + " mapping found");
+        checkIfExists(source, listNode, REPOSITORY_LIST_NODE);
+        return listNode;
+    }
+
+    public String repositoryWatchersNode(String source) throws NoSuchElementException {
+        String watchersNode = properties.getProperty(REPOSITORY_WATCHERS_NODE + source);
+        checkIfExists(source, watchersNode, REPOSITORY_WATCHERS_NODE);
+        return watchersNode;
+    }
+
+    public String repositoryForksNode(String source) throws NoSuchElementException {
+        String forksNode = properties.getProperty(REPOSITORY_FORKS_NODE + source);
+        checkIfExists(source, forksNode, REPOSITORY_FORKS_NODE);
+        return forksNode;
+    }
+
+    public String repositoryUrlNode(String source) throws NoSuchElementException {
+        String urlNode = properties.getProperty(REPOSITORY_URL_NODE + source);
+        checkIfExists(source, urlNode, REPOSITORY_URL_NODE);
+        return urlNode;
+    }
+
+    public String repositoryCreatedAtNode(String source) throws NoSuchElementException {
+        String createdAtNode = properties.getProperty(REPOSITORY_CREATED_AT_NODE + source);
+        checkIfExists(source, createdAtNode, REPOSITORY_CREATED_AT_NODE);
+        return createdAtNode;
+    }
+
+    public String repositoryHtmlUrlNode(String source) throws NoSuchElementException {
+        String htmlUrlNode = properties.getProperty(REPOSITORY_HTML_URL_NODE + source);
+        checkIfExists(source, htmlUrlNode, REPOSITORY_HTML_URL_NODE);
+        return htmlUrlNode;
+    }
+
+    public String repositoryIdNode(String source) throws NoSuchElementException {
+        String idNode = properties.getProperty(REPOSITORY_ID_NODE + source);
+        checkIfExists(source, idNode, REPOSITORY_ID_NODE);
+        return idNode;
+    }
+
+    public String repositoryLanguageNode(String source) throws NoSuchElementException {
+        String languageNode = properties.getProperty(REPOSITORY_LANGUAGE_NODE + source);
+        checkIfExists(source, languageNode, REPOSITORY_LANGUAGE_NODE);
+        return languageNode;
+    }
+
+    public String repositoryNameNode(String source) throws NoSuchElementException {
+        String nameNode = properties.getProperty(REPOSITORY_NAME_NODE + source);
+        checkIfExists(source, nameNode, REPOSITORY_NAME_NODE);
+        return nameNode;
     }
 }
