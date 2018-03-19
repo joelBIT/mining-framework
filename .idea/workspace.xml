@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d199fef8-da51-49aa-9500-47301736a44c" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/analysis/AnalysisModule.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/analysis/AnalysisModule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/PreProcessorModule.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/PreProcessorModule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/utils/PersistenceUtil.java" afterPath="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/utils/PersistenceUtil.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -16,11 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PreProcessorModule.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="PreProcessorModule.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/PreProcessorModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state relative-caret-position="88">
+              <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -34,18 +34,6 @@
             <state relative-caret-position="17">
               <caret line="94" column="0" lean-forward="false" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AnalysisModule.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/analysis/AnalysisModule.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="119" column="0" lean-forward="true" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -106,7 +94,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/joelbits/preprocessing/parsers/visitors/FieldVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/preprocessing/parsers/JavaParser.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/preprocessing/parsers/visitors/MethodBodyAssignmentVisitor.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/preprocessing/parsers/visitors/MethodCallVisitor.java" />
@@ -151,12 +138,13 @@
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/analysis/plugins/AnalysisService.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/configs/FileConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/PreProcessorModule.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/utils/ProjectContainer.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/utils/BenchmarkContainer.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/utils/NodeExtractor.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/preprocessor/RepositoryPreProcessor.java" />
         <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/analysis/AnalysisModule.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/PreProcessorModule.java" />
+        <option value="$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/utils/PersistenceUtil.java" />
       </list>
     </option>
   </component>
@@ -798,6 +786,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-456">
           <caret line="15" column="59" lean-forward="true" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -837,13 +828,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/analysis/reducers/AnalysisReducerFactory.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/model/ast/Declaration.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/utils/ProjectNodeCreator.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/utils/PersistenceUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/cloning/CloneModule.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
@@ -855,16 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="16" column="40" lean-forward="false" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/PreProcessorModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -939,16 +913,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/utils/PathUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="48" lean-forward="true" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
-          <folding>
-            <element signature="e#637#638#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/hadoop/hadoop-mapreduce-client-core/2.8.1/hadoop-mapreduce-client-core-2.8.1-sources.jar!/org/apache/hadoop/mapreduce/lib/input/FileInputFormat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -959,8 +923,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/analysis/AnalysisModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="119" column="0" lean-forward="true" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+        <state relative-caret-position="139">
+          <caret line="109" column="37" lean-forward="true" selection-start-line="109" selection-start-column="37" selection-end-line="109" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/utils/PathUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="26">
+          <caret line="9" column="71" lean-forward="true" selection-start-line="9" selection-start-column="71" selection-end-line="9" selection-end-column="71" />
+          <folding>
+            <element signature="e#685#686#0" expanded="true" />
+            <element signature="e#721#722#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/utils/PersistenceUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1066#1067#0" expanded="true" />
+            <element signature="e#1118#1119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/joelbits/modules/preprocessing/PreProcessorModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="50" column="0" lean-forward="true" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

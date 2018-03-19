@@ -1,6 +1,5 @@
 package joelbits.modules.preprocessing;
 
-import joelbits.configs.FileConfig;
 import joelbits.modules.preprocessing.plugins.PluginService;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
 import joelbits.modules.preprocessing.plugins.spi.MicrobenchmarkParser;
@@ -32,7 +31,7 @@ import java.time.Instant;
  */
 public final class PreProcessorModule {
     private static final Logger log = LoggerFactory.getLogger(PreProcessorModule.class);
-    private PersistenceUtil persistenceUtil = new PersistenceUtil();;
+    private PersistenceUtil persistenceUtil = new PersistenceUtil();
     private PreProcessor preProcessor;
 
     public static void main(String[] args) throws IOException {
@@ -49,10 +48,9 @@ public final class PreProcessorModule {
 
         String metadataFile = args[2];
         String source = args[3].toLowerCase();
-        String outputFileName = Instant.now().toString();
 
         if (args.length == 5) {
-            outputFileName = args[4];
+            persistenceUtil.setOutputFileName(args[4]);
         }
 
         try {
