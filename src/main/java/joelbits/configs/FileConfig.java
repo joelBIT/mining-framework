@@ -63,7 +63,7 @@ public final class FileConfig {
     }
 
     /**
-     * In a project metadata file there may exist a property which contains a list of all repositories.
+     * In a project metadata file there may exist a property which snapshotContains a list of all repositories.
      * The name of this property may vary depending on where the metadata file is retrieved.
      * This method return the name of that property for given source, if such a mapping exist in the
      * configuration file.

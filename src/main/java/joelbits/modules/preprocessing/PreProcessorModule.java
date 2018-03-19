@@ -24,7 +24,7 @@ import java.time.Instant;
  * The --connector parameter informs which connector should be used to connect to the repositories cvs. The
  * reason for using a connector is to be able to collect the history of the repository development.
  * The --language parameter represent which language parser should be used to extract the raw data.
- * The --fileName parameter is the name of the input file that contains the projects metadata.
+ * The --fileName parameter is the name of the input file that snapshotContains the projects metadata.
  * The --source parameter identifies the source of the repositories, i.e., where the metadata file were
  * retrieved from, e.g., github.
  * The optional --datasetName parameter will be the name given to the created dataset. If this parameter
