@@ -24,19 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Minimum 3 input parameters;  --analysisPlugin --analysis --outputFileName --dataset(s)
- * Example: --jmh --benchmarkConfigurations --configurations.txt --jmh_dataset
- *
- * The --analysisPlugin parameter identifies which analysis plugin to use. Since an analysis plugin
- * may contain multiple analyses the user should also add a parameter identifying which specific
- * analysis to run.
- * The --analysis parameter is the specific analysis to run, corresponding to the mapper and reducer
- * parts of the analysis.
- * The --outputFileName parameter is the name for the created output text file containing the analysis results.
- * The --dataset(s) parameter is optional and if used, it names which specific dataset(s) should be subject for
- * analysis. If this parameter is left out the default dataset name will be used (which is the default name for
- * the created dataset after preprocessing).
- *
+ * Entry point to the analysis module of the framework.
  */
 public class AnalysisModule extends Configured implements Tool {
     private static final String OUTPUT_JOB_DIRECTORY = "output";

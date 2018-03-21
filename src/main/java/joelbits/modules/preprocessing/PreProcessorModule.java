@@ -11,27 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.time.Instant;
 
 /**
- * This module pre-processes the projects found in the /repositories folder which must exist
- * in the same directory as the framework jar is run.
- *
- * There are 5 input parameters; --connector --language --fileName --source --datasetName
- * Example: git java jmh_metadata.json github jmh_dataset
- *
- * The --connector parameter informs which connector should be used to connect to the repositories cvs. The
- * reason for using a connector is to be able to collect the history of the repository development.
- * The --language parameter represent which language parser should be used to extract the raw data.
- * The --fileName parameter is the name of the input file that snapshotContains the projects metadata.
- * The --source parameter identifies the source of the repositories, i.e., where the metadata file were
- * retrieved from, e.g., github.
- * The optional --datasetName parameter will be the name given to the created dataset. If this parameter
- * is left out, a default name will be given to the created dataset.
+ * Entry point to the preprocessing module of the framework.
  */
 public final class PreProcessorModule {
     private static final Logger log = LoggerFactory.getLogger(PreProcessorModule.class);
-    private PersistenceUtil persistenceUtil = new PersistenceUtil();
+    private final PersistenceUtil persistenceUtil = new PersistenceUtil();
     private PreProcessor preProcessor;
 
     public static void main(String[] args) throws IOException {

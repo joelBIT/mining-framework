@@ -17,13 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This module is used for cloning remote software repositories into a local directory. Run this
- * module using 2 parameters: --fileName --repositorySource (Example: repositories.json github)
- *
- * The file must contain the full names, e.g., apache/logging-log4j2, of the repositories to be cloned.
- *
- * Also, the source, e.g., github, of the remote repositories must be stated so that correct cloning
- * plugin can be found and used.
+ * Entry point to the cloning module of the framework.
  */
 public final class CloneModule {
     private static final Logger log = LoggerFactory.getLogger(PreProcessorModule.class);

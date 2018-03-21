@@ -29,9 +29,9 @@ public final class FileConfig {
         try (FileInputStream stream = new FileInputStream(PathUtil.configurationFile())) {
             properties.load(stream);
         } catch (FileNotFoundException e) {
-            error("Could not find cloning configuration file", e);
+            error("Could not find framework configuration file", e);
         } catch (IOException e) {
-            error("Could not load cloning configuration file", e);
+            error("Could not load framework configuration file", e);
         }
     }
 

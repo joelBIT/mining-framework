@@ -24,7 +24,7 @@ import java.io.File;
 import java.util.*;
 
 /**
- * Used to pre-process raw data in software repositories.
+ * Pre-processes raw data found in software repositories into a structured form used by the framework.
  */
 public final class RepositoryPreProcessor implements PreProcessor {
     private static final Logger log = LoggerFactory.getLogger(RepositoryPreProcessor.class);
