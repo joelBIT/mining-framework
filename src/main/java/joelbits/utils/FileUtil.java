@@ -11,7 +11,7 @@ import java.util.Iterator;
 /**
  * Handles various I/O related tasks.
  */
-public class FileUtil {
+public final class FileUtil {
 
     /**
      * Creates an iterator over desired nodes in a JSON file.

@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-public class AnalysisService {
+public final class AnalysisService {
     private static final Logger log = LoggerFactory.getLogger(AnalysisService.class);
     private static AnalysisService service;
     private ServiceLoader<Analysis> loader;

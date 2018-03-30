@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
-public class CloneService {
+public final class CloneService {
     private static final Logger log = LoggerFactory.getLogger(CloneService.class);
     private static CloneService service;
     private ServiceLoader<Clone> loader;

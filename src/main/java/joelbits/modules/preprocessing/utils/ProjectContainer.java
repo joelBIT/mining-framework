@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ProjectContainer {
+public final class ProjectContainer {
     private final Map<String, byte[]> projects = new HashMap<>();
 
     public void put(String url, byte[] project) {

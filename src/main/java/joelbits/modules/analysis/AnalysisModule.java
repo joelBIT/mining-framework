@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Entry point to the analysis module of the framework.
  */
-public class AnalysisModule extends Configured implements Tool {
+public final class AnalysisModule extends Configured implements Tool {
     private static final String OUTPUT_JOB_DIRECTORY = "output";
 
     public static void main(String[] args) throws Exception {

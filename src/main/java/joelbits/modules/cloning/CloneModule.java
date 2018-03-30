@@ -21,7 +21,6 @@ import java.util.List;
  */
 public final class CloneModule {
     private static final Logger log = LoggerFactory.getLogger(PreProcessorModule.class);
-
     @Inject
     private FileConfig fileConfig;
 
