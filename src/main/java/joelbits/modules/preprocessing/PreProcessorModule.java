@@ -2,8 +2,8 @@ package joelbits.modules.preprocessing;
 
 import joelbits.modules.preprocessing.plugins.PluginService;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
-import joelbits.modules.preprocessing.plugins.spi.MicrobenchmarkParser;
-import joelbits.modules.preprocessing.preprocessor.PreProcessor;
+import joelbits.modules.preprocessing.plugins.spi.LanguageParser;
+import joelbits.modules.preprocessing.preprocessor.MicrobenchmarkPreProcessor;
 import joelbits.modules.preprocessing.preprocessor.RepositoryPreProcessor;
 import joelbits.modules.preprocessing.utils.PersistenceUtil;
 import joelbits.utils.FileUtil;
@@ -18,7 +18,6 @@ import java.io.IOException;
 public final class PreProcessorModule {
     private static final Logger log = LoggerFactory.getLogger(PreProcessorModule.class);
     private final PersistenceUtil persistenceUtil = new PersistenceUtil();
-    private PreProcessor preProcessor;
 
     public static void main(String[] args) throws IOException {
         new PreProcessorModule().preProcess(args);
@@ -30,7 +29,7 @@ public final class PreProcessorModule {
         }
 
         Connector connector = PluginService.getInstance().getConnectorPlugin(args[0]);
-        MicrobenchmarkParser parser = PluginService.getInstance().getParserPlugin(args[1]);
+        LanguageParser parser = PluginService.getInstance().getParserPlugin(args[1]);
 
         String metadataFile = args[2];
         String source = args[3].toLowerCase();
@@ -40,11 +39,11 @@ public final class PreProcessorModule {
         }
 
         try {
-            preProcessor = new RepositoryPreProcessor(parser, connector, source);
+            RepositoryPreProcessor preProcessor = new MicrobenchmarkPreProcessor(parser, connector, source);
             preProcessor.process(FileUtil.createFile(metadataFile));
 
             persistenceUtil.persistProjects(preProcessor.projects());
-            persistenceUtil.persistBenchmarkFiles(preProcessor.changedBenchmarkFiles());
+            persistenceUtil.persistBenchmarkFiles(preProcessor.changedFiles());
         } catch (Exception e) {
             error("Could not find any connector of type " + connector, e);
         }
