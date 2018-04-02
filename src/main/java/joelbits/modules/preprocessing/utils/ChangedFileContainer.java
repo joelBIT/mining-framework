@@ -29,7 +29,7 @@ public final class ChangedFileContainer {
         changedFilesEvolution.get(fileTableKey).put(path, parsedFile);
     }
 
-    public Map<String, Map<String, byte[]>> benchmarkFilesEvolution() {
+    public Map<String, Map<String, byte[]>> changedFilesEvolution() {
         return Collections.synchronizedMap(changedFilesEvolution);
     }
 }

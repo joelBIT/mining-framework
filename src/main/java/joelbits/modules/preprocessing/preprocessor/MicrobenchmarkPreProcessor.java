@@ -5,7 +5,7 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.PeekingIterator;
 import joelbits.model.project.protobuf.ProjectProtos;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
-import joelbits.modules.preprocessing.plugins.spi.LanguageParser;
+import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import joelbits.modules.preprocessing.utils.NodeExtractor;
 import joelbits.utils.PathUtil;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ import java.util.*;
 public final class MicrobenchmarkPreProcessor extends RepositoryPreProcessor {
     private static final Logger log = LoggerFactory.getLogger(MicrobenchmarkPreProcessor.class);
 
-    public MicrobenchmarkPreProcessor(LanguageParser parser, Connector connector, String source) {
+    public MicrobenchmarkPreProcessor(FileParser parser, Connector connector, String source) {
         super(parser, connector, source);
     }
 

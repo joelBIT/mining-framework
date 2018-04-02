@@ -5,7 +5,7 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.PeekingIterator;
 import joelbits.model.project.protobuf.ProjectProtos;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
-import joelbits.modules.preprocessing.plugins.spi.LanguageParser;
+import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import joelbits.modules.preprocessing.utils.NodeExtractor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +19,7 @@ import java.util.*;
 public final class CodebasePreProcessor extends RepositoryPreProcessor {
     private static final Logger log = LoggerFactory.getLogger(CodebasePreProcessor.class);
 
-    public CodebasePreProcessor(LanguageParser parser, Connector connector, String source) {
+    public CodebasePreProcessor(FileParser parser, Connector connector, String source) {
         super(parser, connector, source);
     }
 

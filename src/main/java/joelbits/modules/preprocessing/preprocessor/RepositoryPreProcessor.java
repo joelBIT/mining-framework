@@ -9,7 +9,7 @@ import joelbits.model.project.protobuf.ProjectProtos.Person;
 import joelbits.model.project.protobuf.ProjectProtos.ChangedFile;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
 
-import joelbits.modules.preprocessing.plugins.spi.LanguageParser;
+import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import joelbits.modules.preprocessing.utils.ChangedFileContainer;
 import joelbits.modules.preprocessing.utils.NodeExtractor;
 import joelbits.modules.preprocessing.utils.ProjectContainer;
@@ -30,11 +30,11 @@ public abstract class RepositoryPreProcessor {
     private final ProjectContainer projectContainer = new ProjectContainer();
     private final ChangedFileContainer changedFileContainer = new ChangedFileContainer();
     private final FileConfig fileConfig = new FileConfig();
-    private final LanguageParser parser;
+    private final FileParser parser;
     private final Connector connector;
     private final String source;
 
-    RepositoryPreProcessor(LanguageParser parser, Connector connector, String source) {
+    RepositoryPreProcessor(FileParser parser, Connector connector, String source) {
         this.parser = parser;
         this.connector = connector;
         this.source = source;
@@ -42,7 +42,7 @@ public abstract class RepositoryPreProcessor {
 
     public abstract void process(File projectsMetadata);
 
-    LanguageParser parser() {
+    FileParser parser() {
         return parser;
     }
 
@@ -79,7 +79,7 @@ public abstract class RepositoryPreProcessor {
     }
 
     public Map<String, Map<String, byte[]>> changedFiles() {
-        return changedFileContainer.benchmarkFilesEvolution();
+        return changedFileContainer.changedFilesEvolution();
     }
 
     byte[] parseFile(String codeRepository, String mostRecentCommitId, String path) throws Exception {

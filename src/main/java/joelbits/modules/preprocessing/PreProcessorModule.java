@@ -2,7 +2,7 @@ package joelbits.modules.preprocessing;
 
 import joelbits.modules.preprocessing.plugins.PluginService;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
-import joelbits.modules.preprocessing.plugins.spi.LanguageParser;
+import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import joelbits.modules.preprocessing.preprocessor.MicrobenchmarkPreProcessor;
 import joelbits.modules.preprocessing.preprocessor.RepositoryPreProcessor;
 import joelbits.modules.preprocessing.utils.PersistenceUtil;
@@ -29,7 +29,7 @@ public final class PreProcessorModule {
         }
 
         Connector connector = PluginService.getInstance().getConnectorPlugin(args[0]);
-        LanguageParser parser = PluginService.getInstance().getParserPlugin(args[1]);
+        FileParser parser = PluginService.getInstance().getParserPlugin(args[1]);
 
         String metadataFile = args[2];
         String source = args[3].toLowerCase();

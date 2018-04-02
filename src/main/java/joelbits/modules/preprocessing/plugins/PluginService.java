@@ -1,7 +1,7 @@
 package joelbits.modules.preprocessing.plugins;
 
 import joelbits.modules.preprocessing.plugins.spi.Connector;
-import joelbits.modules.preprocessing.plugins.spi.LanguageParser;
+import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,11 +12,11 @@ import java.util.ServiceLoader;
 public final class PluginService {
     private static final Logger log = LoggerFactory.getLogger(PluginService.class);
     private static PluginService service;
-    private final ServiceLoader<LanguageParser> parserLoader;
+    private final ServiceLoader<FileParser> parserLoader;
     private final ServiceLoader<Connector> connectorLoader;
 
     private PluginService() {
-        parserLoader = ServiceLoader.load(LanguageParser.class);
+        parserLoader = ServiceLoader.load(FileParser.class);
         connectorLoader = ServiceLoader.load(Connector.class);
     }
 
@@ -28,9 +28,9 @@ public final class PluginService {
         return service;
     }
 
-    public LanguageParser getParserPlugin(String parserPlugin) throws IllegalArgumentException {
+    public FileParser getParserPlugin(String parserPlugin) throws IllegalArgumentException {
         try {
-            for (LanguageParser parser : parserLoader) {
+            for (FileParser parser : parserLoader) {
                 if (parser.toString().toLowerCase().equals(parserPlugin.toLowerCase())) {
                     return parser;
                 }
