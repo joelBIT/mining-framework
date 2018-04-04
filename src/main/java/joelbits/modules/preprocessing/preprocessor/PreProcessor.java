@@ -25,8 +25,8 @@ import java.util.*;
 /**
  * Pre-processes raw data found in software repositories into a structured form used by the framework.
  */
-public abstract class RepositoryPreProcessor {
-    private static final Logger log = LoggerFactory.getLogger(RepositoryPreProcessor.class);
+public abstract class PreProcessor {
+    private static final Logger log = LoggerFactory.getLogger(PreProcessor.class);
     private final ProjectContainer projectContainer = new ProjectContainer();
     private final ChangedFileContainer changedFileContainer = new ChangedFileContainer();
     private final FileConfig fileConfig = new FileConfig();
@@ -34,7 +34,7 @@ public abstract class RepositoryPreProcessor {
     private final Connector connector;
     private final String source;
 
-    RepositoryPreProcessor(FileParser parser, Connector connector, String source) {
+    PreProcessor(FileParser parser, Connector connector, String source) {
         this.parser = parser;
         this.connector = connector;
         this.source = source;
@@ -48,6 +48,10 @@ public abstract class RepositoryPreProcessor {
 
     Connector connector() {
         return connector;
+    }
+
+    void connect(String repository) throws Exception {
+        connector.connect(repository);
     }
 
     String source() {
@@ -125,7 +129,6 @@ public abstract class RepositoryPreProcessor {
                 }
             } catch (Exception e) {
                 log.error(e.toString(), e);
-                System.err.println(e.toString());
             }
         }
 

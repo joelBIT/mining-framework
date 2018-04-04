@@ -17,7 +17,7 @@ import java.util.*;
 /**
  * Preprocesses only files containing microbenchmarks.
  */
-public final class MicrobenchmarkPreProcessor extends RepositoryPreProcessor {
+public final class MicrobenchmarkPreProcessor extends PreProcessor {
     private static final Logger log = LoggerFactory.getLogger(MicrobenchmarkPreProcessor.class);
 
     public MicrobenchmarkPreProcessor(FileParser parser, Connector connector, String source) {
@@ -38,10 +38,9 @@ public final class MicrobenchmarkPreProcessor extends RepositoryPreProcessor {
                 String codeRepository = nodeExtractor.codeRepository();
 
                 try {
-                    connector().connect(codeRepository);
+                    connect(codeRepository);
                 } catch (Exception e) {
                     log.error(e.toString(), e);
-                    System.err.println(e.toString());
                     continue;
                 }
 
@@ -98,7 +97,6 @@ public final class MicrobenchmarkPreProcessor extends RepositoryPreProcessor {
             }
         } catch (Exception e) {
             log.error(e.toString(), e);
-            System.err.println(e.toString());
         }
 
         log.info("Finished preprocessing of projects");
@@ -122,7 +120,6 @@ public final class MicrobenchmarkPreProcessor extends RepositoryPreProcessor {
                 }
             } catch (Exception e) {
                 log.error(e.toString(), e);
-                System.err.println(e.toString());
             }
         }
     }

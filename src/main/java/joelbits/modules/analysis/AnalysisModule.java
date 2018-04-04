@@ -2,8 +2,8 @@ package joelbits.modules.analysis;
 
 import joelbits.modules.analysis.plugins.AnalysisService;
 import joelbits.modules.analysis.plugins.spi.Analysis;
+import joelbits.utils.CommandLineUtil;
 import joelbits.utils.PathUtil;
-import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileSystem;
@@ -18,16 +18,19 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Entry point to the analysis module of the framework.
  */
 public final class AnalysisModule extends Configured implements Tool {
-    private static final String OUTPUT_JOB_DIRECTORY = "output";
+    private static final String OUTPUT_JOB_DIRECTORY = "output_job";
+    private CommandLineUtil cmd;
+    private Job job;
+    private static final String DATASET = "dataset";
+    private static final String OUTPUT_FILE = "output";
+    private static final String ANALYSIS = "analysis";
+    private static final String ANALYSIS_PLUGIN = "plugin";
 
     public static void main(String[] args) throws Exception {
         System.exit(ToolRunner.run(new Configuration(), new AnalysisModule(), args));
@@ -35,22 +38,38 @@ public final class AnalysisModule extends Configured implements Tool {
 
     @Override
     public int run(String[] args) throws Exception {
-        List<String> datasets = new ArrayList<>();
-        checkArguments(args, datasets);
-
         Configuration configuration = this.getConf();
-        Job job = Job.getInstance(configuration, "Analysis Job");
-        loadAnalysisPlugin(args, job);
-        setDefaultSettings(job);
-        loadDatasets(datasets, job);
-        FileOutputFormat.setOutputPath(job, new Path(PathUtil.jarPath() + OUTPUT_JOB_DIRECTORY));
+        job = Job.getInstance(configuration, "Analysis Job");
+        CommandLineUtil.CommandLineBuilder cmdBuilder = new CommandLineUtil.CommandLineBuilder(args);
+
+        try {
+            cmd = cmdBuilder
+                    .parameterWithArgument(DATASET, false, "name of dataset(s) to perform analyses on")
+                    .parameterWithArgument(OUTPUT_FILE, true, "name of the created file containing the analysis results")
+                    .parameterWithArgument(ANALYSIS_PLUGIN, true, "name of the analysis plugin to use")
+                    .parameterWithArgument(ANALYSIS, true, "name of the specific analysis to perform")
+                    .build();
+
+            loadDatasets(cmd.getArgumentValue(DATASET));
+        } catch (Exception e) {
+            System.err.print(e.getMessage());
+        }
+
+        loadAnalysisPlugin();
+        setDefaultSettings();
+        FileOutputFormat
+                .setOutputPath(job, new Path(PathUtil.jarPath() + OUTPUT_JOB_DIRECTORY));
 
         int completionStatus = job.waitForCompletion(true) ? 0 : 1;
         if (completionStatus == 0) {
-            createOutput(args[2], configuration);
+            createOutput(outputFileName(), configuration);
         }
 
         return completionStatus;
+    }
+
+    private String outputFileName() {
+        return cmd.getArgumentValue(OUTPUT_FILE);
     }
 
     private void createOutput(String arg, Configuration configuration) {
@@ -59,22 +78,11 @@ public final class AnalysisModule extends Configured implements Tool {
         try {
             FileUtil.copyMerge(FileSystem.get(configuration), new Path(inputJobDirectory), FileSystem.get(configuration), new Path(outputFile), true, configuration, null);
         } catch (IOException e) {
-            System.err.println(e);
+            System.err.println(e.getMessage());
         }
     }
 
-    private void checkArguments(String[] args, List<String> datasets) {
-        if (args.length < 3) {
-            System.err.println("At least three parameters are expected");
-            System.exit(2);
-        } else if (args.length > 3) {
-            for (int i = 3; i < args.length; i++) {
-                datasets.add(PathUtil.jarPath() + args[i] + File.separator);
-            }
-        }
-    }
-
-    private void setDefaultSettings(Job job) {
+    private void setDefaultSettings() {
         job.setJarByClass(AnalysisModule.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
@@ -82,26 +90,34 @@ public final class AnalysisModule extends Configured implements Tool {
         job.setOutputFormatClass(TextOutputFormat.class);
     }
 
-    private void loadAnalysisPlugin(String[] args, Job job) {
+    private void loadAnalysisPlugin() {
         try {
-            Analysis analysisPlugin = AnalysisService.getInstance().getAnalysisPlugin(args[0]);
-            job.setMapperClass(analysisPlugin.mapper(args[1]));
-            job.setReducerClass(analysisPlugin.reducer(args[1]));
+            Analysis analysisPlugin = AnalysisService.getInstance().getAnalysisPlugin(plugin());
+            job.setMapperClass(analysisPlugin.mapper(analysis()));
+            job.setReducerClass(analysisPlugin.reducer(analysis()));
         } catch (IllegalArgumentException e) {
-            System.err.println("Could not find mapper/reducer for " + args[1]);
+            System.err.println("Could not find mapper/reducer for " + analysis());
             System.exit(2);
         }
     }
 
-    private void loadDatasets(List<String> datasets, Job job) {
+    private String plugin() {
+        return cmd.getArgumentValue(ANALYSIS_PLUGIN);
+    }
+
+    private String analysis() {
+        return cmd.getArgumentValue(ANALYSIS);
+    }
+
+    private void loadDatasets(String datasets) {
         try {
             if (datasets.isEmpty()) {
                 FileInputFormat.addInputPath(job, new Path(PathUtil.projectSequenceFile()));
             } else {
-                FileInputFormat.addInputPaths(job, StringUtils.join(datasets, ","));
+                FileInputFormat.addInputPaths(job, datasets);
             }
         } catch (IOException e) {
-            System.err.println("Could not find one or more of the datasets");
+            System.err.println(e.getMessage());
         }
     }
 }

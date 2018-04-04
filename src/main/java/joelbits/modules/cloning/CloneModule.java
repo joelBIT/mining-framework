@@ -7,7 +7,9 @@ import joelbits.modules.cloning.plugins.CloneService;
 import joelbits.modules.cloning.plugins.spi.Clone;
 import joelbits.modules.preprocessing.PreProcessorModule;
 import joelbits.modules.cloning.utils.FileRepositoryExtractor;
+import joelbits.utils.CommandLineUtil;
 import joelbits.utils.FileUtil;
+import joelbits.modules.InjectionModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,9 +25,12 @@ public final class CloneModule {
     private static final Logger log = LoggerFactory.getLogger(PreProcessorModule.class);
     @Inject
     private FileConfig fileConfig;
+    private CommandLineUtil cmd;
+    private static final String FILE = "file";
+    private static final String SOURCE = "source";
 
     private CloneModule() {
-        Guice.createInjector(new InjectionCloningModule()).injectMembers(this);
+        Guice.createInjector(new InjectionModule()).injectMembers(this);
     }
 
     public static void main(String[] args) throws IOException {
@@ -33,25 +38,38 @@ public final class CloneModule {
     }
 
     private void clone(String[] args) throws IOException {
-        if (args.length != 2) {
-            error("Expects exactly 2 parameters", new IllegalArgumentException());
-        }
-
-        String inputFileName = args[0];
-        String source = args[1];
-
-        String repositoryNameNode = fileConfig.repositoryFullNameNode(source);
-        String repositoryListNode = fileConfig.repositoryListNode(source);
+        CommandLineUtil.CommandLineBuilder cmdBuilder = new CommandLineUtil.CommandLineBuilder(args);
 
         try {
-            List<String> repositories = getRepositories(inputFileName, repositoryNameNode, repositoryListNode);
-            Clone clonePlugin = CloneService.getInstance().getClonePlugin(source);
+            cmd = cmdBuilder
+                    .parameterWithArgument(FILE, true, "name of the project metadata file")
+                    .parameterWithArgument(SOURCE, true, "name of the source from where the metadata input file came")
+                    .build();
+
+        } catch (Exception e) {
+            System.err.print(e.getMessage());
+        }
+
+        String repositoryNameNode = fileConfig.repositoryFullNameNode(source());
+        String repositoryListNode = fileConfig.repositoryListNode(source());
+
+        try {
+            List<String> repositories = getRepositories(inputFileName(), repositoryNameNode, repositoryListNode);
+            Clone clonePlugin = CloneService.getInstance().getClonePlugin(source());
             clonePlugin.clone(repositories);
 
             log.info("Finished cloning repositories");
         } catch (Exception e) {
             error("Error cloning repositories", e);
         }
+    }
+
+    private String inputFileName() {
+        return cmd.getArgumentValue(FILE);
+    }
+
+    private String source() {
+        return cmd.getArgumentValue(SOURCE);
     }
 
     private void error(String errorMessage, Exception e) {

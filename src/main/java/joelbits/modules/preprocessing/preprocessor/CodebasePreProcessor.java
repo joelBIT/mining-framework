@@ -16,7 +16,7 @@ import java.util.*;
 /**
  * Preprocesses all source code files.
  */
-public final class CodebasePreProcessor extends RepositoryPreProcessor {
+public final class CodebasePreProcessor extends PreProcessor {
     private static final Logger log = LoggerFactory.getLogger(CodebasePreProcessor.class);
 
     public CodebasePreProcessor(FileParser parser, Connector connector, String source) {
@@ -38,10 +38,9 @@ public final class CodebasePreProcessor extends RepositoryPreProcessor {
                 String codeRepository = nodeExtractor.codeRepository();
 
                 try {
-                    connector().connect(codeRepository);
+                    connect(codeRepository);
                 } catch (Exception e) {
                     log.error(e.toString(), e);
-                    System.err.println(e.toString());
                     continue;
                 }
 
@@ -100,7 +99,7 @@ public final class CodebasePreProcessor extends RepositoryPreProcessor {
             }
 
         } catch (Exception e) {
-            System.err.println(e.toString());
+            log.error(e.toString(), e);
         }
     }
 }
