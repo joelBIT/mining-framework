@@ -41,7 +41,7 @@ correct cloning plugin.
 **Preprocessing**:
 
 This module pre-processes the projects found in the _/repositories_ folder which must exist in the same directory as the 
-framework jar is run. There are 5 possible input parameters; *-connector -parser -inputFile -source -dataset*
+framework jar is run. There are 6 possible input parameters; *-connector -parser -inputFile -source -dataset -all*
 
 Example: 
 ```
@@ -57,7 +57,7 @@ using a connector is to be able to collect the history of the repository develop
 * *-source* identifies the source of the repositories, i.e., where the metadata file were retrieved from, e.g., github. 
 * *-dataset* is optional and will be the name given to the created dataset. If this parameter is left out, a default
 name will be given to the created dataset.
-* *-all* is optional and if set all code base files matching the parser language will be parsed and persisted as a new dataset.
+* *-all* is optional and if set all code base files matching the parser language will be parsed and persisted as a new dataset. If left out, only files containing microbenchmarks will be parsed.
 
 
 **Analysis**:
