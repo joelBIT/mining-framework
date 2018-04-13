@@ -41,7 +41,7 @@ correct cloning plugin.
 **Preprocessing**:
 
 This module pre-processes the projects found in the _/repositories_ folder which must exist in the same directory as the 
-framework jar is run. There are 6 possible input parameters; *-connector -parser -inputFile -source -dataset -all*
+framework jar is run. There are 5 possible parameters; *-connector -parser -inputFile -source -dataset* and 1 optional flag; *-all*
 
 Example: 
 ```
@@ -57,6 +57,9 @@ using a connector is to be able to collect the history of the repository develop
 * *-source* identifies the source of the repositories, i.e., where the metadata file were retrieved from, e.g., github. 
 * *-dataset* is optional and will be the name given to the created dataset. If this parameter is left out, a default
 name will be given to the created dataset.
+
+Explanation of flags:
+
 * *-all* is optional and if set all code base files matching the parser language will be parsed and persisted as a new dataset. If left out, only files containing microbenchmarks will be parsed.
 
 
@@ -64,7 +67,7 @@ name will be given to the created dataset.
 
 This module is used to analyze datasets created by MicroAnalyzer. A dataset consists of two files; a Hadoop MapFile containing
 data on a project level, and a Hadoop SequenceFile containing data on a source code level. The output of the analysis module is
-a text file containing the analysis result. An analysis process is initiated using a minimum of three input parameters;  
+a text file containing the analysis result. There are 4 possible parameters when initiating an analysis process;  
 *-plugin -analysis -output -dataset*
 
 Example: 
@@ -78,6 +81,6 @@ Explanation of parameters:
 should also add a parameter identifying which specific analysis to run.
 * *-analysis* is the specific analysis to run, corresponding to the mapper and reducer implementation parts of the analysis plugin.
 * *-output* becomes the name for the created output text file containing the analysis results.
-* *-dataset* is an optional parameter and if used, it names which specific dataset(s) should be subject for analysis. If 
+* *-dataset* is optional and if used, it names which specific dataset(s) should be subject for analysis. If 
 this parameter is left out the default dataset name will be used (which is the default name for the created dataset after 
 preprocessing).
