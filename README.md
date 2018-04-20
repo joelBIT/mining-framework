@@ -1,10 +1,9 @@
 # MicroAnalyzer
 
 This project contains a set of modules dealing with different responsibilities of the mining software repositories process.
-The MicroAnalyzer framework has a plugin architecture allowing users to extend the framework to support a new mining tasks.
+The MicroAnalyzer framework has a plugin architecture allowing users to extend the framework to support new mining tasks.
 As a result researchers and practitioners are not required to create new specific mining tools from scratch for their projects.
-The hotspots of the MicroAnalyzer architecture allow for plugin types such as language parsers, repository source cloners, dataset analyzers, and CVS
-data extractors.
+The hotspots of the MicroAnalyzer architecture allow plugins such as language parsers, repository source cloners, dataset analyzers, and CVS data extractors.
 
 ## How To Compile Sources
 
@@ -41,11 +40,11 @@ correct cloning plugin.
 **Preprocessing**:
 
 This module pre-processes the projects found in the _/repositories_ folder which must exist in the same directory as the 
-framework jar is run. There are 5 possible parameters; *-connector -parser -inputFile -source -dataset* and 1 optional flag; *-all*
+framework jar is run. There are 5 possible parameters; *-connector -parser -file -source -dataset* and 1 optional flag; *-all*
 
 Example: 
 ```
-java -cp micro-analyzer.jar joelbits.modules.preprocessing.PreProcessorModule -connector git -parser java -inputFile metadata.json -source github -dataset jmh_dataset -all
+java -cp micro-analyzer.jar joelbits.modules.preprocessing.PreProcessorModule -connector git -parser java -file metadata.json -source github -dataset jmh_dataset -all
 ```
 
 Explanation of parameters:
@@ -53,7 +52,7 @@ Explanation of parameters:
 * *-connector* informs which connector should be used to connect to the repositories CVS. The reason for 
 using a connector is to be able to collect the history of the repository development. 
 * *-parser* represent which language parser should be used to extract the raw data. 
-* *-inputFile* is the name of the input file that contains the projects' metadata. 
+* *-file* is the name of the input file that contains the projects' metadata. 
 * *-source* identifies the source of the repositories, i.e., where the metadata file were retrieved from, e.g., github. 
 * *-dataset* is optional and will be the name given to the created dataset. If this parameter is left out, a default
 name will be given to the created dataset.
