@@ -40,7 +40,7 @@ correct cloning plugin.
 **Preprocessing**:
 
 This module pre-processes the projects found in the _/repositories_ folder which must exist in the same directory as the 
-framework jar is run. There are 5 possible parameters; *-connector -parser -file -source -dataset* and 1 optional flag; *-all*
+framework jar is run. There are five possible parameters: *-connector -parser -file -source -dataset* and one optional flag: *-all*
 
 Example: 
 ```
@@ -66,8 +66,7 @@ Explanation of flags:
 
 This module is used to analyze datasets created by MicroAnalyzer. A dataset consists of two files; a Hadoop MapFile containing
 data on a project level, and a Hadoop SequenceFile containing data on a source code level. The output of the analysis module is
-a text file containing the analysis result. There are 4 possible parameters when initiating an analysis process;  
-*-plugin -analysis -output -dataset*
+a text file containing the analysis result. There are 4 possible parameters when initiating an analysis process: *-plugin -analysis -output -dataset*
 
 Example: 
 ```
