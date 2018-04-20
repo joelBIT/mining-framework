@@ -3,9 +3,9 @@ package joelbits.modules.preprocessing;
 import joelbits.modules.preprocessing.plugins.PluginService;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
 import joelbits.modules.preprocessing.plugins.spi.FileParser;
-import joelbits.modules.preprocessing.preprocessor.CodebasePreProcessor;
-import joelbits.modules.preprocessing.preprocessor.MicrobenchmarkPreProcessor;
-import joelbits.modules.preprocessing.preprocessor.PreProcessor;
+import joelbits.modules.preprocessing.preprocessors.CodebasePreProcessor;
+import joelbits.modules.preprocessing.preprocessors.MicrobenchmarkPreProcessor;
+import joelbits.modules.preprocessing.preprocessors.PreProcessor;
 import joelbits.modules.preprocessing.utils.PersistenceUtil;
 import joelbits.utils.CommandLineUtil;
 import joelbits.utils.FileUtil;
@@ -21,7 +21,7 @@ public final class PreProcessorModule {
     private static final String CONNECTOR = "connector";
     private static final String PARSER = "parser";
     private static final String DATASET = "dataset";
-    private static final String INPUT_FILE = "inputFile";
+    private static final String INPUT_FILE = "file";
     private static final String SOURCE = "source";
     private static final String PARSE_ALL = "all";
 
@@ -42,10 +42,12 @@ public final class PreProcessorModule {
                     .parameter(PARSE_ALL, false, "set if all source code files should be parsed, otherwise only files containing microbenchmarks are parsed")
                     .build();
 
-            PreProcessor preProcessor = getPreProcessor(connector(), parser(), source());
-            preProcessor.process(FileUtil.createFile(inputFile()));
+            if (cmd.hasArgument(DATASET)) {
+                persistenceUtil.setOutputFileName(cmd.getArgumentValue(DATASET));
+            }
 
-            persistData(preProcessor);
+            PreProcessor preProcessor = getPreProcessor(connector(), parser(), source(), persistenceUtil);
+            preProcessor.process(FileUtil.createFile(inputFile()));
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
@@ -69,18 +71,10 @@ public final class PreProcessorModule {
         return cmd.getArgumentValue(INPUT_FILE);
     }
 
-    private PreProcessor getPreProcessor(Connector connector, FileParser parser, String source) {
+    private PreProcessor getPreProcessor(Connector connector, FileParser parser, String source, PersistenceUtil persistenceUtil) {
         if (cmd.hasArgument(PARSE_ALL)) {
-            return new CodebasePreProcessor(parser, connector, source);
+            return new CodebasePreProcessor(parser, connector, source, persistenceUtil);
         }
-        return new MicrobenchmarkPreProcessor(parser, connector, source);
-    }
-
-    private void persistData(PreProcessor preProcessor) {
-        if (cmd.hasArgument(DATASET)) {
-            persistenceUtil.setOutputFileName(cmd.getArgumentValue(DATASET));
-        }
-        persistenceUtil.persistProjects(preProcessor.projects());
-        persistenceUtil.persistBenchmarkFiles(preProcessor.changedFiles());
+        return new MicrobenchmarkPreProcessor(parser, connector, source, persistenceUtil);
     }
 }

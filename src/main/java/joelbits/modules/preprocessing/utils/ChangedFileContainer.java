@@ -6,8 +6,18 @@ public final class ChangedFileContainer {
     private final Set<String> changedFilesInNewestSnapshot = new HashSet<>();
     private final Map<String, Map<String, byte[]>> changedFilesEvolution = new HashMap<>();
 
+    /**
+     * Removes the stored changed files from the current projects snapshot.
+     */
     public void clearSnapshot() {
         this.changedFilesInNewestSnapshot.clear();
+    }
+
+    /**
+     * Removes the stored changed files and all their revisions from the current project.
+     */
+    public void clearEvolution() {
+        this.changedFilesEvolution.clear();
     }
 
     public boolean snapshotContains(String key) {

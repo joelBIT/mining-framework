@@ -5,7 +5,7 @@ import java.io.File;
 public final class PathUtil {
     private static final String PATH = System.getProperty("user.dir") + File.separator;
     private static final String REPOSITORIES = PATH + "repositories" + File.separator;
-    private static final String CHANGED_FILES = PATH + "benchmarkFiles" + File.separator;
+    private static final String CHANGED_FILES = PATH + "files" + File.separator;
     private static final String PROJECTS = PATH + "projects" + File.separator;
     private static final String CONFIG = PATH + "framework.properties";
 
@@ -17,7 +17,7 @@ public final class PathUtil {
         return PROJECTS;
     }
 
-    public static String benchmarksMapFile() {
+    public static String changedFilesMapFile() {
         return CHANGED_FILES;
     }
 

@@ -1,4 +1,4 @@
-package joelbits.modules.preprocessing.preprocessor;
+package joelbits.modules.preprocessing.preprocessors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import joelbits.configs.FileConfig;
@@ -12,6 +12,7 @@ import joelbits.modules.preprocessing.plugins.spi.Connector;
 import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import joelbits.modules.preprocessing.utils.ChangedFileContainer;
 import joelbits.modules.preprocessing.utils.NodeExtractor;
+import joelbits.modules.preprocessing.utils.PersistenceUtil;
 import joelbits.modules.preprocessing.utils.ProjectContainer;
 import joelbits.utils.FileUtil;
 import joelbits.utils.PathUtil;
@@ -29,15 +30,18 @@ public abstract class PreProcessor {
     private static final Logger log = LoggerFactory.getLogger(PreProcessor.class);
     private final ProjectContainer projectContainer = new ProjectContainer();
     private final ChangedFileContainer changedFileContainer = new ChangedFileContainer();
+    private final PersistenceUtil persistenceUtil;
     private final FileConfig fileConfig = new FileConfig();
     private final FileParser parser;
     private final Connector connector;
     private final String source;
+    protected static final String REPOSITORY_SEPARATOR = "/";
 
-    PreProcessor(FileParser parser, Connector connector, String source) {
+    PreProcessor(FileParser parser, Connector connector, String source, PersistenceUtil persistenceUtil) {
         this.parser = parser;
         this.connector = connector;
         this.source = source;
+        this.persistenceUtil = persistenceUtil;
     }
 
     public abstract void process(File projectsMetadata);
@@ -66,8 +70,13 @@ public abstract class PreProcessor {
         return projectContainer.projects();
     }
 
+    /**
+     * Clears the container to get rid of all stored changed files and their revisions for a project.
+     * This way the container can be reused for parsing and persisting a new project.
+     */
     void clearChangedFileContainer() {
         changedFileContainer.clearSnapshot();
+        changedFileContainer.clearEvolution();
     }
 
     void addChangedFileSnapshot(String filePath) {
@@ -80,10 +89,6 @@ public abstract class PreProcessor {
 
     boolean snapshotContains(String key) {
         return changedFileContainer.snapshotContains(key);
-    }
-
-    public Map<String, Map<String, byte[]>> changedFiles() {
-        return changedFileContainer.changedFilesEvolution();
     }
 
     byte[] parseFile(String codeRepository, String mostRecentCommitId, String path) throws Exception {
@@ -113,6 +118,10 @@ public abstract class PreProcessor {
         return nodeExtractor.createRevision(mostRecentCommitId, committer, revisionFiles, commitTime, log);
     }
 
+    void persistChangedFiles(String temporaryDatasetName) {
+        persistenceUtil.persistChangedFiles(changedFileContainer.changedFilesEvolution(), temporaryDatasetName);
+    }
+
     /**
      * Identifies which files in a set that are changed files and of a type required for the parser.
      *
@@ -133,5 +142,14 @@ public abstract class PreProcessor {
         }
 
         return filesToParse;
+    }
+
+    void createDataSets() {
+        persistenceUtil.persistProjects(projectContainer.projects());
+        try {
+            persistenceUtil.mergeDataSets();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 }

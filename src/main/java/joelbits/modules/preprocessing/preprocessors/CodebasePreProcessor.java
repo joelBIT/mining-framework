@@ -1,4 +1,4 @@
-package joelbits.modules.preprocessing.preprocessor;
+package joelbits.modules.preprocessing.preprocessors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Iterators;
@@ -7,7 +7,8 @@ import joelbits.model.project.protobuf.ProjectProtos;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
 import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import joelbits.modules.preprocessing.utils.NodeExtractor;
-import joelbits.utils.PathUtil;
+import joelbits.modules.preprocessing.utils.PersistenceUtil;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,13 +16,13 @@ import java.io.File;
 import java.util.*;
 
 /**
- * Preprocesses only files containing microbenchmarks.
+ * Preprocesses all source code files.
  */
-public final class MicrobenchmarkPreProcessor extends PreProcessor {
-    private static final Logger log = LoggerFactory.getLogger(MicrobenchmarkPreProcessor.class);
+public final class CodebasePreProcessor extends PreProcessor {
+    private static final Logger log = LoggerFactory.getLogger(CodebasePreProcessor.class);
 
-    public MicrobenchmarkPreProcessor(FileParser parser, Connector connector, String source) {
-        super(parser, connector, source);
+    public CodebasePreProcessor(FileParser parser, Connector connector, String source, PersistenceUtil persistenceUtil) {
+        super(parser, connector, source, persistenceUtil);
     }
 
     /**
@@ -29,6 +30,7 @@ public final class MicrobenchmarkPreProcessor extends PreProcessor {
      *
      * @param projectsMetadata
      */
+    @Override
     public void process(File projectsMetadata) {
         try {
             Iterator<JsonNode> iterator = repositories(projectsMetadata);
@@ -48,9 +50,11 @@ public final class MicrobenchmarkPreProcessor extends PreProcessor {
                 List<ProjectProtos.ChangedFile> revisionFiles = new ArrayList<>();
 
                 try {
-                    retainBenchmarkFiles(codeRepository, connector()
+                    Set<String> changedFiles = retainChangedFilesWithParserType(connector()
                             .snapshotFiles(connector()
-                            .mostRecentCommitId()));
+                                    .mostRecentCommitId()));
+
+                    addChangedFileSnapshots(changedFiles);
                 } catch (Exception e) {
                     log.error(e.toString(), e);
                 }
@@ -94,33 +98,14 @@ public final class MicrobenchmarkPreProcessor extends PreProcessor {
                 }
 
                 addRepositoryToProject(nodeExtractor, repositoryRevisions);
+                persistChangedFiles(codeRepository.replaceAll(REPOSITORY_SEPARATOR, StringUtils.EMPTY));
             }
+            createDataSets();
         } catch (Exception e) {
-            log.error(e.toString(), e);
+            System.out.println(e.toString());
         }
 
-        log.info("Finished preprocessing of projects");
-        System.out.println("Finished preprocessing of projects");
-    }
-
-    /**
-     * Identifies which files in a repository's codebase snapshotContains benchmarks.
-     *
-     * @param repositoryName            the repository name
-     * @param filesInRepository         all files in a specific snapshot of the repository
-     */
-    private void retainBenchmarkFiles(String repositoryName, Set<String> filesInRepository) {
-        String path = PathUtil.clonedRepositoriesFolder() + File.separator + repositoryName + File.separator;
-        Set<String> retainedFiles = retainChangedFilesWithParserType(filesInRepository);
-
-        for (String filePath : retainedFiles) {
-            try {
-                if (parser().hasBenchmarks(new File(path + filePath))) {
-                    addChangedFileSnapshot(filePath);
-                }
-            } catch (Exception e) {
-                log.error(e.toString(), e);
-            }
-        }
+        log.info("Finished pre-processing of projects");
+        System.out.println("Finished pre-processing of projects");
     }
 }

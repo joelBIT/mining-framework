@@ -1,4 +1,4 @@
-package joelbits.modules.preprocessing.preprocessor;
+package joelbits.modules.preprocessing.preprocessors;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Iterators;
@@ -7,6 +7,9 @@ import joelbits.model.project.protobuf.ProjectProtos;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
 import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import joelbits.modules.preprocessing.utils.NodeExtractor;
+import joelbits.modules.preprocessing.utils.PersistenceUtil;
+import joelbits.utils.PathUtil;
+import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,13 +17,13 @@ import java.io.File;
 import java.util.*;
 
 /**
- * Preprocesses all source code files.
+ * Pre-processes only files containing microbenchmarks.
  */
-public final class CodebasePreProcessor extends PreProcessor {
-    private static final Logger log = LoggerFactory.getLogger(CodebasePreProcessor.class);
+public final class MicrobenchmarkPreProcessor extends PreProcessor {
+    private static final Logger log = LoggerFactory.getLogger(MicrobenchmarkPreProcessor.class);
 
-    public CodebasePreProcessor(FileParser parser, Connector connector, String source) {
-        super(parser, connector, source);
+    public MicrobenchmarkPreProcessor(FileParser parser, Connector connector, String source, PersistenceUtil persistenceUtil) {
+        super(parser, connector, source, persistenceUtil);
     }
 
     /**
@@ -28,7 +31,6 @@ public final class CodebasePreProcessor extends PreProcessor {
      *
      * @param projectsMetadata
      */
-    @Override
     public void process(File projectsMetadata) {
         try {
             Iterator<JsonNode> iterator = repositories(projectsMetadata);
@@ -44,28 +46,25 @@ public final class CodebasePreProcessor extends PreProcessor {
                     continue;
                 }
 
-                try {
-                    Set<String> changedFiles = retainChangedFilesWithParserType(connector()
-                            .snapshotFiles(connector()
-                                    .mostRecentCommitId()));
+                List<ProjectProtos.Revision> repositoryRevisions = new ArrayList<>();
+                List<ProjectProtos.ChangedFile> revisionFiles = new ArrayList<>();
 
-                    addChangedFileSnapshots(changedFiles);
+                try {
+                    retainBenchmarkFiles(codeRepository, connector()
+                            .snapshotFiles(connector()
+                            .mostRecentCommitId()));
                 } catch (Exception e) {
                     log.error(e.toString(), e);
                 }
 
                 List<String> allCommitIds = connector().allCommitIds();
                 System.out.println(codeRepository + " has " + allCommitIds.size() + " revisions");
-                List<ProjectProtos.Revision> repositoryRevisions = new ArrayList<>();
-                List<ProjectProtos.ChangedFile> revisionFiles = new ArrayList<>();
-
                 PeekingIterator<String> commitIterator = Iterators.peekingIterator(allCommitIds.iterator());
                 while (commitIterator.hasNext()) {
                     String mostRecentCommitId = commitIterator.next();
                     if (!commitIterator.hasNext()) {
                         break;
                     }
-
                     try {
                         Map<String, String> changedFiles = connector().getCommitFileChanges(mostRecentCommitId);
                         for (Map.Entry<String, String> changeFile : changedFiles.entrySet()) {
@@ -96,10 +95,35 @@ public final class CodebasePreProcessor extends PreProcessor {
                 }
 
                 addRepositoryToProject(nodeExtractor, repositoryRevisions);
+                persistChangedFiles(codeRepository.replaceAll(REPOSITORY_SEPARATOR, StringUtils.EMPTY));
             }
-
+            createDataSets();
         } catch (Exception e) {
-            log.error(e.toString(), e);
+            System.out.println(e.toString());
+        }
+
+        log.info("Finished pre-processing of projects");
+        System.out.println("Finished pre-processing of projects");
+    }
+
+    /**
+     * Identifies which files in a repository's codebase snapshotContains benchmarks.
+     *
+     * @param repositoryName            the repository name
+     * @param filesInRepository         all files in a specific snapshot of the repository
+     */
+    private void retainBenchmarkFiles(String repositoryName, Set<String> filesInRepository) {
+        String path = PathUtil.clonedRepositoriesFolder() + File.separator + repositoryName + File.separator;
+        Set<String> retainedFiles = retainChangedFilesWithParserType(filesInRepository);
+
+        for (String filePath : retainedFiles) {
+            try {
+                if (parser().hasBenchmarks(new File(path + filePath))) {
+                    addChangedFileSnapshot(filePath);
+                }
+            } catch (Exception e) {
+                log.error(e.toString(), e);
+            }
         }
     }
 }
