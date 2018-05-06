@@ -1,9 +1,9 @@
 package joelbits.modules.analysis;
 
+import joelbits.model.utils.PathUtil;
 import joelbits.modules.analysis.plugins.AnalysisService;
 import joelbits.modules.analysis.plugins.spi.Analysis;
 import joelbits.utils.CommandLineUtil;
-import joelbits.utils.PathUtil;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileSystem;
@@ -60,9 +60,14 @@ public final class AnalysisModule extends Configured implements Tool {
         FileOutputFormat
                 .setOutputPath(job, new Path(PathUtil.jarPath() + OUTPUT_JOB_DIRECTORY));
 
-        int completionStatus = job.waitForCompletion(true) ? 0 : 1;
-        if (completionStatus == 0) {
-            createOutput(outputFileName(), configuration);
+        int completionStatus = 1;
+        try {
+            completionStatus = job.waitForCompletion(true) ? 0 : 1;
+            if (completionStatus == 0) {
+                createOutput(outputFileName(), configuration);
+            }
+        } catch (Exception e) {
+            System.err.println(e.toString());
         }
 
         return completionStatus;

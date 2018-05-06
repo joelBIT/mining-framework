@@ -7,6 +7,7 @@ import joelbits.model.project.protobuf.ProjectProtos.Project;
 import joelbits.model.project.protobuf.ProjectProtos.Revision;
 import joelbits.model.project.protobuf.ProjectProtos.Person;
 import joelbits.model.project.protobuf.ProjectProtos.ChangedFile;
+import joelbits.model.utils.PathUtil;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
 
 import joelbits.modules.preprocessing.plugins.spi.FileParser;
@@ -15,7 +16,6 @@ import joelbits.modules.preprocessing.utils.NodeExtractor;
 import joelbits.modules.preprocessing.utils.PersistenceUtil;
 import joelbits.modules.preprocessing.utils.ProjectContainer;
 import joelbits.utils.FileUtil;
-import joelbits.utils.PathUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

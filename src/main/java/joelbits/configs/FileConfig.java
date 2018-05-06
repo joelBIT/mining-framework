@@ -1,6 +1,6 @@
 package joelbits.configs;
 
-import joelbits.utils.PathUtil;
+import joelbits.model.utils.PathUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +26,7 @@ public final class FileConfig {
     private static final String REPOSITORY_NAME_NODE = "repository_name_node_";
 
     public FileConfig() {
-        try (FileInputStream stream = new FileInputStream(PathUtil.configurationFile())) {
+        try (FileInputStream stream = new FileInputStream(PathUtil.sourceMappingsFile())) {
             properties.load(stream);
         } catch (FileNotFoundException e) {
             error("Could not find framework configuration file", e);

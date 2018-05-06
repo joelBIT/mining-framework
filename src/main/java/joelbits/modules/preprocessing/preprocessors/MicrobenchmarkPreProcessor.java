@@ -4,11 +4,11 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.PeekingIterator;
 import joelbits.model.project.protobuf.ProjectProtos;
+import joelbits.model.utils.PathUtil;
 import joelbits.modules.preprocessing.plugins.spi.Connector;
 import joelbits.modules.preprocessing.plugins.spi.FileParser;
 import joelbits.modules.preprocessing.utils.NodeExtractor;
 import joelbits.modules.preprocessing.utils.PersistenceUtil;
-import joelbits.utils.PathUtil;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -107,7 +107,7 @@ public final class MicrobenchmarkPreProcessor extends PreProcessor {
     }
 
     /**
-     * Identifies which files in a repository's codebase snapshotContains benchmarks.
+     * Identifies which files in a repository's codebase snapshot contains benchmarks.
      *
      * @param repositoryName            the repository name
      * @param filesInRepository         all files in a specific snapshot of the repository

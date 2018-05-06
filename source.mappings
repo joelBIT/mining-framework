@@ -1,0 +1,10 @@
+repository_full_name_node_github=full_name
+repository_list_node_github=items
+repository_watchers_node_github=watchers
+repository_forks_node_github=forks
+repository_language_node_github=language
+repository_url_node_github=url
+repository_html_url_node_github=html_url
+repository_id_node_github=id
+repository_name_node_github=name
+repository_created_at_node_github=created_at
