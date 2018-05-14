@@ -3,7 +3,7 @@
 This project contains a set of modules dealing with different responsibilities of the mining software repositories process.
 The MicroAnalyzer framework has a plugin architecture allowing users to extend the framework to support new mining tasks.
 As a result researchers and practitioners are not required to create new specific mining tools from scratch for their projects.
-The hotspots of the MicroAnalyzer architecture allow plugins such as language parsers, repository source cloners, dataset analyzers, and CVS data extractors.
+The hotspots of the MicroAnalyzer architecture allow plugins such as language parsers, repository source cloners, dataset analyzers, and VCS data extractors.
 
 ## How To Compile Sources
 
