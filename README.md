@@ -49,7 +49,7 @@ java -cp micro-analyzer.jar joelbits.modules.preprocessing.PreProcessorModule -c
 
 Explanation of parameters:
 
-* *-connector* informs which connector should be used to connect to the repositories CVS. The reason for 
+* *-connector* informs which connector should be used to connect to the repositories VCS. The reason for 
 using a connector is to be able to collect the history of the repository development. 
 * *-parser* represent which language parser should be used to extract the raw data. 
 * *-file* is the name of the input file that contains the projects' metadata. 
