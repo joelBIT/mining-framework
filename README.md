@@ -5,7 +5,7 @@ The MicroAnalyzer framework has a plugin architecture allowing users to extend t
 As a result researchers and practitioners are not required to create new specific mining tools from scratch for their projects.
 The hotspots of the MicroAnalyzer architecture allow plugins such as language parsers, repository source cloners, dataset analyzers, and VCS data extractors.
 
-The MicroAnalyzer framework is described in more detail in my master thesis https://github.com/MicroAnalyzer/master-thesis/blob/master/Master_thesis.pdf
+The MicroAnalyzer framework is described in more detail in my master thesis https://microanalyzer.github.io/master-thesis/Master_thesis.pdf
 
 ## How To Compile Sources
 
